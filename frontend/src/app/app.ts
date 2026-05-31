@@ -1,5 +1,7 @@
 import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -24,10 +26,18 @@ import { PageTransitionComponent } from './shared/page-transition/page-transitio
 })
 export class App implements OnInit {
   private platformId = inject(PLATFORM_ID);
+  private router = inject(Router);
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      import('./core/animations/lenis.config').then(({ initLenis }) => initLenis());
+      import('./core/animations/lenis.config').then(({ initLenis, getLenis }) => {
+        initLenis();
+        this.router.events.pipe(
+          filter(e => e instanceof NavigationEnd)
+        ).subscribe(() => {
+          getLenis()?.scrollTo(0, { immediate: true });
+        });
+      });
     }
   }
 }

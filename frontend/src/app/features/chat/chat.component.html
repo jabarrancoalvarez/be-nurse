@@ -1,27 +1,82 @@
-<div class="chat-page">
-  <div class="chat-header">
-    <h1>Chat anonimo</h1>
-    <p>Habla con nuestro equipo de enfermeria sin revelar tu identidad.</p>
-    <div class="anonymous-badge">🔒 Completamente anonimo</div>
+<section class="page-hero">
+  <div class="page-hero__content">
+    <span class="section-tag">Consulta profesional</span>
+    <h1 class="page-hero__title">Chat anónimo</h1>
+    <p>Habla con nuestro equipo de enfermería sin revelar tu identidad. Sin juicios, sin registro.</p>
+    <div class="trust-row">
+      <span class="trust-chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        100% anónimo
+      </span>
+      <span class="trust-chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Enfermeros/as especializados
+      </span>
+      <span class="trust-chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        Respuesta en minutos
+      </span>
+    </div>
   </div>
+</section>
+
+<div class="chat-container">
 
   <div class="chat-window">
+
+    <div class="chat-window__header">
+      <div class="chat-window__nurse">
+        <div class="chat-window__nurse-avatar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="chat-window__nurse-name">Equipo be-nurse</div>
+          <div class="chat-window__nurse-status">
+            <span class="status-dot"></span>En línea
+          </div>
+        </div>
+      </div>
+      <span class="chat-window__privacy">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Cifrado extremo a extremo
+      </span>
+    </div>
+
     <div class="messages">
       @for (msg of messages(); track msg.time) {
         <div class="message" [class.message--user]="msg.isFromUser" [class.message--nurse]="!msg.isFromUser">
           @if (!msg.isFromUser) {
-            <div class="message__avatar">be</div>
+            <div class="message__avatar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              </svg>
+            </div>
           }
           <div class="message__bubble">{{ msg.content }}</div>
           @if (msg.isFromUser) {
-            <div class="message__avatar message__avatar--user">Tu</div>
+            <div class="message__avatar message__avatar--user">Tú</div>
           }
         </div>
       }
 
       @if (sending()) {
         <div class="message message--nurse">
-          <div class="message__avatar">be</div>
+          <div class="message__avatar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            </svg>
+          </div>
           <div class="message__bubble message__bubble--typing">
             <span></span><span></span><span></span>
           </div>
@@ -39,13 +94,22 @@
         rows="1"
         [disabled]="sending()"
       ></textarea>
-      <button (click)="send()" [disabled]="!input.trim() || sending()" class="send-btn">
-        Enviar
+      <button (click)="send()" [disabled]="!input.trim() || sending()" class="send-btn" aria-label="Enviar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
       </button>
     </div>
+
   </div>
 
   <p class="disclaimer">
-    ⚠️ Este servicio NO es una emergencia medica. Para urgencias, llama al <strong>112</strong>.
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>
+    Este servicio <strong>NO es urgencias médicas.</strong> Para emergencias llama al <strong>112</strong>.
   </p>
+
 </div>

@@ -1,62 +1,163 @@
 <section class="page-hero">
   <div class="page-hero__content">
-    <span class="section-tag">Nosotros</span>
-    <h1>Contacto</h1>
-    <p>Proporcionar informacion confiable y apoyo profesional en salud sexual.</p>
+    <span class="section-tag">Contacto</span>
+    <h1 class="page-hero__title">¿Hablamos?</h1>
+    <p>Escríbenos de forma anónima. Nuestro equipo de enfermería responde sin juicios.</p>
   </div>
 </section>
 
 <div class="about-container">
+
+  <!-- FORMULARIO -->
   <div class="about-form-col">
+
     <div class="emergency-banner">
-      ⚠️ Este servicio NO es una emergencia. Si tienes una emergencia medica, contacta inmediatamente con el <strong>112</strong>.
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <span>Este servicio <strong>NO es urgencias.</strong> Para emergencias médicas llama al <strong>112</strong>.</span>
     </div>
 
     @if (submitted()) {
-      <div class="success-msg">
-        ✅ Mensaje enviado correctamente. Nos pondremos en contacto contigo pronto.
+      <div class="success-card">
+        <div class="success-card__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <h3>¡Mensaje enviado!</h3>
+        <p>Nos pondremos en contacto contigo en menos de 48 horas.</p>
       </div>
     } @else {
       <form class="contact-form" (ngSubmit)="submit()" #f="ngForm">
-        <h2>Envianos un mensaje</h2>
-
-        @if (error()) {
-          <div class="error-msg">{{ error() }}</div>
-        }
-
-        <div class="form-group">
-          <label for="name">Nombre *</label>
-          <input id="name" type="text" [(ngModel)]="form.name" name="name" required placeholder="Tu nombre" />
+        <div class="contact-form__header">
+          <h2>Envíanos un mensaje</h2>
+          <p>Todos los campos marcados con * son obligatorios.</p>
         </div>
 
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input id="email" type="email" [(ngModel)]="form.email" name="email" required placeholder="tu&#64;email.com" />
+        @if (error()) {
+          <div class="error-msg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            {{ error() }}
+          </div>
+        }
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nombre *</label>
+            <input id="name" type="text" [(ngModel)]="form.name" name="name" required placeholder="Tu nombre" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input id="email" type="email" [(ngModel)]="form.email" name="email" required placeholder="tu@email.com" />
+          </div>
         </div>
 
         <div class="form-group">
           <label for="subject">Asunto</label>
-          <input id="subject" type="text" [(ngModel)]="form.subject" name="subject" placeholder="Asunto del mensaje" />
+          <input id="subject" type="text" [(ngModel)]="form.subject" name="subject" placeholder="¿Sobre qué quieres escribir?" />
         </div>
 
         <div class="form-group">
           <label for="message">Mensaje *</label>
-          <textarea id="message" [(ngModel)]="form.message" name="message" required rows="5" placeholder="Escribe tu mensaje..."></textarea>
+          <textarea id="message" [(ngModel)]="form.message" name="message" required rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
         </div>
 
-        <button type="submit" class="submit-btn" [disabled]="!f.valid">Enviar mensaje</button>
-
-        <p class="privacy-note">🔒 Todas las conversaciones son completamente anonimas.</p>
+        <div class="form-footer">
+          <button type="submit" class="btn-primary" [disabled]="!f.valid">
+            Enviar mensaje
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+          <span class="privacy-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Completamente anónimo
+          </span>
+        </div>
       </form>
     }
   </div>
 
+  <!-- INFO -->
   <div class="about-info-col">
-    <h3>Sobre be-nurse</h3>
-    <p>Somos una plataforma de salud sexual respaldada por profesionales de enfermeria especializados/as. Nuestro objetivo es proporcionar informacion rigurosa y acceso a apoyo profesional sin barreras ni juicios.</p>
-    <div class="contact-data">
-      <div>✉️ hola&#64;be-nurse.es</div>
-      <div>📍 Espana</div>
+
+    <div class="about-card">
+      <h3>Sobre be-nurse</h3>
+      <p>Somos una plataforma de salud sexual respaldada por profesionales de enfermería especializados. Nuestro objetivo es proporcionar información rigurosa y acceso a apoyo profesional sin barreras ni juicios.</p>
     </div>
+
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="contact-item__icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-item__label">Email</div>
+          <div class="contact-item__value">hola&#64;be-nurse.es</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item__icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-item__label">Ubicación</div>
+          <div class="contact-item__value">España</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item__icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-item__label">Tiempo de respuesta</div>
+          <div class="contact-item__value">Menos de 48 horas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        100% anónimo
+      </div>
+      <div class="trust-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        Sin juicios
+      </div>
+      <div class="trust-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Profesionales de enfermería
+      </div>
+    </div>
+
   </div>
 </div>

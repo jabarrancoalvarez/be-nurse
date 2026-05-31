@@ -130,6 +130,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     this.initSwiper();
     this.initBlogCards();
     this.initContactSection();
+    setTimeout(() => ScrollTrigger.refresh(), 200);
   }
 
   private initScrollProgress() {
@@ -225,12 +226,10 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   private initPillarCards() {
     const cards = this.pillarCards.map(r => r.nativeElement);
 
-    // Sin ScrollTrigger — siempre visibles al cargar la sección
-    gsap.set(cards, { opacity: 1, scale: 1, y: 0 });
     gsap.from(cards, {
-      opacity: 0, scale: 0.92, y: 40,
-      duration: 0.7, ease: 'power3.out', stagger: 0.18,
-      delay: 0.1
+      opacity: 0, scale: 0.94, y: 30,
+      duration: 0.7, ease: 'power3.out', stagger: 0.15,
+      clearProps: 'all'
     });
 
     cards.forEach((card: HTMLElement) => {
@@ -321,14 +320,13 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private initBlogCards() {
     const cards = document.querySelectorAll('.blog-card');
-    gsap.fromTo(cards,
-      { opacity: 0, rotateY: 90 },
-      {
-        opacity: 1, rotateY: 0,
-        duration: 0.7, ease: 'power3.out', stagger: 0.2,
-        scrollTrigger: { trigger: '.blog', start: 'top 75%' }
-      }
-    );
+    gsap.from(cards, {
+      opacity: 0, y: 30,
+      duration: 0.6, ease: 'power3.out', stagger: 0.15,
+      immediateRender: false,
+      clearProps: 'all',
+      scrollTrigger: { trigger: '.blog', start: 'top 80%', once: true }
+    });
 
     cards.forEach((card: Element) => {
       const el = card as HTMLElement;

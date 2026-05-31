@@ -53,18 +53,63 @@ export class InformateComponent implements OnInit, AfterViewInit, OnDestroy {
   ]);
 
   itsCards = [
-    { name: 'VIH', emoji: '🔴', color: '#1e6b3c', desc: 'Virus que ataca el sistema inmunitario. Con tratamiento antirretroviral, vida plena y normal.' },
-    { name: 'VPH', emoji: '🟡', color: '#2e7d32', desc: 'La ITS mas comun. Hay vacuna disponible. Puede causar verrugas y distintos tipos de cancer.' },
-    { name: 'Clamidia', emoji: '🟠', color: '#388e3c', desc: 'Bacteria silenciosa. Muy comun y tratable con antibioticos. Fundamental hacerse pruebas.' },
-    { name: 'Gonorrea', emoji: '🟣', color: '#1b5e20', desc: 'Bacteria con resistencias crecientes. Tratable pero requiere atencion rapida.' },
-    { name: 'Sifilis', emoji: '🔵', color: '#155c30', desc: 'Progresa en fases distintas. Totalmente curable con penicilina si se detecta a tiempo.' },
-    { name: 'Herpes genital', emoji: '⚪', color: '#0e4423', desc: 'Virus cronico pero manejable. Muy frecuente y con tratamiento antiviral eficaz.' },
-    { name: 'Hepatitis B', emoji: '🟤', color: '#1a6b3c', desc: 'Hay vacuna. Puede cronificarse. Se transmite por sangre y fluidos sexuales.' },
-    { name: 'Hepatitis C', emoji: '🟢', color: '#166b4c', desc: 'Principalmente por sangre. Curable con tratamientos modernos de alta eficacia.' }
+    {
+      name: 'VIH', emoji: '🔴',
+      desc: 'Virus que ataca el sistema inmunitario. Sin tratamiento puede evolucionar a SIDA. Con terapia antirretroviral moderna, las personas con VIH tienen una esperanza de vida normal.',
+      tags: ['Crónico', 'Tratable', 'PrEP disponible'],
+      transmission: 'Sangre, fluidos sexuales, leche materna'
+    },
+    {
+      name: 'VPH', emoji: '🟡',
+      desc: 'La infección de transmisión sexual más común. La mayoría de personas la contraen en algún momento. Puede causar verrugas genitales y en algunos casos cáncer de cuello uterino, anal u orofaríngeo.',
+      tags: ['Muy común', 'Vacuna disponible', 'Autolimitado'],
+      transmission: 'Contacto piel con piel, relaciones sexuales'
+    },
+    {
+      name: 'Clamidia', emoji: '🟠',
+      desc: 'La ITS bacteriana más frecuente. En la mayoría de los casos no da síntomas, por eso se la llama la infección silenciosa. Sin tratamiento puede causar enfermedad inflamatoria pélvica e infertilidad.',
+      tags: ['Sin síntomas', 'Curable', 'Antibióticos'],
+      transmission: 'Relaciones sexuales sin protección'
+    },
+    {
+      name: 'Gonorrea', emoji: '🟣',
+      desc: 'Bacteria que afecta genitales, recto y garganta. Está desarrollando resistencias a los antibióticos, lo que la hace cada vez más difícil de tratar. Requiere atención médica rápida.',
+      tags: ['Resistencia creciente', 'Curable', 'Urgente tratar'],
+      transmission: 'Relaciones sexuales sin protección'
+    },
+    {
+      name: 'Sífilis', emoji: '🔵',
+      desc: 'Infección bacteriana que progresa en fases: primaria, secundaria, latente y terciaria. En sus primeras fases es completamente curable con penicilina. Si no se trata puede causar daños graves.',
+      tags: ['Fases progresivas', 'Curable', 'Penicilina'],
+      transmission: 'Contacto directo con úlceras, relaciones sexuales'
+    },
+    {
+      name: 'Herpes genital', emoji: '⚪',
+      desc: 'Infección viral crónica causada por el VHS-2 (principalmente). No tiene cura pero el tratamiento antiviral reduce la frecuencia de brotes y el riesgo de transmisión de forma significativa.',
+      tags: ['Crónico', 'Tratable', 'Muy frecuente'],
+      transmission: 'Contacto piel con piel, también sin síntomas'
+    },
+    {
+      name: 'Hepatitis B', emoji: '🟤',
+      desc: 'Infección viral del hígado que puede cronificarse y derivar en cirrosis o cáncer hepático. Existe vacuna muy eficaz incluida en el calendario infantil. Los adultos en riesgo también pueden vacunarse.',
+      tags: ['Vacuna disponible', 'Puede cronificarse', 'Grave sin tratar'],
+      transmission: 'Sangre, fluidos sexuales, vertical (madre-hijo)'
+    },
+    {
+      name: 'Hepatitis C', emoji: '🟢',
+      desc: 'Se transmite principalmente por vía sanguínea. Muchas personas no saben que la tienen. Los tratamientos actuales con antivirales de acción directa logran tasas de curación superiores al 95%.',
+      tags: ['Curable', 'Alta eficacia tto.', 'Vía sanguínea'],
+      transmission: 'Principalmente por sangre contaminada'
+    }
   ];
 
+  flippedCard = signal<string | null>(null);
   activeSection = signal('definicion');
   private observer: IntersectionObserver | null = null;
+
+  toggleCard(name: string) {
+    this.flippedCard.update(current => current === name ? null : name);
+  }
 
   ngOnInit() {}
 
@@ -73,16 +118,17 @@ export class InformateComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // ITS cards stagger
     const cards = document.querySelectorAll('.its-card');
-    gsap.fromTo(cards,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out',
-        scrollTrigger: { trigger: '#its-comunes', start: 'top 80%' }
-      }
-    );
+    gsap.from(cards, {
+      opacity: 0, y: 30,
+      duration: 0.6, stagger: 0.08, ease: 'power3.out',
+      immediateRender: false,
+      clearProps: 'all',
+      scrollTrigger: { trigger: '#its-comunes', start: 'top 80%', once: true }
+    });
 
     // Section observer
     this.initSectionObserver();
+    setTimeout(() => ScrollTrigger.refresh(), 200);
   }
 
   private initSectionObserver() {

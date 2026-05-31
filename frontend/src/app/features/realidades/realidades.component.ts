@@ -79,11 +79,10 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   animateCards() {
     const cards = document.querySelectorAll('.article-card');
-    cards.forEach((card, i) => {
-      gsap.fromTo(card,
-        { opacity: 0, x: i % 2 === 0 ? -40 : 40 },
-        { opacity: 1, x: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out' }
-      );
+    gsap.from(cards, {
+      opacity: 0, y: 20,
+      duration: 0.5, stagger: 0.08, ease: 'power3.out',
+      clearProps: 'all'
     });
   }
 

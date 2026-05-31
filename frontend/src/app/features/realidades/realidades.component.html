@@ -2,44 +2,57 @@
   <div class="page-hero__content">
     <span class="section-tag">Revista digital</span>
     <h1 class="page-hero__title">Realidades</h1>
-    <p>Historias reales, articulos y preguntas incomodas sobre sexualidad.</p>
+    <p>Historias reales, artículos y preguntas incómodas sobre sexualidad. Sin filtros ni tabúes.</p>
   </div>
 </section>
 
 <div class="realidades-container">
-  <div class="filters">
-    @for (filter of filters; track filter) {
-      <button
-        class="filter-pill"
-        [class.active]="activeFilter() === filter"
-        (click)="setFilter(filter)"
-      >{{ filter }}</button>
-    }
+
+  <div class="realidades-header">
+    <div class="filters">
+      @for (filter of filters; track filter) {
+        <button
+          class="filter-pill"
+          [class.active]="activeFilter() === filter"
+          (click)="setFilter(filter)"
+        >{{ filter }}</button>
+      }
+    </div>
+    <span class="results-count">{{ articulosFiltrados().length }} artículos</span>
   </div>
 
   <div class="articles-grid">
-    @for (art of articulosFiltrados(); track art.slug) {
-      <a class="article-card" [routerLink]="['/realidades', art.slug]">
+    @for (art of articulosFiltrados(); track art.slug; let i = $index) {
+      <a class="article-card" [class.article-card--featured]="i === 0 && activeFilter() === 'Todos'" [routerLink]="['/realidades', art.slug]">
         <div class="article-card__img" [style.background]="art.bg">
           <span class="article-card__emoji">{{ art.emoji }}</span>
+          <span class="article-card__cat-badge">{{ art.category }}</span>
         </div>
         <div class="article-card__body">
-          <span class="article-card__cat">{{ art.category }}</span>
           <h3>{{ art.title }}</h3>
           <p>{{ art.excerpt }}</p>
           <div class="article-card__meta">
-            <span>{{ art.author }}</span>
-            <span>·</span>
-            <span>{{ art.date }}</span>
-            <span>·</span>
-            <span>{{ art.readTime }} lectura</span>
+            <div class="article-card__author">
+              <div class="article-card__avatar">{{ art.author.charAt(0) }}</div>
+              <span>{{ art.author }}</span>
+            </div>
+            <div class="article-card__details">
+              <span>{{ art.date }}</span>
+              <span class="dot">·</span>
+              <span>{{ art.readTime }} lectura</span>
+            </div>
           </div>
         </div>
       </a>
     }
 
     @if (articulosFiltrados().length === 0) {
-      <p class="no-results">No hay articulos en esta categoria todavia.</p>
+      <div class="no-results">
+        <div class="no-results__icon">📭</div>
+        <h3>Sin artículos en esta categoría</h3>
+        <p>Pronto añadiremos más contenido aquí.</p>
+      </div>
     }
   </div>
+
 </div>

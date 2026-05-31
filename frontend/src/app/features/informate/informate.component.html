@@ -30,19 +30,36 @@
     </section>
 
     <section id="its-comunes" class="content-section">
-      <h2>ITS mas comunes</h2>
+      <h2>ITS más comunes</h2>
+      <p class="section-lead">Pasa el cursor sobre cada tarjeta para conocer los detalles de cada infección.</p>
       <div class="its-grid">
         @for (its of itsCards; track its.name) {
-          <div class="its-card">
-            <div class="its-card__front">
-              <div class="its-card__emoji">{{ its.emoji }}</div>
-              <h4>{{ its.name }}</h4>
-              <span class="its-card__hint">Pasa el cursor para saber mas</span>
-            </div>
-            <div class="its-card__back" [style.background]="its.color">
-              <h4>{{ its.name }}</h4>
-              <p>{{ its.desc }}</p>
-              <button class="its-card__btn">Ver informacion completa</button>
+          <div class="its-card" [class.flipped]="flippedCard() === its.name" (click)="toggleCard(its.name)">
+            <div class="its-card__inner">
+              <div class="its-card__front">
+                <span class="its-card__emoji">{{ its.emoji }}</span>
+                <h4>{{ its.name }}</h4>
+                <span class="its-card__hint">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                  Toca para saber más
+                </span>
+              </div>
+              <div class="its-card__back">
+                <div class="its-card__back-header">
+                  <span class="its-card__emoji-sm">{{ its.emoji }}</span>
+                  <h4>{{ its.name }}</h4>
+                </div>
+                <p>{{ its.desc }}</p>
+                <div class="its-card__transmission">
+                  <span class="its-card__transmission-label">Transmisión</span>
+                  <span>{{ its.transmission }}</span>
+                </div>
+                <div class="its-card__tags">
+                  @for (tag of its.tags; track tag) {
+                    <span class="its-tag">{{ tag }}</span>
+                  }
+                </div>
+              </div>
             </div>
           </div>
         }

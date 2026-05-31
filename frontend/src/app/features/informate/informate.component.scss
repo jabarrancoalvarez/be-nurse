@@ -1,8 +1,7 @@
 .page-hero {
-  background: linear-gradient(160deg, var(--color-bg-green-soft) 0%, #e8f5e9 100%);
-  padding: 5rem 1.5rem;
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--color-bg) 100%);
+  padding: 7rem 1.5rem 4rem;
   border-bottom: 1px solid var(--color-border);
-  overflow: hidden;
 
   &__content {
     max-width: 1200px;
@@ -12,11 +11,19 @@
   &__title {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500;
     color: var(--color-text);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
     margin-bottom: 0.75rem;
   }
 
-  p { color: var(--color-text-muted); font-size: 1.08rem; }
+  p {
+    color: var(--color-text-secondary);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    max-width: 560px;
+  }
 }
 
 .informate-container {
@@ -36,7 +43,7 @@
   top: 80px;
   background: #fff;
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-card);
+  border-radius: var(--radius-lg);
   padding: 1.25rem;
 
   h4 {
@@ -128,84 +135,171 @@
 }
 
 /* ITS FLIP CARDS */
+.section-lead {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+  max-width: 640px;
+}
+
 .its-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.25rem;
-  margin-top: 1.25rem;
 }
 
 .its-card {
-  height: 180px;
-  perspective: 800px;
+  height: 310px;
+  perspective: 1000px;
   cursor: pointer;
 
-  &:hover .its-card__front { transform: rotateY(-180deg); }
-  &:hover .its-card__back { transform: rotateY(0deg); }
+  &.flipped .its-card__inner {
+    transform: rotateY(180deg);
+  }
+
+  &:not(.flipped):hover .its-card__front {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+  }
 
   &__front, &__back {
     position: absolute;
     inset: 0;
     backface-visibility: hidden;
-    border-radius: var(--border-radius-card);
-    padding: 1.25rem;
+    -webkit-backface-visibility: hidden;
+    border-radius: var(--radius-xl);
+    padding: 1.25rem 1.25rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+    overflow: hidden;
   }
 
   &__front {
-    background: #fff;
+    background: var(--color-bg-white);
     border: 1px solid var(--color-border);
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
     text-align: center;
-    transform: rotateY(0deg);
-
-    h4 { font-weight: 700; font-size: 0.95rem; }
+    transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
   }
 
   &__back {
-    background: var(--color-primary);
+    background: linear-gradient(155deg, #0A3D22 0%, #0D6B3A 55%, #10914E 100%);
     color: #fff;
     transform: rotateY(180deg);
-    text-align: center;
-
-    h4 { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.4rem; }
-    p { font-size: 0.75rem; line-height: 1.5; opacity: 0.88; }
+    gap: 0.625rem;
+    justify-content: space-between;
+    border: 1px solid rgba(255,255,255,0.08);
   }
 
-  position: relative;
+  &__emoji {
+    font-size: 2.75rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 12px rgba(0,0,0,0.2));
+  }
 
-  &__emoji { font-size: 2rem; }
+  &__emoji-sm { font-size: 1.1rem; line-height: 1; }
+
+  h4 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+  }
 
   &__hint {
-    font-size: 0.68rem;
-    color: var(--color-text-muted);
-    opacity: 0.7;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
+    border-radius: var(--radius-full);
+    padding: 4px 12px;
   }
 
-  &__btn {
-    margin-top: 0.6rem;
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: var(--border-radius-pill);
-    color: #fff;
-    padding: 5px 14px;
+  &__back-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+
+    h4 {
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: var(--font-display);
+    }
+  }
+
+  &__back p {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.55;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__transmission {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-md);
+    padding: 0.4rem 0.625rem;
     font-size: 0.72rem;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background var(--transition-fast);
-
-    &:hover { background: rgba(255,255,255,0.35); }
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.4;
   }
+
+  &__transmission-label {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: 2px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+}
+
+.its-tag {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 217, 126, 0.18);
+  color: #a8ffda;
+  border: 1px solid rgba(0, 217, 126, 0.25);
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 /* FAQ GSAP */
 .faq {
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-card);
+  border-radius: var(--radius-lg);
   overflow: hidden;
 
   &__item {
