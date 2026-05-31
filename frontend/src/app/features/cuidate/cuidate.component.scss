@@ -1,0 +1,126 @@
+.page-hero {
+  background: var(--color-bg-green-soft);
+  padding: 4rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+
+  &__content {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.75rem;
+    }
+
+    p { color: var(--color-text-muted); font-size: 1.05rem; }
+  }
+}
+
+.cuidate-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.content-block {
+  h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  &--alt {
+    background: var(--color-bg-green-soft);
+    border-radius: 20px;
+    padding: 2rem;
+  }
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.info-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  &--highlight {
+    border-color: var(--color-primary-light);
+  }
+
+  &__icon { font-size: 1.8rem; }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    li {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      padding-left: 1.2rem;
+      position: relative;
+
+      &::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        color: var(--color-primary);
+      }
+    }
+  }
+}
+
+.table-wrapper { overflow-x: auto; }
+
+.chequeo-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  font-size: 0.9rem;
+
+  th {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-weight: 500;
+  }
+
+  td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--color-bg-green-soft); }
+}

@@ -1,0 +1,83 @@
+<svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="sk1" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.055" numOctaves="4" seed="2" stitchTiles="stitch" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#cff0d8"/>
+      <stop offset="100%" stop-color="#a8ddb8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="560" height="420" fill="url(#bg1)" rx="18"/>
+
+  <!-- Sombra libro -->
+  <ellipse cx="280" cy="318" rx="105" ry="13" fill="rgba(40,90,50,0.13)" filter="url(#sk1)"/>
+
+  <!-- Libro abierto - página izquierda -->
+  <path d="M148 205 Q162 188 185 190 L272 192 L272 298 Q248 295 225 297 Q202 299 182 304 Q162 309 148 299 Z"
+        fill="#fffef5" stroke="#3a7a40" stroke-width="3" stroke-linejoin="round" filter="url(#sk1)"/>
+
+  <!-- Libro abierto - página derecha -->
+  <path d="M272 192 L355 190 Q378 188 392 205 L392 299 Q378 309 358 304 Q338 299 315 297 Q292 295 272 298 Z"
+        fill="#f5fff7" stroke="#3a7a40" stroke-width="3" stroke-linejoin="round" filter="url(#sk1)"/>
+
+  <!-- Lomo libro -->
+  <path d="M272 192 Q274 245 272 298" stroke="#3a7a40" stroke-width="4" stroke-linecap="round" fill="none" filter="url(#sk1)"/>
+
+  <!-- Líneas página izquierda -->
+  <line x1="168" y1="220" x2="258" y2="220" stroke="#82c490" stroke-width="2.5" stroke-linecap="round" filter="url(#sk1)"/>
+  <line x1="168" y1="234" x2="252" y2="234" stroke="#82c490" stroke-width="2.5" stroke-linecap="round" filter="url(#sk1)"/>
+  <line x1="168" y1="248" x2="258" y2="248" stroke="#82c490" stroke-width="2.5" stroke-linecap="round" filter="url(#sk1)"/>
+  <line x1="168" y1="262" x2="250" y2="262" stroke="#82c490" stroke-width="2.5" stroke-linecap="round" filter="url(#sk1)"/>
+  <line x1="168" y1="276" x2="255" y2="276" stroke="#82c490" stroke-width="2.5" stroke-linecap="round" filter="url(#sk1)"/>
+
+  <!-- Cruz médica página derecha -->
+  <rect x="305" y="222" width="12" height="40" rx="4" fill="#3a9e48" filter="url(#sk1)"/>
+  <rect x="291" y="236" width="40" height="12" rx="4" fill="#3a9e48" filter="url(#sk1)"/>
+
+  <!-- Lupa -->
+  <circle cx="360" cy="268" r="18" fill="none" stroke="#26712f" stroke-width="3.5" filter="url(#sk1)"/>
+  <circle cx="360" cy="268" r="12" fill="rgba(255,255,255,0.35)" filter="url(#sk1)"/>
+  <line x1="373" y1="281" x2="386" y2="294" stroke="#26712f" stroke-width="4" stroke-linecap="round" filter="url(#sk1)"/>
+
+  <!-- Personaje - cuerpo -->
+  <ellipse cx="280" cy="330" rx="38" ry="20" fill="#48c257" filter="url(#sk1)"/>
+  <!-- Cabeza -->
+  <circle cx="280" cy="155" r="48" fill="#f8c8a0" stroke="#c87838" stroke-width="2.5" filter="url(#sk1)"/>
+  <!-- Pelo -->
+  <path d="M236 148 Q240 112 280 108 Q320 112 324 148 Q310 126 280 124 Q250 126 236 148 Z" fill="#3a2010" filter="url(#sk1)"/>
+  <path d="M236 148 Q230 160 233 172" stroke="#3a2010" stroke-width="8" stroke-linecap="round" fill="none" filter="url(#sk1)"/>
+  <path d="M324 148 Q330 160 327 172" stroke="#3a2010" stroke-width="8" stroke-linecap="round" fill="none" filter="url(#sk1)"/>
+  <!-- Ojos -->
+  <circle cx="265" cy="155" r="6" fill="#2a1808" filter="url(#sk1)"/>
+  <circle cx="295" cy="155" r="6" fill="#2a1808" filter="url(#sk1)"/>
+  <circle cx="267" cy="153" r="2.5" fill="#fff"/>
+  <circle cx="297" cy="153" r="2.5" fill="#fff"/>
+  <!-- Sonrisa -->
+  <path d="M264 171 Q280 184 296 171" stroke="#c87838" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#sk1)"/>
+  <!-- Mejillas -->
+  <circle cx="254" cy="168" r="9" fill="rgba(230,120,80,0.22)"/>
+  <circle cx="306" cy="168" r="9" fill="rgba(230,120,80,0.22)"/>
+
+  <!-- Estrellas flotantes -->
+  <path d="M110 120 L115 108 L120 120 L132 125 L120 130 L115 142 L110 130 L98 125 Z" fill="#72e086" stroke="#3a9e48" stroke-width="1.5" filter="url(#sk1)"/>
+  <path d="M420 105 L424 96 L428 105 L437 109 L428 113 L424 122 L420 113 L411 109 Z" fill="#48c257" stroke="#26712f" stroke-width="1.5" filter="url(#sk1)"/>
+  <path d="M430 165 L433 158 L436 165 L443 168 L436 171 L433 178 L430 171 L423 168 Z" fill="#72e086" stroke="#3a9e48" stroke-width="1" filter="url(#sk1)"/>
+  <path d="M100 180 L103 173 L106 180 L113 183 L106 186 L103 193 L100 186 L93 183 Z" fill="#48c257" stroke="#26712f" stroke-width="1" filter="url(#sk1)"/>
+
+  <!-- Libros apilados izquierda -->
+  <rect x="95" y="310" width="50" height="65" rx="4" fill="#48c257" stroke="#26712f" stroke-width="2" filter="url(#sk1)"/>
+  <rect x="100" y="302" width="50" height="65" rx="4" fill="#72e086" stroke="#26712f" stroke-width="2" filter="url(#sk1)"/>
+  <line x1="100" y1="312" x2="150" y2="312" stroke="#26712f" stroke-width="1.5" filter="url(#sk1)"/>
+
+  <!-- Libros apilados derecha -->
+  <rect x="415" y="308" width="48" height="62" rx="4" fill="#3a9e48" stroke="#26712f" stroke-width="2" filter="url(#sk1)"/>
+  <rect x="420" y="300" width="48" height="62" rx="4" fill="#48c257" stroke="#26712f" stroke-width="2" filter="url(#sk1)"/>
+  <line x1="420" y1="310" x2="468" y2="310" stroke="#26712f" stroke-width="1.5" filter="url(#sk1)"/>
+
+  <!-- Corazón flotante -->
+  <path d="M448 220 Q448 210 458 210 Q468 210 468 220 Q468 230 448 242 Q428 230 428 220 Q428 210 438 210 Q448 210 448 220 Z" fill="#e85a7a" filter="url(#sk1)"/>
+</svg>

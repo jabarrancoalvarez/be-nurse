@@ -1,0 +1,82 @@
+<svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="sk2" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.052" numOctaves="4" seed="7" stitchTiles="stitch" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b8e8c8"/>
+      <stop offset="100%" stop-color="#90d4a8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="560" height="420" fill="url(#bg2)" rx="18"/>
+
+  <!-- Sombra paraguas -->
+  <ellipse cx="280" cy="378" rx="90" ry="11" fill="rgba(30,80,40,0.15)" filter="url(#sk2)"/>
+
+  <!-- Círculo protector -->
+  <circle cx="280" cy="200" r="130" fill="none" stroke="#48c257" stroke-width="4" stroke-dasharray="14 8" filter="url(#sk2)" opacity="0.6"/>
+
+  <!-- Paraguas -->
+  <path d="M180 200 Q200 140 280 130 Q360 140 380 200 Z" fill="#3a9e48" stroke="#26712f" stroke-width="3" filter="url(#sk2)"/>
+  <path d="M200 200 Q210 170 230 165" fill="none" stroke="#72e086" stroke-width="2" filter="url(#sk2)"/>
+  <path d="M240 200 Q250 155 280 148" fill="none" stroke="#72e086" stroke-width="2" filter="url(#sk2)"/>
+  <path d="M320 200 Q330 155 350 165" fill="none" stroke="#72e086" stroke-width="2" filter="url(#sk2)"/>
+  <!-- Palo paraguas -->
+  <line x1="280" y1="200" x2="280" y2="320" stroke="#26712f" stroke-width="4" stroke-linecap="round" filter="url(#sk2)"/>
+  <path d="M280 320 Q280 335 268 340" stroke="#26712f" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#sk2)"/>
+
+  <!-- Escudo corazón -->
+  <path d="M245 230 Q245 215 260 215 Q280 208 295 215 Q310 215 315 230 L280 265 Z" fill="#e85a7a" stroke="#c03060" stroke-width="2.5" filter="url(#sk2)" opacity="0.9"/>
+  <!-- Cruz en escudo -->
+  <rect x="275" y="228" width="8" height="24" rx="2" fill="#fff" opacity="0.85"/>
+  <rect x="268" y="235" width="22" height="8" rx="2" fill="#fff" opacity="0.85"/>
+
+  <!-- Personaje -->
+  <!-- Cuerpo -->
+  <ellipse cx="280" cy="355" rx="35" ry="18" fill="#48c257" filter="url(#sk2)"/>
+  <!-- Cabeza -->
+  <circle cx="280" cy="310" r="42" fill="#f8c8a0" stroke="#c87838" stroke-width="2.5" filter="url(#sk2)"/>
+  <!-- Pelo corto -->
+  <path d="M240 302 Q244 270 280 268 Q316 270 320 302 Q308 282 280 280 Q252 282 240 302 Z" fill="#5a3820" filter="url(#sk2)"/>
+  <!-- Ojos -->
+  <circle cx="267" cy="310" r="5.5" fill="#2a1808" filter="url(#sk2)"/>
+  <circle cx="293" cy="310" r="5.5" fill="#2a1808" filter="url(#sk2)"/>
+  <circle cx="269" cy="308" r="2" fill="#fff"/>
+  <circle cx="295" cy="308" r="2" fill="#fff"/>
+  <!-- Ojos cerrados/sonriendo -->
+  <path d="M266 323 Q280 334 294 323" stroke="#c87838" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#sk2)"/>
+  <!-- Mejillas -->
+  <circle cx="257" cy="320" r="8" fill="rgba(230,120,80,0.2)"/>
+  <circle cx="303" cy="320" r="8" fill="rgba(230,120,80,0.2)"/>
+
+  <!-- Checkmarks flotantes -->
+  <path d="M108 165 L118 178 L140 148" stroke="#26712f" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#sk2)"/>
+  <circle cx="124" cy="163" r="22" fill="none" stroke="#48c257" stroke-width="3" filter="url(#sk2)"/>
+
+  <path d="M398 170 L408 183 L430 153" stroke="#26712f" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#sk2)"/>
+  <circle cx="414" cy="168" r="22" fill="none" stroke="#48c257" stroke-width="3" filter="url(#sk2)"/>
+
+  <!-- Gotas de lluvia (protegidas por el paraguas) -->
+  <ellipse cx="130" cy="250" rx="5" ry="9" fill="#72e086" opacity="0.6" filter="url(#sk2)"/>
+  <ellipse cx="155" cy="278" rx="5" ry="9" fill="#72e086" opacity="0.5" filter="url(#sk2)"/>
+  <ellipse cx="115" cy="290" rx="5" ry="9" fill="#48c257" opacity="0.55" filter="url(#sk2)"/>
+  <ellipse cx="410" cy="248" rx="5" ry="9" fill="#72e086" opacity="0.6" filter="url(#sk2)"/>
+  <ellipse cx="435" cy="275" rx="5" ry="9" fill="#72e086" opacity="0.5" filter="url(#sk2)"/>
+  <ellipse cx="420" cy="295" rx="5" ry="9" fill="#48c257" opacity="0.55" filter="url(#sk2)"/>
+
+  <!-- Estrellas -->
+  <path d="M88 120 L92 110 L96 120 L106 124 L96 128 L92 138 L88 128 L78 124 Z" fill="#72e086" stroke="#3a9e48" stroke-width="1.5" filter="url(#sk2)"/>
+  <path d="M452 105 L456 96 L460 105 L470 109 L460 113 L456 122 L452 113 L442 109 Z" fill="#48c257" stroke="#26712f" stroke-width="1.5" filter="url(#sk2)"/>
+
+  <!-- Sol pequeño arriba -->
+  <circle cx="470" cy="55" r="25" fill="#f5e050" stroke="#c8a820" stroke-width="2.5" filter="url(#sk2)"/>
+  <line x1="470" y1="22" x2="470" y2="14" stroke="#c8a820" stroke-width="2.5" stroke-linecap="round" filter="url(#sk2)"/>
+  <line x1="496" y1="34" x2="502" y2="28" stroke="#c8a820" stroke-width="2.5" stroke-linecap="round" filter="url(#sk2)"/>
+  <line x1="503" y1="55" x2="511" y2="55" stroke="#c8a820" stroke-width="2.5" stroke-linecap="round" filter="url(#sk2)"/>
+  <line x1="496" y1="76" x2="502" y2="82" stroke="#c8a820" stroke-width="2.5" stroke-linecap="round" filter="url(#sk2)"/>
+  <line x1="444" y1="34" x2="438" y2="28" stroke="#c8a820" stroke-width="2.5" stroke-linecap="round" filter="url(#sk2)"/>
+  <line x1="437" y1="55" x2="429" y2="55" stroke="#c8a820" stroke-width="2.5" stroke-linecap="round" filter="url(#sk2)"/>
+</svg>

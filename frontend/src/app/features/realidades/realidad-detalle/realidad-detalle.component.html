@@ -1,0 +1,42 @@
+@if (loading()) {
+  <div class="loading">Cargando...</div>
+} @else if (article()) {
+  <article class="detalle">
+    <header class="detalle__header">
+      <div class="detalle__header-inner">
+        <a routerLink="/realidades" class="back-link">← Volver a Realidades</a>
+        <span class="category-badge">{{ article()!.category }}</span>
+        <h1>{{ article()!.title }}</h1>
+        <div class="detalle__meta">
+          <span>{{ article()!.authorName }}</span>
+          <span>{{ article()!.publishedAt | date:'d MMM yyyy' }}</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="detalle__body">
+      <p class="detalle__excerpt">{{ article()!.excerpt }}</p>
+      <div class="detalle__content">{{ article()!.content }}</div>
+    </div>
+
+    @if (related().length > 0) {
+      <section class="related">
+        <h3>Articulos relacionados</h3>
+        <div class="related__grid">
+          @for (art of related(); track art.slug) {
+            <a [routerLink]="['/realidades', art.slug]" class="related-card">
+              <span class="related-card__cat">{{ art.category }}</span>
+              <h4>{{ art.title }}</h4>
+              <p>{{ art.excerpt }}</p>
+            </a>
+          }
+        </div>
+      </section>
+    }
+  </article>
+} @else {
+  <div class="not-found">
+    <p>Articulo no encontrado.</p>
+    <a routerLink="/realidades">← Volver a Realidades</a>
+  </div>
+}

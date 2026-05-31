@@ -1,0 +1,62 @@
+<section class="page-hero">
+  <div class="page-hero__content">
+    <span class="section-tag">Nosotros</span>
+    <h1>Contacto</h1>
+    <p>Proporcionar informacion confiable y apoyo profesional en salud sexual.</p>
+  </div>
+</section>
+
+<div class="about-container">
+  <div class="about-form-col">
+    <div class="emergency-banner">
+      ⚠️ Este servicio NO es una emergencia. Si tienes una emergencia medica, contacta inmediatamente con el <strong>112</strong>.
+    </div>
+
+    @if (submitted()) {
+      <div class="success-msg">
+        ✅ Mensaje enviado correctamente. Nos pondremos en contacto contigo pronto.
+      </div>
+    } @else {
+      <form class="contact-form" (ngSubmit)="submit()" #f="ngForm">
+        <h2>Envianos un mensaje</h2>
+
+        @if (error()) {
+          <div class="error-msg">{{ error() }}</div>
+        }
+
+        <div class="form-group">
+          <label for="name">Nombre *</label>
+          <input id="name" type="text" [(ngModel)]="form.name" name="name" required placeholder="Tu nombre" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input id="email" type="email" [(ngModel)]="form.email" name="email" required placeholder="tu&#64;email.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Asunto</label>
+          <input id="subject" type="text" [(ngModel)]="form.subject" name="subject" placeholder="Asunto del mensaje" />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Mensaje *</label>
+          <textarea id="message" [(ngModel)]="form.message" name="message" required rows="5" placeholder="Escribe tu mensaje..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="!f.valid">Enviar mensaje</button>
+
+        <p class="privacy-note">🔒 Todas las conversaciones son completamente anonimas.</p>
+      </form>
+    }
+  </div>
+
+  <div class="about-info-col">
+    <h3>Sobre be-nurse</h3>
+    <p>Somos una plataforma de salud sexual respaldada por profesionales de enfermeria especializados/as. Nuestro objetivo es proporcionar informacion rigurosa y acceso a apoyo profesional sin barreras ni juicios.</p>
+    <div class="contact-data">
+      <div>✉️ hola&#64;be-nurse.es</div>
+      <div>📍 Espana</div>
+    </div>
+  </div>
+</div>

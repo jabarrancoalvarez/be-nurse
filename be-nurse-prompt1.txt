@@ -1,0 +1,408 @@
+Crea el proyecto completo "be-nurse" desde cero con el siguiente stack y requisitos. Es una plataforma de salud sexual respaldada por profesionales de enfermería que conecta pacientes con enfermeros/as especializados/as. El proyecto original estaba en Next.js pero lo migramos a Angular + .NET Core + PostgreSQL.
+
+STACK TECNICO
+- Frontend: Angular 18+ (standalone components, signals, nueva sintaxis @if/@for)
+- Backend: .NET Core 8 Web API (Clean Architecture)
+- Base de datos: PostgreSQL 16
+- ORM: Entity Framework Core con Npgsql
+- Autenticacion: JWT (preparado pero no activo en primera version)
+- Docker: docker-compose para levantar todo el entorno local
+
+ESTRUCTURA DE CARPETAS RAIZ
+
+be-nurse/
+  frontend/
+  backend/
+    BeNurse.API/
+    BeNurse.Application/
+    BeNurse.Domain/
+    BeNurse.Infrastructure/
+  docker-compose.yml
+  README.md
+
+FRONTEND ANGULAR 18
+
+Genera el proyecto Angular con "ng new frontend --standalone --routing --style=scss". Todas las rutas deben usar lazy loading.
+
+Rutas de la aplicacion:
+- / → LandingComponent
+- /informate → InformateComponent
+- /cuidate → CuidateComponent
+- /realidades → RealidadesComponent
+- /realidades/:slug → RealidadDetalleComponent
+- /about → AboutComponent
+- /chat → ChatComponent
+
+Archivo app.config.ts: incluye provideRouter con las rutas, provideHttpClient(), provideAnimations().
+
+Archivo app.routes.ts: todas las rutas con loadComponent para lazy loading.
+
+DISENO Y ESTILOS GLOBALES (styles.scss)
+
+Importar desde Google Fonts: "DM Serif Display" (pesos 400 italic) y "DM Sans" (pesos 300, 400, 500, 600).
+
+Variables CSS globales en :root:
+--color-primary: #1e6b3c
+--color-primary-dark: #0e4423
+--color-primary-mid: #155c30
+--color-primary-light: #3dba6e
+--color-accent: #7de8a4
+--color-bg: #f5f9f4
+--color-bg-white: #ffffff
+--color-bg-green-soft: #f0f9f2
+--color-text: #1a2e1a
+--color-text-muted: #567056
+--color-border: #d4e8d0
+--font-display: 'DM Serif Display', serif
+--font-body: 'DM Sans', sans-serif
+
+Reset basico: box-sizing border-box, margin 0, padding 0 en *, font-family var(--font-body) en body, background var(--color-bg), color var(--color-text).
+
+COMPONENTE: NavbarComponent (standalone, sticky)
+
+- Fondo blanco, border-bottom 1px solid var(--color-border), altura 64px, position sticky top 0 z-index 100
+- Logo "be-nurse" con font-family display, color primary, con un punto verde circular decorativo antes del texto
+- Links de navegacion: Inicio, Informate, Cuidate, Realidades, Contacto — font-size 0.88rem, font-weight 500, color muted, hover color primary
+- Boton CTA "Encuentra tu enfermero/a" — background primary, color blanco, border-radius 100px, padding 8px 20px, hover background primary-dark
+- Responsive: en mobile ocultar links y mostrar icono hamburguesa con menu desplegable
+
+COMPONENTE: FooterComponent (standalone)
+
+- Background #0a2010, color rgba(255,255,255,0.4), padding 2rem
+- Tres columnas: logo+descripcion, links de navegacion, legal (politica de privacidad, aviso legal)
+- Aviso destacado: "Este servicio NO es una emergencia. Para emergencias medicas contacta con el 112" — en color accent
+- Copyright: "2026 be-nurse. Todos los derechos reservados"
+
+COMPONENTE: LandingComponent (pagina principal)
+
+Seccion 1 — Hero:
+- Background gradiente: linear-gradient(135deg, #1e6b3c 0%, #155c30 50%, #0e4423 100%)
+- Circulo decorativo top-right y bottom-left con rgba verde semitransparente
+- Tag pill superior: "Respaldado por profesionales de enfermeria"
+- H1 con font-family display, font-size clamp(2rem, 5vw, 3.2rem), color blanco: "Tu salud sexual, con cuidado profesional" — la parte "con cuidado profesional" en italica con color accent
+- Parrafo subtitulo color rgba(255,255,255,0.78)
+- Dos botones: primario "Encuentra tu enfermero/a" (verde accent, texto oscuro, border-radius 100px) y secundario outline "Explorar contenidos" (borde blanco semitransparente, hover borde accent)
+- Strip de 3 estadisticas al final del hero: "+240 Enfermeros/as activos", "98% Satisfaccion de usuarios", "+4.800 Consultas atendidas" — numeros en font display color accent, labels en blanco semitransparente
+
+Seccion 2 — Las 3 grandes cards interactivas:
+- Titulo de seccion con tag pill "Nuestro contenido", h2 con font display "Tres pilares para tu bienestar"
+- Grid de 3 columnas (auto-fit minmax 260px)
+- Cada card tiene min-height 380px, border-radius 20px, overflow hidden, cursor pointer
+- Card Informate: gradiente linear-gradient(160deg, #0e5c2c 0%, #1a8a4a 100%), numero "01 — Informate", titulo "Conoce y comprende", descripcion, tags pill con: "Que son las ITS", "ITS mas comunes", "Deteccion y pruebas", "VIH y SIDA", flecha animada "Explorar seccion" con routerLink a /informate
+- Card Cuidate: gradiente linear-gradient(160deg, #1b5e20 0%, #2e7d32 100%), numero "02 — Cuidate", titulo "Prevencion activa", descripcion, tags pill con: "Metodos de barrera", "PrEP y PEP", "Vacunacion", "Chequeos periodicos", flecha con routerLink a /cuidate
+- Card Realidades: gradiente linear-gradient(160deg, #1b4332 0%, #40916c 100%), numero "03 — Realidades", titulo "Sin filtros", descripcion, tags pill con: "Porno y sexualidad", "Presion social", "Cuerpo e imagen", "Expectativas", flecha con routerLink a /realidades
+- Hover en cada card: transform translateY(-6px), box-shadow 0 20px 50px rgba(0,0,0,0.18), transition 0.22s ease
+- Los tags pill tienen hover con background rgba(255,255,255,0.25)
+
+Seccion 3 — Como funciona (4 pasos):
+- Background blanco, grid 2 columnas
+- Cada paso: icono emoji en caja verde suave border-radius 12px, titulo, descripcion
+- Pasos: "Busca un perfil" (icono lupa), "Consulta inicial" (icono clipboard), "Plan personalizado" (icono corazon verde), "100% confidencial" (icono candado)
+- Hover: border-color primary, transform translateY(-3px)
+
+Seccion 4 — Equipo (strip horizontal deslizable):
+- Background var(--color-bg-green-soft)
+- Flex row con overflow-x auto y scrollbar hidden
+- 5 tarjetas de profesionales: Ana Morales (ITS y prevencion), Javier Ruiz (Salud sexual LGBT+), Lucia Garcia (Adolescentes), Miguel Torres (VIH y SIDA), Sara Ibanez (Salud reproductiva)
+- Cada tarjeta: avatar circular con iniciales y distintos tonos de verde, nombre, rol, badge de especialidad
+- Hover: border-color primary, transform translateY(-4px)
+
+Seccion 5 — Blog (3 articulos destacados):
+- Grid 3 columnas, cada card con imagen decorativa (emoji grande en caja de color verde suave), categoria, titulo, extracto, autor y fecha
+- Hover: transform translateY(-4px), box-shadow sutil verde
+
+Seccion 6 — Contacto/newsletter:
+- Background gradiente verde oscuro igual que el hero
+- H2, parrafo, input email + boton en fila horizontal
+- Links decorativos: email, instagram, ubicacion
+
+COMPONENTE: InformateComponent
+
+Pagina completa con scroll por secciones. Incluye:
+
+1. Hero interno: titulo "Informate", descripcion, background verde suave
+2. Navegacion interna tipo tabla de contenidos con anclas a: Definicion de ITS, Principales ITS, ITS mas comunes, Deteccion y pruebas, Preguntas frecuentes
+
+3. Seccion "Definicion de ITS": texto completo — "Las Infecciones de Transmision Sexual (ITS) se caracterizan por contagiarse a través del contacto sexual. En la mayoria de los casos las manifestaciones clinicas comprometen la zona genital y las mucosas, dando lugar a complicaciones medicas. Ademas, muchas de estas infecciones pueden no ser sintomaticas, por lo que se dificulta su tratamiento y diagnostico."
+
+4. Seccion "Principales ITS": texto — "La Organizacion Mundial de la Salud estima que cada año se producen mas de 370 millones de nuevas ITS en todo el mundo, entre ellas la sifilis, la gonorrea, la clamidia y la tricomoniasis. A pesar de que muchas tienen tratamiento, siguen representando un importante problema de salud publica. Las ITS pueden afectar de forma significativa a la calidad de vida, facilitar la transmision del VIH y en algunos casos provocar complicaciones graves como infertilidad o cancer."
+
+5. Seccion "ITS mas comunes": grid de cards, una por cada ITS: VIH, VPH (Virus del Papiloma Humano), Clamidia, Gonorrea, Sifilis, Herpes genital, Hepatitis B y C. Cada card tiene: nombre, icono/emoji representativo, breve descripcion de 1-2 frases, boton "Ver informacion completa" que lleva a /informate/[slug].
+
+6. Seccion "Deteccion y pruebas": con subsecciones:
+- "Cuando tiene sentido hacerse pruebas": si has tenido sexo sin preservativo, si has cambiado de pareja, si tienes sintomas, si tu pareja tuvo un diagnostico, si quieres quedarte tranquilo/a — todos son motivos validos.
+- "Que tipo de pruebas existen": analisis de sangre (VIH, sifilis, hepatitis), muestras locales (orina, exudado vaginal/uretral, anal o de garganta para clamidia/gonorrea), revisiones segun edad y recomendaciones.
+- "Ventana diagnostica": explicacion de que algunas pruebas no detectan la infeccion inmediatamente y hay un tiempo de espera necesario.
+- "Donde hacerse pruebas": centro de salud, centros de salud sexual/ITS, servicios comunitarios.
+- "Si sale positiva": no estas solo/a, la mayoria tienen tratamiento, seguir el tratamiento y avisar a parejas, sin culpas.
+
+7. Seccion FAQ con acordeon: preguntas — "Puedo tener una ITS sin sintomas?", "El preservativo protege al 100%?", "El sexo oral tiene riesgo?", "Me da verguenza pedir una prueba, es normal?", "Si una prueba sale positiva, que hago?". Cada pregunta se expande al hacer click para mostrar la respuesta.
+
+COMPONENTE: CuidateComponent
+
+Pagina con 4 subsecciones:
+
+1. "Metodos de barrera": preservativo masculino (como usarlo correctamente, eficacia), preservativo femenino (opciones, ventajas), dental dam (que es, como usarlo). Cards visuales con iconos.
+
+2. "PrEP y PEP": PrEP (profilaxis pre-exposicion al VIH — que es, quien puede acceder, como conseguirlo en Espana, eficacia cercana al 99% cuando se toma correctamente), PEP (profilaxis post-exposicion — que es, ventana de 72 horas, donde conseguirla urgentemente).
+
+3. "Vacunacion": VPH (quien debe vacunarse, calendario, proteccion frente a canceres), Hepatitis A (cuando se recomienda), Hepatitis B (pauta de vacunacion, importancia para personas con multiples parejas).
+
+4. "Chequeos periodicos": tabla o lista de recomendaciones segun perfil — personas con practicas de riesgo, hombres que tienen sexo con hombres, personas con VIH, poblacion general. Frecuencias recomendadas para cada prueba.
+
+COMPONENTE: RealidadesComponent
+
+Revista digital con:
+- Hero: titulo "Realidades", descripcion "Historias reales, articulos y preguntas incomodas sobre sexualidad."
+- Filtros de categoria en tabs o pills: "Todas", "Porno y sexualidad", "Presion social, expectativas y cuerpo"
+- Grid de cards de articulos, cada una con: imagen de fondo colorida, categoria badge, titulo, extracto de 2-3 frases, autor, fecha, tiempo de lectura estimado
+- Articulos existentes a mostrar:
+  * "Por que el porno distorsiona expectativas" — categoria "Porno y sexualidad" — "El porno esta en internet, en redes y en muchos moviles. Verlo no te convierte en una mala persona. El problema no es verlo, sino aprender de el." — 10 de febrero de 2026
+  * "Pense que el problema era mi cuerpo" — categoria "Presion social, expectativas y cuerpo" — "Nunca nadie me dijo directamente que mi cuerpo estaba mal. Pero lo senti muchas veces." — 10 de febrero de 2026
+- Al hacer click en una card navegar a /realidades/:slug
+
+COMPONENTE: RealidadDetalleComponent
+
+Pagina de articulo individual:
+- Header con categoria, titulo grande con font display, autor, fecha, tiempo de lectura
+- Cuerpo del articulo con tipografia agradable, line-height 1.8
+- Sidebar o seccion al final con articulos relacionados de la misma categoria
+- Boton volver a /realidades
+
+COMPONENTE: AboutComponent
+
+- Hero con titulo "Contacto" y mision: "Proporcionar informacion confiable y apoyo profesional en salud sexual."
+- Formulario de contacto con campos: Nombre (requerido), Email (requerido, validacion formato), Asunto, Mensaje (textarea, requerido). Botón "Enviar mensaje". Conectado al servicio contact.service.ts que hace POST a /api/contact.
+- Aviso: "Este servicio NO es una emergencia. Si tienes una emergencia medica, contacta inmediatamente con el 112."
+- Nota de privacidad: "Todas las conversaciones son completamente anonimas."
+
+COMPONENTE: ChatComponent
+
+UI de chat anonimo:
+- Ventana de mensajes con scroll, burbujas de mensaje diferenciadas usuario/enfermero
+- Input de texto con boton enviar
+- Al cargar generar un sessionId aleatorio (UUID) y guardarlo en sessionStorage
+- Mensaje de bienvenida automatico: "Hola, soy del equipo de be-nurse. Puedes preguntarme lo que necesites de forma completamente anonima. Sin juicios."
+- Conectado a chat.service.ts que hace POST a /api/chat/message
+
+SERVICIOS ANGULAR (en src/app/core/services/)
+
+article.service.ts:
+- getAll(): Observable — GET /api/articles
+- getBySlug(slug: string): Observable — GET /api/articles/{slug}
+- getByCategory(category: string): Observable — GET /api/articles/category/{category}
+
+chat.service.ts:
+- sendMessage(sessionId: string, content: string): Observable — POST /api/chat/message con body { sessionId, content }
+
+contact.service.ts:
+- submit(form: ContactFormDto): Observable — POST /api/contact
+
+environment.ts:
+export const environment = { production: false, apiUrl: 'http://localhost:5000/api' };
+
+environment.prod.ts:
+export const environment = { production: true, apiUrl: '/api' };
+
+MODELOS TYPESCRIPT (en src/app/core/models/)
+
+article.model.ts:
+export interface Article { id: number; title: string; slug: string; content: string; excerpt: string; category: string; subCategory: string; authorName: string; publishedAt: Date; isPublished: boolean; imageUrl: string; }
+
+chat.model.ts:
+export interface ChatMessage { id: number; sessionId: string; content: string; isFromUser: boolean; createdAt: Date; }
+export interface ChatRequest { sessionId: string; content: string; }
+export interface ChatResponse { message: string; }
+
+contact.model.ts:
+export interface ContactFormDto { name: string; email: string; subject: string; message: string; }
+
+BACKEND .NET CORE 8 — CLEAN ARCHITECTURE
+
+BeNurse.Domain — entidades:
+
+Article.cs: Id (int), Title (string), Slug (string), Content (string), Excerpt (string), Category (string — "informate" o "cuidate" o "realidades"), SubCategory (string), AuthorName (string), PublishedAt (DateTime), IsPublished (bool), ImageUrl (string).
+
+ChatMessage.cs: Id (int), SessionId (string), Content (string), IsFromUser (bool), CreatedAt (DateTime).
+
+ContactForm.cs: Id (int), Name (string), Email (string), Subject (string), Message (string), SubmittedAt (DateTime).
+
+BeNurse.Infrastructure — DbContext y repositorios:
+
+BeNurseDbContext.cs: hereda de DbContext, DbSet para Article, ChatMessage, ContactForm. En OnModelCreating configurar indices: unique slug en Article, indice SessionId en ChatMessage.
+
+DbInitializer.cs: clase estatica con metodo Initialize(BeNurseDbContext context) que hace MigrateAsync y luego comprueba si hay articulos; si no hay, insertar los siguientes articulos de seed:
+
+Articulo 1: Title="Definicion de Infeccion de Transmision Sexual", Slug="definicion-its", Category="informate", SubCategory="definicion", AuthorName="Equipo be-nurse", Content="Las Infecciones de Transmision Sexual (ITS) se caracterizan por contagiarse a traves del contacto sexual. En la mayoria de los casos las manifestaciones clinicas comprometen la zona genital y las mucosas, dando lugar a complicaciones medicas. Ademas, muchas de estas infecciones pueden no ser sintomaticas, por lo que se dificulta su tratamiento y diagnostico.", Excerpt="Que son las ITS y por que es importante conocerlas.", PublishedAt=2026-02-01, IsPublished=true.
+
+Articulo 2: Title="VIH: que es y como se transmite", Slug="vih-que-es", Category="informate", SubCategory="its-comunes", AuthorName="Ana Morales", Excerpt="Todo lo que necesitas saber sobre el Virus de Inmunodeficiencia Humana.", PublishedAt=2026-02-05, IsPublished=true.
+
+Articulo 3: Title="VPH: Virus del Papiloma Humano", Slug="vph-virus-papiloma", Category="informate", SubCategory="its-comunes", AuthorName="Ana Morales", Excerpt="El VPH es la ITS mas frecuente en el mundo. Te explicamos todo.", PublishedAt=2026-02-06, IsPublished=true.
+
+Articulo 4: Title="Clamidia: la ITS silenciosa", Slug="clamidia", Category="informate", SubCategory="its-comunes", AuthorName="Javier Ruiz", Excerpt="La clamidia suele ser asintomatica. Por eso es tan importante hacerse pruebas.", PublishedAt=2026-02-07, IsPublished=true.
+
+Articulo 5: Title="Gonorrea", Slug="gonorrea", Category="informate", SubCategory="its-comunes", AuthorName="Lucia Garcia", Excerpt="Causada por la bacteria Neisseria gonorrhoeae. Tratable pero con resistencias crecientes.", PublishedAt=2026-02-08, IsPublished=true.
+
+Articulo 6: Title="Sifilis", Slug="sifilis", Category="informate", SubCategory="its-comunes", AuthorName="Miguel Torres", Excerpt="La sifilis tiene fases distintas. Conocer sus estadios es clave para el tratamiento.", PublishedAt=2026-02-09, IsPublished=true.
+
+Articulo 7: Title="Por que el porno distorsiona expectativas", Slug="porno-distorsiona-expectativas", Category="realidades", SubCategory="porno-sexualidad", AuthorName="Lucia Garcia", Content="El porno esta en internet, en redes y en muchos moviles. Verlo no te convierte en una mala persona. El problema no es verlo, sino aprender de el. El porno es entretenimiento producido para adultos, no educacion sexual. Genera expectativas irreales sobre los cuerpos, el tiempo, los gemidos y las practicas.", Excerpt="El problema no es ver porno, sino aprender de el.", PublishedAt=2026-02-10, IsPublished=true.
+
+Articulo 8: Title="Pense que el problema era mi cuerpo", Slug="problema-era-mi-cuerpo", Category="realidades", SubCategory="presion-social", AuthorName="Historia real", Content="Nunca nadie me dijo directamente que mi cuerpo estaba mal. Pero lo senti muchas veces. En los comentarios de otras personas, en las miradas, en las comparaciones constantes con lo que se supone que hay que ser.", Excerpt="Nunca nadie me dijo directamente que mi cuerpo estaba mal. Pero lo senti muchas veces.", PublishedAt=2026-02-10, IsPublished=true.
+
+Articulo 9: Title="Metodos de barrera: el preservativo", Slug="metodos-barrera-preservativo", Category="cuidate", SubCategory="metodos-barrera", AuthorName="Sara Ibanez", Excerpt="El preservativo sigue siendo el metodo mas eficaz para prevenir tanto ITS como embarazos no deseados.", PublishedAt=2026-02-12, IsPublished=true.
+
+Articulo 10: Title="PrEP: que es y quien puede acceder", Slug="prep-que-es", Category="cuidate", SubCategory="prep-pep", AuthorName="Javier Ruiz", Excerpt="La profilaxis pre-exposicion al VIH tiene una eficacia cercana al 99% cuando se toma correctamente.", PublishedAt=2026-05-05, IsPublished=true.
+
+BeNurse.Application — DTOs y servicios:
+
+ArticleDto.cs: mismos campos que la entidad pero todos string/int/bool/DateTime sin referencias circulares.
+
+IArticleService.cs y ArticleService.cs:
+- Task<IEnumerable<ArticleDto>> GetAllAsync()
+- Task<ArticleDto?> GetBySlugAsync(string slug)
+- Task<IEnumerable<ArticleDto>> GetByCategoryAsync(string category)
+
+IChatService.cs y ChatService.cs:
+- Task<string> ProcessMessageAsync(string sessionId, string content) — guarda el mensaje del usuario en BD y devuelve una respuesta generica tipo "Gracias por tu mensaje. Un miembro del equipo te respondera pronto. Recuerda que este servicio no es una emergencia."
+
+IContactService.cs y ContactService.cs:
+- Task SubmitAsync(ContactFormDto dto) — guarda el formulario en BD
+
+BeNurse.API — controladores:
+
+ArticlesController.cs:
+[ApiController, Route("api/[controller]")]
+- GET /api/articles → GetAll()
+- GET /api/articles/{slug} → GetBySlug(string slug) — devuelve 404 si no existe
+- GET /api/articles/category/{category} → GetByCategory(string category)
+
+ChatController.cs:
+[ApiController, Route("api/[controller]")]
+- POST /api/chat/message — recibe { sessionId: string, content: string }, devuelve { message: string }
+
+ContactController.cs:
+[ApiController, Route("api/[controller]")]
+- POST /api/contact — recibe ContactFormDto, devuelve 200 OK
+
+Program.cs debe incluir:
+- builder.Services.AddDbContext con UseNpgsql y connection string de appsettings
+- builder.Services.AddScoped para los tres servicios
+- builder.Services.AddCors con policy que permita http://localhost:4200 con any header y any method
+- builder.Services.AddControllers
+- builder.Services.AddEndpointsApiExplorer y AddSwaggerGen
+- app.UseCors antes de app.UseAuthorization
+- app.UseSwagger y app.UseSwaggerUI en desarrollo
+- Llamada a DbInitializer.Initialize al arrancar
+
+appsettings.json:
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=benurse;Username=benurse_user;Password=benurse_pass"
+  },
+  "Jwt": {
+    "Secret": "be-nurse-super-secret-key-2026",
+    "Issuer": "be-nurse-api",
+    "Audience": "be-nurse-frontend"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
+
+BeNurse.Infrastructure .csproj debe referenciar:
+- Microsoft.EntityFrameworkCore
+- Npgsql.EntityFrameworkCore.PostgreSQL
+- Microsoft.EntityFrameworkCore.Design
+
+DOCKER COMPOSE (docker-compose.yml en la raiz):
+
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: benurse
+      POSTGRES_USER: benurse_user
+      POSTGRES_PASSWORD: benurse_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=benurse;Username=benurse_user;Password=benurse_pass
+    depends_on:
+      - postgres
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
+volumes:
+  postgres_data:
+
+Dockerfile para el backend (en ./backend/Dockerfile):
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+EXPOSE 80
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet restore BeNurse.API/BeNurse.API.csproj
+RUN dotnet build BeNurse.API/BeNurse.API.csproj -c Release -o /app/build
+FROM build AS publish
+RUN dotnet publish BeNurse.API/BeNurse.API.csproj -c Release -o /app/publish
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "BeNurse.API.dll"]
+
+Dockerfile para el frontend (en ./frontend/Dockerfile):
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build -- --configuration production
+FROM nginx:alpine
+COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+
+nginx.conf para el frontend (en ./frontend/nginx.conf):
+server {
+  listen 80;
+  root /usr/share/nginx/html;
+  index index.html;
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+  location /api {
+    proxy_pass http://api:80;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+  }
+}
+
+README.md en la raiz con instrucciones para:
+1. Requisitos previos: Node 20+, .NET SDK 8, Docker Desktop
+2. Levantar con Docker: docker-compose up --build
+3. Desarrollo local: cd backend && dotnet run --project BeNurse.API, cd frontend && ng serve
+4. URLs: Frontend http://localhost:4200, API http://localhost:5000, Swagger http://localhost:5000/swagger
+5. Migraciones: dotnet ef migrations add InitialCreate --project BeNurse.Infrastructure --startup-project BeNurse.API
+
+Una vez generado todo el codigo, ejecuta los comandos necesarios para verificar que el frontend compila (ng build) y que el backend compila (dotnet build). Corrige cualquier error de compilacion antes de terminar.

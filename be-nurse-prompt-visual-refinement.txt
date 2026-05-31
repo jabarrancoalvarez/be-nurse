@@ -1,0 +1,211 @@
+Vas a realizar un refinamiento visual completo del proyecto be-nurse que ya existe en este directorio. NO toques el backend ni la logica de negocio. Solo el frontend Angular. El objetivo es transformar el frontend en una experiencia visual espectacular, de nivel award-winning, con animaciones fluidas, micro-interacciones en todo y un diseño que impacte desde el primer segundo.
+
+PASO 1 — INSTALAR DEPENDENCIAS
+
+Dentro de la carpeta frontend, ejecuta:
+
+npm install gsap @types/gsap
+npm install lenis
+npm install swiper
+npm install countup.js
+npm install splitting
+npm install vanta
+npm install three @types/three
+npm install @angular/animations
+
+PASO 2 — CONFIGURACION GLOBAL DE ANIMACIONES
+
+Crea el archivo frontend/src/app/core/animations/gsap.config.ts con el siguiente contenido: importa gsap y ScrollTrigger de gsap/ScrollTrigger, registra el plugin con gsap.registerPlugin(ScrollTrigger), configura ScrollTrigger.defaults con markers false y toggleActions "play none none reverse", exporta gsap y ScrollTrigger como named exports para usarlos en toda la app.
+
+Crea frontend/src/app/core/animations/lenis.config.ts: inicializa Lenis con duration 1.4, easing funcion t => Math.min(1, 1.001 - Math.pow(2, -10*t)), direction vertical, gestureDirection vertical, smooth true, smoothTouch false, touchMultiplier 2. Conecta Lenis con GSAP ticker: gsap.ticker.add(time => lenis.raf(time * 1000)). Exporta la instancia de lenis.
+
+Crea frontend/src/app/core/animations/animations.ts con estas animaciones reutilizables exportadas como funciones:
+
+- fadeInUp(element, delay=0): gsap.fromTo element desde opacity 0 y y 60 hasta opacity 1 y y 0, duration 0.9, ease "power3.out", delay
+- fadeInLeft(element, delay=0): igual pero desde x -60
+- fadeInRight(element, delay=0): igual pero desde x 60
+- staggerFadeIn(elements, stagger=0.15): gsap.fromTo con stagger, cada elemento desde opacity 0 y y 40
+- scaleIn(element, delay=0): desde scale 0.85 y opacity 0 hasta scale 1 y opacity 1
+- textReveal(element): split el texto en chars y anima cada char con stagger 0.03 desde y 100 y opacity 0, clip con overflow hidden en el parent
+- counterAnimation(element, endValue): usa CountUp con duration 2.5 y separator punto
+- parallaxElement(element, speed=0.5): ScrollTrigger con scrub true y movimiento vertical segun speed
+
+PASO 3 — REFINAR styles.scss GLOBAL
+
+Reemplaza completamente el styles.scss con lo siguiente:
+
+Importar desde Google Fonts: DM Serif Display (ital 0 y 1, weight 400) y DM Sans (weight 300 400 500 600 700).
+
+Variables CSS en :root:
+--color-primary: #1e6b3c
+--color-primary-dark: #0e4423
+--color-primary-mid: #155c30
+--color-primary-light: #3dba6e
+--color-accent: #7de8a4
+--color-accent-dark: #4dd07e
+--color-bg: #f5f9f4
+--color-bg-white: #ffffff
+--color-bg-green-soft: #f0f9f2
+--color-bg-dark: #0a1a0a
+--color-text: #1a2e1a
+--color-text-muted: #567056
+--color-text-light: rgba(255,255,255,0.78)
+--color-border: #d4e8d0
+--color-border-dark: #1a3a1a
+--font-display: 'DM Serif Display', serif
+--font-body: 'DM Sans', sans-serif
+--transition-fast: 0.18s ease
+--transition-mid: 0.28s ease
+--transition-slow: 0.45s cubic-bezier(0.16, 1, 0.3, 1)
+--shadow-green: 0 20px 60px rgba(30, 107, 60, 0.18)
+--shadow-green-hover: 0 30px 80px rgba(30, 107, 60, 0.28)
+--border-radius-card: 20px
+--border-radius-pill: 100px
+--border-radius-sm: 10px
+
+Estilos globales importantes:
+- html con scroll-behavior smooth
+- body con font-family body, background bg, color text, overflow-x hidden, -webkit-font-smoothing antialiased
+- Clase .will-animate con opacity 0 (estado inicial antes de que GSAP anime)
+- Clase .sr-only para accesibilidad
+- Scrollbar personalizado: width 6px, track transparent, thumb color primary con border-radius 3px
+- Clase .section-tag: display inline-block, font-size 0.75rem, font-weight 600, letter-spacing 0.1em, text-transform uppercase, color primary, background rgba(30,107,60,0.1), padding 5px 16px, border-radius pill, margin-bottom 0.75rem, border 1px solid rgba(30,107,60,0.2)
+- Clase .section-title: font-family display, font-size clamp(1.8rem, 3.5vw, 2.4rem), color text, line-height 1.15, margin-bottom 0.5rem
+- Clase .section-subtitle: font-size 1rem, color muted, line-height 1.7, max-width 520px
+- Clase .btn-primary: background primary-light, color #0e3320, font-weight 700, font-size 0.95rem, padding 13px 30px, border-radius pill, border none, cursor pointer, transition slow, position relative, overflow hidden. Pseudo-elemento ::before con background blanco opacity 0.15, transform scaleX(0) y transform-origin left, transition 0.3s ease. Hover: transform translateY(-3px), box-shadow shadow-green, ::before scaleX(1)
+- Clase .btn-outline: background transparent, color white, font-weight 500, padding 13px 30px, border-radius pill, border 1.5px solid rgba(255,255,255,0.35), cursor pointer, transition mid. Hover: border-color accent, color accent, transform translateY(-3px)
+- Clase .card-hover: transition slow. Hover: transform translateY(-8px), box-shadow shadow-green-hover
+- Animacion global @keyframes float: 0% y 100% transform translateY(0), 50% transform translateY(-12px)
+- Animacion @keyframes pulse-green: 0% y 100% box-shadow 0 0 0 0 rgba(61,186,110,0.4), 70% box-shadow 0 0 0 12px rgba(61,186,110,0)
+- Animacion @keyframes shimmer: 0% background-position -200% 0, 100% background-position 200% 0
+
+PASO 4 — REFINAR NavbarComponent
+
+Reescribe completamente navbar.component.ts y navbar.component.scss:
+
+El navbar debe tener efecto glassmorphism al hacer scroll: cuando scrollY > 50 añadir clase scrolled que cambia background a rgba(255,255,255,0.92) con backdrop-filter blur(20px) y box-shadow 0 4px 30px rgba(0,0,0,0.08). Transition suave de 0.3s.
+
+El logo debe tener el punto verde con animacion pulse-green continua.
+
+Los links de navegacion deben tener un indicador animado debajo (underline que crece desde el centro con transform scaleX) en hover y en el link activo.
+
+El boton CTA debe tener el efecto shimmer en hover: gradiente animado que pasa de izquierda a derecha.
+
+En mobile (menos de 768px): menu hamburguesa con 3 lineas que se transforman en X al abrirse con animacion GSAP. El menu desplegable aparece con gsap.fromTo desde y -20 y opacity 0, con stagger en los items.
+
+Implementa el HostListener para scroll y detectar la ruta activa con Router.
+
+PASO 5 — REFINAR LandingComponent COMPLETAMENTE
+
+Reescribe completamente landing.component.ts, landing.component.html y landing.component.scss.
+
+HERO SECTION:
+El fondo debe usar Vanta.js con efecto NET. Inicializar en ngAfterViewInit con: el elemento #vanta-hero, color 0x1e6b3c (verde primary), backgroundColor 0x0a1a0a (verde muy oscuro casi negro), points 12.0, maxDistance 22.0, spacing 18.0, showDots true. Destruir en ngOnDestroy con this.vantaEffect.destroy().
+
+Sobre el fondo Vanta, el contenido del hero con position relative z-index 2:
+- Tag pill que entra con fadeInUp delay 0
+- H1 que usa Splitting.js para animar cada palabra: las palabras entran desde abajo con stagger 0.08s, clip-path reveal
+- Parrafo que entra con fadeInUp delay 0.4
+- Botones que entran con fadeInUp delay 0.6
+- Las estadisticas que entran con staggerFadeIn delay 0.8, y los numeros usan CountUp.js (240, 98, 4800) con start cuando entran en viewport via ScrollTrigger
+
+LAS 3 GRANDES CARDS (seccion principal):
+Cada card debe tener:
+- Al entrar en viewport (ScrollTrigger): escala desde 0.9 y opacity 0 hasta escala 1 y opacity 1, con stagger 0.2s entre cards
+- Cursor personalizado: cuando el mouse entra en la card, un circulo verde semitransparente de 80px sigue al cursor dentro de la card con gsap.to y quickTo para suavidad maxima
+- Efecto parallax en el emoji de fondo: se mueve en sentido contrario al scroll a velocidad 0.3
+- Hover: los tag pills aparecen con stagger desde abajo
+- La flecha en hover: animacion de la flecha que va hacia la derecha y vuelve (loop mientras el hover esta activo)
+- Efecto tilt 3D en hover: rotateX y rotateY hasta 8 grados segun la posicion del mouse dentro de la card usando mousemove event y gsap.to con duration 0.5
+
+SECCION COMO FUNCIONA (4 pasos):
+- Cards entran en viewport con ScrollTrigger stagger 0.15s desde abajo
+- El icono de cada card tiene animacion float continua con animation-delay diferente para cada uno
+- Al hover: el icono hace scale 1.2 con spring effect (elastic ease)
+- Linea conectora animada entre los 4 pasos: SVG path que se dibuja con stroke-dashoffset animado por ScrollTrigger
+
+SECCION EQUIPO (Swiper.js):
+Reemplaza el scroll nativo por un Swiper.js con estas opciones: slidesPerView auto, spaceBetween 20, grabCursor true, freeMode true con momentum, loop false. En mobile slidesPerView 1.2. Añadir paginacion con bullets personalizados en verde.
+
+Las cards del equipo deben tener:
+- Al entrar: fadeInUp con stagger
+- Hover: el avatar hace scale 1.1 y aparece un anillo verde pulsante alrededor
+- Un badge de disponibilidad con punto verde pulsante (animacion pulse-green)
+
+SECCION BLOG:
+- Cards con efecto magnetic: el contenido de la card se mueve ligeramente siguiendo al cursor (max 10px) con gsap.to duration 0.4
+- La imagen de fondo de cada card hace zoom suave en hover (scale 1.08 dentro del overflow hidden)
+- Al entrar en viewport: flip desde rotateY 90 a rotateY 0 con stagger 0.2s
+
+SECCION CONTACTO:
+- El input de email debe tener un efecto de borde animado: en focus, el borde se ilumina con un glow verde que pulsa
+- El boton tiene el efecto ripple al hacer click: circulo que expande desde el punto de click
+
+CONTADOR DE SCROLL:
+Añade un indicador de progreso de scroll en la parte superior de la pagina: una barra de 3px de alto en color accent que crece de izquierda a derecha con ScrollTrigger scrub true.
+
+PASO 6 — REFINAR InformateComponent
+
+Hero interno con texto animado letra a letra usando Splitting.js.
+
+La navegacion interna de secciones debe tener un indicador activo que se mueve suavemente entre los items segun el scroll (usa IntersectionObserver para detectar que seccion esta visible y mueve el indicador con gsap.to).
+
+Las cards de ITS (VIH, VPH, etc.) deben tener:
+- Entrada en viewport con staggerFadeIn
+- Hover: efecto de flip 3D (rotateY 180) que revela informacion adicional en el reverso de la card. El anverso tiene el nombre e icono, el reverso tiene la descripcion y el boton.
+- Cada card tiene un color de acento diferente dentro de la gama verde
+
+El acordeon de FAQ debe animarse con GSAP: en lugar de CSS height auto (que no se puede animar bien), usa gsap.to con height desde 0 hasta el scrollHeight del contenido, con ease power2.out duration 0.4. Añadir rotacion de 180 grados en la flecha.
+
+PASO 7 — REFINAR RealidadesComponent
+
+Los filtros de categoria deben tener un background pill que se desliza suavemente entre los tabs activos (efecto sliding pill con gsap.to en posicion y ancho).
+
+Las cards de articulos deben entrar con un efecto masonry animado: las cards impares entran desde la izquierda y las pares desde la derecha.
+
+Hover en cards: efecto parallax interno donde la imagen de fondo se mueve ligeramente en direccion opuesta al cursor.
+
+PASO 8 — CURSOR PERSONALIZADO GLOBAL
+
+Crea el componente CursorComponent (standalone) que reemplaza el cursor nativo en desktop:
+- Un circulo exterior de 36px (borde 1.5px verde) que sigue al cursor con lag (lerp 0.1) usando requestAnimationFrame
+- Un punto central de 6px (relleno verde) que sigue exactamente al cursor
+- Cuando el cursor pasa sobre un elemento clickable (a, button, .card-hover): el circulo exterior hace scale 2.2 y reduce opacity, el punto desaparece — efecto "expand on hover"
+- Cuando el cursor esta sobre las 3 grandes cards: el cursor cambia a un circulo de 80px con texto "EXPLORAR" en el centro rotando lentamente
+- Ocultar el cursor nativo con cursor: none en el body
+- Solo activar en dispositivos no touch: window.matchMedia('(pointer: fine)')
+- Añadir CursorComponent al AppComponent template
+
+PASO 9 — TRANSICIONES ENTRE PAGINAS
+
+Crea un RouterTransitionService que usa GSAP para las transiciones entre rutas:
+- Al navegar: overlay verde que barre la pantalla de izquierda a derecha (0.4s), luego la nueva pagina entra mientras el overlay sale hacia la derecha (0.4s)
+- Implementar con un componente PageTransitionComponent que escucha Router events (NavigationStart y NavigationEnd)
+- El overlay es un div de position fixed, full screen, background primary, z-index 9999, inicialmente fuera de pantalla (x: -100%)
+
+PASO 10 — LAZY LOADING DE IMAGENES Y PERFORMANCE
+
+Crea la directiva LazyImageDirective (standalone) que usa IntersectionObserver para cargar imagenes solo cuando entran en el viewport, con efecto fade-in al cargar.
+
+Asegurate de que todos los componentes usan OnPush change detection strategy para maxima performance.
+
+En los componentes que usan GSAP y Lenis, asegurate de destruir correctamente los ScrollTriggers en ngOnDestroy con ScrollTrigger.getAll().forEach(t => t.kill()) y lenis.destroy() para evitar memory leaks.
+
+PASO 11 — MICRO-INTERACCIONES ADICIONALES
+
+En el NavbarComponent: el logo hace un efecto de "breath" muy sutil (scale entre 1 y 1.03) de forma continua con gsap.to yoyo true repeat -1 duration 3.
+
+En todos los botones .btn-primary: efecto de particulas al hacer click — 6 circulos pequeños verdes que explotan desde el centro del boton y desaparecen con opacity 0 y scale 2, usando GSAP con stagger 0.05.
+
+En el footer: los links tienen un efecto de subrayado que se dibuja de izquierda a derecha en hover usando clip-path: inset(0 100% 0 0) animado a inset(0 0% 0 0).
+
+En el ChatComponent: los mensajes nuevos entran con gsap.fromTo desde y 20 y opacity 0, con un efecto de typing indicator (3 puntos que hacen bounce con stagger mientras se espera respuesta).
+
+PASO 12 — VERIFICACION FINAL
+
+Despues de todos los cambios:
+1. Ejecuta npm run build en la carpeta frontend. Si hay errores de TypeScript o imports, corrígelos.
+2. Asegurate de que todos los imports de GSAP usan la sintaxis correcta para Angular: import { gsap } from 'gsap' e import { ScrollTrigger } from 'gsap/ScrollTrigger'.
+3. Verifica que Vanta se inicializa correctamente con (window as any).VANTA o importando directamente.
+4. Comprueba que no hay errores de SSR (si Angular usa server-side rendering, todos los accesos a window, document y navigator deben estar dentro de isPlatformBrowser checks).
+5. Ejecuta ng serve y confirma que la aplicacion arranca sin errores en consola.

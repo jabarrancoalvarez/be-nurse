@@ -1,0 +1,45 @@
+<section class="page-hero">
+  <div class="page-hero__content">
+    <span class="section-tag">Revista digital</span>
+    <h1 class="page-hero__title">Realidades</h1>
+    <p>Historias reales, articulos y preguntas incomodas sobre sexualidad.</p>
+  </div>
+</section>
+
+<div class="realidades-container">
+  <div class="filters">
+    @for (filter of filters; track filter) {
+      <button
+        class="filter-pill"
+        [class.active]="activeFilter() === filter"
+        (click)="setFilter(filter)"
+      >{{ filter }}</button>
+    }
+  </div>
+
+  <div class="articles-grid">
+    @for (art of articulosFiltrados(); track art.slug) {
+      <a class="article-card" [routerLink]="['/realidades', art.slug]">
+        <div class="article-card__img" [style.background]="art.bg">
+          <span class="article-card__emoji">{{ art.emoji }}</span>
+        </div>
+        <div class="article-card__body">
+          <span class="article-card__cat">{{ art.category }}</span>
+          <h3>{{ art.title }}</h3>
+          <p>{{ art.excerpt }}</p>
+          <div class="article-card__meta">
+            <span>{{ art.author }}</span>
+            <span>·</span>
+            <span>{{ art.date }}</span>
+            <span>·</span>
+            <span>{{ art.readTime }} lectura</span>
+          </div>
+        </div>
+      </a>
+    }
+
+    @if (articulosFiltrados().length === 0) {
+      <p class="no-results">No hay articulos en esta categoria todavia.</p>
+    }
+  </div>
+</div>

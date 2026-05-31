@@ -1,0 +1,97 @@
+<section class="page-hero">
+  <div class="page-hero__content">
+    <span class="section-tag">Informacion sexual</span>
+    <h1 class="page-hero__title">Informate</h1>
+    <p>Informacion clara, rigurosa y sin tabues sobre las infecciones de transmision sexual.</p>
+  </div>
+</section>
+
+<div class="informate-container">
+  <nav class="toc">
+    <h4>Contenidos</h4>
+    <ul>
+      <li [class.active]="activeSection() === 'definicion'"><a href="#definicion">Definicion de ITS</a></li>
+      <li [class.active]="activeSection() === 'principales'"><a href="#principales">Principales ITS</a></li>
+      <li [class.active]="activeSection() === 'its-comunes'"><a href="#its-comunes">ITS mas comunes</a></li>
+      <li [class.active]="activeSection() === 'deteccion'"><a href="#deteccion">Deteccion y pruebas</a></li>
+      <li [class.active]="activeSection() === 'faq'"><a href="#faq">Preguntas frecuentes</a></li>
+    </ul>
+  </nav>
+
+  <div class="informate-content">
+    <section id="definicion" class="content-section">
+      <h2>Definicion de ITS</h2>
+      <p>Las Infecciones de Transmision Sexual (ITS) se caracterizan por contagiarse a través del contacto sexual. En la mayoria de los casos las manifestaciones clinicas comprometen la zona genital y las mucosas, dando lugar a complicaciones medicas. Ademas, muchas de estas infecciones pueden no ser sintomaticas, por lo que se dificulta su tratamiento y diagnostico.</p>
+    </section>
+
+    <section id="principales" class="content-section">
+      <h2>Principales ITS</h2>
+      <p>La Organizacion Mundial de la Salud estima que cada año se producen mas de 370 millones de nuevas ITS en todo el mundo, entre ellas la sifilis, la gonorrea, la clamidia y la tricomoniasis. A pesar de que muchas tienen tratamiento, siguen representando un importante problema de salud publica. Las ITS pueden afectar de forma significativa a la calidad de vida, facilitar la transmision del VIH y en algunos casos provocar complicaciones graves como infertilidad o cancer.</p>
+    </section>
+
+    <section id="its-comunes" class="content-section">
+      <h2>ITS mas comunes</h2>
+      <div class="its-grid">
+        @for (its of itsCards; track its.name) {
+          <div class="its-card">
+            <div class="its-card__front">
+              <div class="its-card__emoji">{{ its.emoji }}</div>
+              <h4>{{ its.name }}</h4>
+              <span class="its-card__hint">Pasa el cursor para saber mas</span>
+            </div>
+            <div class="its-card__back" [style.background]="its.color">
+              <h4>{{ its.name }}</h4>
+              <p>{{ its.desc }}</p>
+              <button class="its-card__btn">Ver informacion completa</button>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section id="deteccion" class="content-section">
+      <h2>Deteccion y pruebas</h2>
+      <h3>¿Cuando tiene sentido hacerse pruebas?</h3>
+      <ul class="check-list">
+        <li>Si has tenido sexo sin preservativo</li>
+        <li>Si has cambiado de pareja sexual</li>
+        <li>Si tienes sintomas genitales o generales</li>
+        <li>Si tu pareja tuvo un diagnostico positivo</li>
+        <li>Si quieres quedarte tranquilo/a — todos son motivos validos</li>
+      </ul>
+      <h3>¿Que tipo de pruebas existen?</h3>
+      <ul class="check-list">
+        <li><strong>Analisis de sangre:</strong> VIH, sifilis, hepatitis B y C</li>
+        <li><strong>Muestras locales:</strong> orina, exudado vaginal/uretral, anal o de garganta para clamidia y gonorrea</li>
+        <li><strong>Revisiones visuales:</strong> verrugas, herpes u otras lesiones</li>
+      </ul>
+      <h3>Ventana diagnostica</h3>
+      <p>Algunas pruebas no detectan la infeccion inmediatamente tras la exposicion. Hay un periodo de ventana necesario: por ejemplo, el VIH puede tardar hasta 45 dias en ser detectable con pruebas de cuarta generacion.</p>
+      <h3>¿Donde hacerse pruebas?</h3>
+      <ul class="check-list">
+        <li>Centro de salud (medico de familia)</li>
+        <li>Centros de salud sexual e ITS (gratuitos, sin cita previa en muchos casos)</li>
+        <li>Servicios comunitarios y ONG especializadas</li>
+      </ul>
+      <h3>Si sale positiva...</h3>
+      <p>No estas solo/a. La mayoria de las ITS tienen tratamiento eficaz. Sigue las indicaciones medicas, comunica el resultado a tus parejas recientes para que puedan hacerse pruebas, y recuerda: sin culpas, solo responsabilidad.</p>
+    </section>
+
+    <section id="faq" class="content-section">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        @for (faq of faqs(); track faq.question; let i = $index) {
+          <div class="faq__item" [class.open]="faq.open">
+            <button class="faq__question" (click)="toggleFaq(i)">
+              {{ faq.question }}
+              <span class="faq__icon" [class.rotated]="faq.open">▾</span>
+            </button>
+            <div class="faq__content" #faqContent>
+              <div class="faq__answer">{{ faq.answer }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+  </div>
+</div>

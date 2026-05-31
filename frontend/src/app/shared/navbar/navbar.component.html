@@ -1,0 +1,26 @@
+<nav class="navbar" [class.scrolled]="scrolled()">
+  <div class="navbar__container">
+    <a routerLink="/" class="navbar__logo" #logoEl>
+      <span class="navbar__logo-dot"></span>
+      be-nurse
+    </a>
+
+    <ul class="navbar__links" [class.open]="menuOpen()" #menuList>
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Inicio</a></li>
+      <li><a routerLink="/informate" routerLinkActive="active">Informate</a></li>
+      <li><a routerLink="/cuidate" routerLinkActive="active">Cuidate</a></li>
+      <li><a routerLink="/realidades" routerLinkActive="active">Realidades</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">Contacto</a></li>
+    </ul>
+
+    <a routerLink="/chat" class="navbar__cta">
+      Chat anónimo
+    </a>
+
+    <button class="navbar__hamburger" [class.open]="menuOpen()" (click)="toggleMenu()" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>

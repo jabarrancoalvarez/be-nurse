@@ -1,0 +1,100 @@
+<svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="sk3" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.048" numOctaves="4" seed="12" stitchTiles="stitch" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d0f0da"/>
+      <stop offset="100%" stop-color="#a0d8b8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="560" height="420" fill="url(#bg3)" rx="18"/>
+
+  <!-- ===== PERSONAJE 1 - izquierda, más bajito ===== -->
+  <!-- Sombra -->
+  <ellipse cx="175" cy="390" rx="40" ry="9" fill="rgba(30,80,40,0.12)" filter="url(#sk3)"/>
+  <!-- Cuerpo -->
+  <ellipse cx="175" cy="355" rx="30" ry="25" fill="#72e086" stroke="#3a9e48" stroke-width="2" filter="url(#sk3)"/>
+  <!-- Piernas -->
+  <rect x="155" y="365" width="14" height="28" rx="7" fill="#3a9e48" filter="url(#sk3)"/>
+  <rect x="177" y="365" width="14" height="28" rx="7" fill="#3a9e48" filter="url(#sk3)"/>
+  <!-- Brazos -->
+  <path d="M148 340 Q130 335 122 350" stroke="#f8c8a0" stroke-width="10" stroke-linecap="round" fill="none" filter="url(#sk3)"/>
+  <path d="M202 340 Q220 335 228 350" stroke="#f8c8a0" stroke-width="10" stroke-linecap="round" fill="none" filter="url(#sk3)"/>
+  <!-- Cabeza -->
+  <circle cx="175" cy="305" r="38" fill="#f8d8b0" stroke="#c87838" stroke-width="2.5" filter="url(#sk3)"/>
+  <!-- Pelo largo -->
+  <path d="M138 298 Q142 262 175 258 Q208 262 212 298 Q200 274 175 272 Q150 274 138 298 Z" fill="#8B4513" filter="url(#sk3)"/>
+  <path d="M138 298 Q132 330 136 360" stroke="#8B4513" stroke-width="9" stroke-linecap="round" fill="none" filter="url(#sk3)"/>
+  <path d="M212 298 Q218 330 214 360" stroke="#8B4513" stroke-width="9" stroke-linecap="round" fill="none" filter="url(#sk3)"/>
+  <!-- Ojos -->
+  <circle cx="162" cy="305" r="5" fill="#2a1808" filter="url(#sk3)"/>
+  <circle cx="188" cy="305" r="5" fill="#2a1808" filter="url(#sk3)"/>
+  <circle cx="164" cy="303" r="2" fill="#fff"/>
+  <circle cx="190" cy="303" r="2" fill="#fff"/>
+  <!-- Sonrisa -->
+  <path d="M162 318 Q175 328 188 318" stroke="#c87838" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#sk3)"/>
+  <!-- Mejillas -->
+  <circle cx="153" cy="314" r="8" fill="rgba(230,120,80,0.2)"/>
+  <circle cx="197" cy="314" r="8" fill="rgba(230,120,80,0.2)"/>
+
+  <!-- Bocadillo 1 -->
+  <path d="M105 200 Q105 160 145 160 L230 160 Q270 160 270 200 Q270 240 230 240 L180 240 L170 260 L160 240 L145 240 Q105 240 105 200 Z" fill="#fff" stroke="#3a9e48" stroke-width="3" filter="url(#sk3)"/>
+  <!-- Contenido bocadillo 1: corazones y estrella -->
+  <path d="M152 195 Q152 185 162 185 Q172 185 172 195 Q172 205 152 214 Q132 205 132 195 Q132 185 142 185 Q152 185 152 195 Z" fill="#e85a7a" filter="url(#sk3)"/>
+  <path d="M195 190 L198 182 L201 190 L209 193 L201 196 L198 204 L195 196 L187 193 Z" fill="#f5e050" stroke="#c8a820" stroke-width="1" filter="url(#sk3)"/>
+  <path d="M230 193 Q230 186 237 186 Q244 186 244 193 Q244 200 230 207 Q216 200 216 193 Q216 186 223 186 Q230 186 230 193 Z" fill="#e85a7a" filter="url(#sk3)"/>
+
+  <!-- ===== PERSONAJE 2 - derecha, más alto ===== -->
+  <!-- Sombra -->
+  <ellipse cx="385" cy="388" rx="42" ry="9" fill="rgba(30,80,40,0.12)" filter="url(#sk3)"/>
+  <!-- Cuerpo -->
+  <ellipse cx="385" cy="340" rx="32" ry="28" fill="#48c257" stroke="#3a9e48" stroke-width="2" filter="url(#sk3)"/>
+  <!-- Piernas -->
+  <rect x="364" y="352" width="15" height="35" rx="7" fill="#26712f" filter="url(#sk3)"/>
+  <rect x="387" y="352" width="15" height="35" rx="7" fill="#26712f" filter="url(#sk3)"/>
+  <!-- Brazos -->
+  <path d="M356 328 Q338 320 330 335" stroke="#f5c090" stroke-width="11" stroke-linecap="round" fill="none" filter="url(#sk3)"/>
+  <path d="M414 328 Q432 320 440 335" stroke="#f5c090" stroke-width="11" stroke-linecap="round" fill="none" filter="url(#sk3)"/>
+  <!-- Cabeza -->
+  <circle cx="385" cy="282" r="45" fill="#f5c090" stroke="#c87838" stroke-width="2.5" filter="url(#sk3)"/>
+  <!-- Pelo rizado/corto -->
+  <path d="M342 272 Q348 235 385 232 Q422 235 428 272" fill="#2a1808" filter="url(#sk3)"/>
+  <circle cx="350" cy="268" r="14" fill="#2a1808" filter="url(#sk3)"/>
+  <circle cx="366" cy="256" r="13" fill="#2a1808" filter="url(#sk3)"/>
+  <circle cx="385" cy="250" r="14" fill="#2a1808" filter="url(#sk3)"/>
+  <circle cx="404" cy="256" r="13" fill="#2a1808" filter="url(#sk3)"/>
+  <circle cx="420" cy="268" r="14" fill="#2a1808" filter="url(#sk3)"/>
+  <!-- Ojos -->
+  <circle cx="372" cy="282" r="6" fill="#2a1808" filter="url(#sk3)"/>
+  <circle cx="398" cy="282" r="6" fill="#2a1808" filter="url(#sk3)"/>
+  <circle cx="374" cy="280" r="2.5" fill="#fff"/>
+  <circle cx="400" cy="280" r="2.5" fill="#fff"/>
+  <!-- Sonrisa grande -->
+  <path d="M370 298 Q385 313 400 298" stroke="#c87838" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#sk3)"/>
+  <!-- Mejillas -->
+  <circle cx="360" cy="293" r="10" fill="rgba(230,120,80,0.2)"/>
+  <circle cx="410" cy="293" r="10" fill="rgba(230,120,80,0.2)"/>
+
+  <!-- Bocadillo 2 -->
+  <path d="M295 155 Q295 115 335 115 L445 115 Q480 115 480 155 Q480 195 445 195 L400 195 L388 215 L378 195 L335 195 Q295 195 295 155 Z" fill="#fff" stroke="#3a9e48" stroke-width="3" filter="url(#sk3)"/>
+  <!-- Contenido bocadillo 2: arcoíris y estrella -->
+  <path d="M320 168 Q320 142 340 142 Q360 142 360 168" fill="none" stroke="#e85a7a" stroke-width="5" stroke-linecap="round" filter="url(#sk3)"/>
+  <path d="M328 168 Q328 150 340 150 Q352 150 352 168" fill="none" stroke="#f5a030" stroke-width="4" stroke-linecap="round" filter="url(#sk3)"/>
+  <path d="M336 168 Q336 158 340 158 Q344 158 344 168" fill="none" stroke="#f5e050" stroke-width="3.5" stroke-linecap="round" filter="url(#sk3)"/>
+  <path d="M380 148 L384 138 L388 148 L398 152 L388 156 L384 166 L380 156 L370 152 Z" fill="#f5e050" stroke="#c8a820" stroke-width="1.5" filter="url(#sk3)"/>
+  <path d="M422 150 Q422 142 430 142 Q438 142 438 150 Q438 158 422 165 Q406 158 406 150 Q406 142 414 142 Q422 142 422 150 Z" fill="#e85a7a" filter="url(#sk3)"/>
+
+  <!-- Corazones flotantes entre los dos personajes -->
+  <path d="M283 300 Q283 292 290 292 Q297 292 297 300 Q297 308 283 315 Q269 308 269 300 Q269 292 276 292 Q283 292 283 300 Z" fill="#e85a7a" opacity="0.7" filter="url(#sk3)"/>
+  <path d="M283 350 Q283 344 289 344 Q295 344 295 350 Q295 356 283 362 Q271 356 271 350 Q271 344 277 344 Q283 344 283 350 Z" fill="#e85a7a" opacity="0.5" filter="url(#sk3)"/>
+
+  <!-- Estrellas decorativas -->
+  <path d="M80 120 L84 110 L88 120 L98 124 L88 128 L84 138 L80 128 L70 124 Z" fill="#72e086" stroke="#3a9e48" stroke-width="1.5" filter="url(#sk3)"/>
+  <path d="M468 78 L472 68 L476 78 L486 82 L476 86 L472 96 L468 86 L458 82 Z" fill="#48c257" stroke="#26712f" stroke-width="1.5" filter="url(#sk3)"/>
+  <path d="M80 340 L83 332 L86 340 L94 343 L86 346 L83 354 L80 346 L72 343 Z" fill="#48c257" stroke="#26712f" stroke-width="1" filter="url(#sk3)"/>
+  <path d="M490 310 L493 303 L496 310 L503 313 L496 316 L493 323 L490 316 L483 313 Z" fill="#72e086" stroke="#3a9e48" stroke-width="1" filter="url(#sk3)"/>
+</svg>

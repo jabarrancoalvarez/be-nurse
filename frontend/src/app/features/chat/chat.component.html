@@ -1,0 +1,51 @@
+<div class="chat-page">
+  <div class="chat-header">
+    <h1>Chat anonimo</h1>
+    <p>Habla con nuestro equipo de enfermeria sin revelar tu identidad.</p>
+    <div class="anonymous-badge">🔒 Completamente anonimo</div>
+  </div>
+
+  <div class="chat-window">
+    <div class="messages">
+      @for (msg of messages(); track msg.time) {
+        <div class="message" [class.message--user]="msg.isFromUser" [class.message--nurse]="!msg.isFromUser">
+          @if (!msg.isFromUser) {
+            <div class="message__avatar">be</div>
+          }
+          <div class="message__bubble">{{ msg.content }}</div>
+          @if (msg.isFromUser) {
+            <div class="message__avatar message__avatar--user">Tu</div>
+          }
+        </div>
+      }
+
+      @if (sending()) {
+        <div class="message message--nurse">
+          <div class="message__avatar">be</div>
+          <div class="message__bubble message__bubble--typing">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      }
+
+      <div #messagesEnd></div>
+    </div>
+
+    <div class="chat-input">
+      <textarea
+        [(ngModel)]="input"
+        (keydown)="onKeyDown($event)"
+        placeholder="Escribe tu pregunta..."
+        rows="1"
+        [disabled]="sending()"
+      ></textarea>
+      <button (click)="send()" [disabled]="!input.trim() || sending()" class="send-btn">
+        Enviar
+      </button>
+    </div>
+  </div>
+
+  <p class="disclaimer">
+    ⚠️ Este servicio NO es una emergencia medica. Para urgencias, llama al <strong>112</strong>.
+  </p>
+</div>
