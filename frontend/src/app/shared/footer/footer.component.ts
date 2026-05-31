@@ -9,10 +9,10 @@ import { RouterLink } from '@angular/router';
       <div class="footer__container">
         <div class="footer__col">
           <div class="footer__logo">
-            <img src="logo.png" alt="be-nurse" style="width:40px;height:40px;object-fit:contain;filter:brightness(0) invert(1);margin-bottom:0.5rem;display:block;" />
+            <img src="logo.png" alt="be-nurse" style="width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1);" />
             be-nurse
           </div>
-          <p class="footer__desc">Plataforma de salud sexual respaldada por profesionales de enfermeria.</p>
+          <p class="footer__desc">Plataforma de salud sexual respaldada por profesionales de enfermeria. Sin juicios, con toda la informacion.</p>
         </div>
         <div class="footer__col">
           <h4>Navegacion</h4>
@@ -29,6 +29,7 @@ import { RouterLink } from '@angular/router';
           <ul>
             <li><a href="#">Politica de privacidad</a></li>
             <li><a href="#">Aviso legal</a></li>
+            <li><a href="#">Cookies</a></li>
           </ul>
         </div>
       </div>

@@ -166,11 +166,11 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     resize();
     window.addEventListener('resize', resize);
 
+    // Ondas sutiles y profesionales basadas en el verde del icono #00B86B
     const waves = [
-      { amp: 28, freq: 2.2, speed: 0.012, phase: 0,    alpha: 0.25, yRatio: 0.52 },
-      { amp: 20, freq: 3.0, speed: 0.018, phase: 1.2,  alpha: 0.18, yRatio: 0.60 },
-      { amp: 35, freq: 1.6, speed: 0.009, phase: 2.5,  alpha: 0.14, yRatio: 0.45 },
-      { amp: 15, freq: 4.0, speed: 0.022, phase: 0.7,  alpha: 0.10, yRatio: 0.68 },
+      { amp: 20, freq: 1.8, speed: 0.008, phase: 0,    alpha: 0.06, yRatio: 0.55 },
+      { amp: 15, freq: 2.4, speed: 0.012, phase: 1.0,  alpha: 0.04, yRatio: 0.62 },
+      { amp: 25, freq: 1.4, speed: 0.006, phase: 2.2,  alpha: 0.03, yRatio: 0.48 },
     ];
 
 
@@ -189,6 +189,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         ctx.lineTo(W, H);
         ctx.closePath();
+        // Verde basado en el icono #00B86B
         ctx.fillStyle = `rgba(0, 184, 107, ${w.alpha})`;
         ctx.fill();
       });

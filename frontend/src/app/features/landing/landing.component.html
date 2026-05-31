@@ -4,12 +4,20 @@
 <!-- HERO -->
 <section class="hero" #vantaHero>
 
-  <button class="hero__arrow hero__arrow--prev" (click)="prevSlide()" aria-label="Anterior">&#8592;</button>
-  <button class="hero__arrow hero__arrow--next" (click)="nextSlide()" aria-label="Siguiente">&#8594;</button>
+  <button class="hero__arrow hero__arrow--prev" (click)="prevSlide()" aria-label="Anterior">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+  <button class="hero__arrow hero__arrow--next" (click)="nextSlide()" aria-label="Siguiente">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+  </button>
 
   <div class="hero__content">
     <img src="logo.png" alt="be-nurse" class="hero__logo" />
-    <span class="pill">{{ slide.pill }}</span>
+    <span class="pill" #heroPill>{{ slide.pill }}</span>
     <h1 class="hero__title" #heroTitle>
       {{ slide.title }}<br>
       <em>{{ slide.titleEm }}</em>
@@ -18,6 +26,9 @@
     <div class="hero__actions" #heroActions>
       <a [routerLink]="slide.ctaLink" class="btn-primary" (click)="onCtaClick($event)">
         {{ slide.ctaLabel }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
       </a>
       <a [routerLink]="slide.ctaOutlineLink" class="btn-outline">{{ slide.ctaOutlineLabel }}</a>
     </div>
@@ -36,7 +47,7 @@
     </div>
     <div class="stat">
       <span class="stat__num" #statNum>0</span>
-      <span class="stat__label">% Satisfaccion usuarios</span>
+      <span class="stat__label">% Satisfaccion</span>
     </div>
     <div class="stat">
       <span class="stat__num" #statNum>0</span>
@@ -46,18 +57,18 @@
 
   <div class="hero__waves" aria-hidden="true">
     <svg class="wave wave--3" preserveAspectRatio="none" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,130 C200,50 400,210 600,130 C800,50 1000,210 1200,130 C1300,90 1390,170 1440,130 L1440,320 L0,320 Z" fill="#0A5E34"/>
+      <path d="M0,130 C200,50 400,210 600,130 C800,50 1000,210 1200,130 C1300,90 1390,170 1440,130 L1440,320 L0,320 Z" fill="rgba(0,184,107,0.08)"/>
     </svg>
     <svg class="wave wave--2" preserveAspectRatio="none" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,185 C180,110 360,255 540,185 C720,115 900,255 1080,185 C1260,115 1380,210 1440,185 L1440,320 L0,320 Z" fill="#22B565"/>
+      <path d="M0,185 C180,110 360,255 540,185 C720,115 900,255 1080,185 C1260,115 1380,210 1440,185 L1440,320 L0,320 Z" fill="rgba(0,184,107,0.05)"/>
     </svg>
     <svg class="wave wave--1" preserveAspectRatio="none" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,240 C240,175 480,290 720,240 C960,190 1200,285 1440,240 L1440,320 L0,320 Z" fill="#78E8B0"/>
+      <path d="M0,240 C240,175 480,290 720,240 C960,190 1200,285 1440,240 L1440,320 L0,320 Z" fill="rgba(0,184,107,0.03)"/>
     </svg>
   </div>
 </section>
 
-<!-- 3 GRANDES CARDS -->
+<!-- PILARES -->
 <section class="pillars">
   <div class="pillars__header">
     <span class="section-tag">Nuestro contenido</span>
@@ -69,15 +80,22 @@
       <div class="card-cursor"></div>
       <div class="pillar-card__header">
         <span class="pillar-card__num">01</span>
-        <h3>Infórmate</h3>
       </div>
       <div class="pillar-card__img">
-        <img src="ilustracion-informate.svg" alt="Infórmate sobre salud sexual" />
+        <img src="ilustracion-informate.svg" alt="Informate sobre salud sexual" />
       </div>
       <div class="pillar-card__body">
+        <h3>Informate</h3>
         <h4>Conoce y comprende</h4>
-        <p>Todo sobre las ITS, su deteccion y como afectan tu salud.</p>
-        <div class="pillar-card__arrow">Explorar <span class="arrow-icon">→</span></div>
+        <p>Todo sobre las ITS, su deteccion y como afectan tu salud. Informacion respaldada por profesionales.</p>
+        <div class="pillar-card__arrow">
+          Explorar 
+          <span class="arrow-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -85,15 +103,22 @@
       <div class="card-cursor"></div>
       <div class="pillar-card__header">
         <span class="pillar-card__num">02</span>
-        <h3>Cuídate</h3>
       </div>
       <div class="pillar-card__img">
-        <img src="ilustracion-cuidate.svg" alt="Cuídate y previene" />
+        <img src="ilustracion-cuidate.svg" alt="Cuidate y previene" />
       </div>
       <div class="pillar-card__body">
-        <h4>Prevención activa</h4>
-        <p>Metodos, vacunas y profilaxis para protegerte de forma eficaz.</p>
-        <div class="pillar-card__arrow">Explorar <span class="arrow-icon">→</span></div>
+        <h3>Cuidate</h3>
+        <h4>Prevencion activa</h4>
+        <p>Metodos, vacunas y profilaxis para protegerte de forma eficaz. Tu salud es nuestra prioridad.</p>
+        <div class="pillar-card__arrow">
+          Explorar 
+          <span class="arrow-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -101,15 +126,22 @@
       <div class="card-cursor"></div>
       <div class="pillar-card__header">
         <span class="pillar-card__num">03</span>
-        <h3>Realidades</h3>
       </div>
       <div class="pillar-card__img">
         <img src="ilustracion-realidades.svg" alt="Realidades sin filtros" />
       </div>
       <div class="pillar-card__body">
-        <h4>Sin filtros</h4>
-        <p>Historias reales y preguntas incomodas sobre sexualidad.</p>
-        <div class="pillar-card__arrow">Explorar <span class="arrow-icon">→</span></div>
+        <h3>Realidades</h3>
+        <h4>Sin filtros ni tabues</h4>
+        <p>Historias reales y preguntas incomodas sobre sexualidad. Conversaciones necesarias.</p>
+        <div class="pillar-card__arrow">
+          Explorar 
+          <span class="arrow-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -124,40 +156,56 @@
   </div>
   <div class="how__grid">
     <div class="how__step how__step--1">
-      <div class="how__step-num">01</div>
-      <div class="how__icon" style="animation: float 3s ease-in-out infinite;">🔍</div>
+      <span class="how__step-num">01</span>
+      <div class="how__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="M21 21l-4.35-4.35"/>
+        </svg>
+      </div>
       <h4>Busca un perfil</h4>
       <p>Encuentra enfermeros/as especializados segun tu necesidad.</p>
     </div>
-    <div class="how__connector">→</div>
     <div class="how__step how__step--2">
-      <div class="how__step-num">02</div>
-      <div class="how__icon" style="animation: float 3s ease-in-out infinite; animation-delay: 0.4s;">📋</div>
+      <span class="how__step-num">02</span>
+      <div class="how__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
       <h4>Consulta inicial</h4>
       <p>Describe tu situacion de forma anonima y segura.</p>
     </div>
-    <div class="how__connector">→</div>
     <div class="how__step how__step--3">
-      <div class="how__step-num">03</div>
-      <div class="how__icon" style="animation: float 3s ease-in-out infinite; animation-delay: 0.8s;">💚</div>
+      <span class="how__step-num">03</span>
+      <div class="how__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
       <h4>Plan personalizado</h4>
       <p>Recibe orientacion adaptada a tu caso especifico.</p>
     </div>
-    <div class="how__connector">→</div>
     <div class="how__step how__step--4">
-      <div class="how__step-num">04</div>
-      <div class="how__icon" style="animation: float 3s ease-in-out infinite; animation-delay: 1.2s;">🔒</div>
+      <span class="how__step-num">04</span>
+      <div class="how__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
       <h4>100% confidencial</h4>
       <p>Tu privacidad es nuestra prioridad absoluta.</p>
     </div>
   </div>
 </section>
 
-<!-- EQUIPO (Swiper) -->
+<!-- EQUIPO -->
 <section class="team">
   <div class="team__header">
     <span class="section-tag">Nuestro equipo</span>
-    <h2 class="section-title">Profesionales especializados/as</h2>
+    <h2 class="section-title">Profesionales especializados</h2>
   </div>
   <div class="team__grid">
     <div class="team-card">
@@ -211,49 +259,74 @@
   </div>
   <div class="blog__grid">
     <div class="blog-card card-hover" routerLink="/realidades/porno-distorsiona-expectativas">
-      <div class="blog-card__img">🎬</div>
+      <div class="blog-card__img">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+          <line x1="7" y1="2" x2="7" y2="22"/>
+          <line x1="17" y1="2" x2="17" y2="22"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <line x1="2" y1="7" x2="7" y2="7"/>
+          <line x1="2" y1="17" x2="7" y2="17"/>
+          <line x1="17" y1="17" x2="22" y2="17"/>
+          <line x1="17" y1="7" x2="22" y2="7"/>
+        </svg>
+      </div>
       <div class="blog-card__body">
         <span class="blog-card__cat">Porno y sexualidad</span>
         <h4>Por que el porno distorsiona expectativas</h4>
         <p>El problema no es ver porno, sino aprender de el. El porno es entretenimiento, no educacion sexual.</p>
-        <div class="blog-card__meta">Lucia Garcia · 10 Feb 2026</div>
+        <div class="blog-card__meta">Lucia Garcia &middot; 10 Feb 2026</div>
       </div>
     </div>
     <div class="blog-card card-hover" routerLink="/realidades/problema-era-mi-cuerpo">
-      <div class="blog-card__img">💭</div>
+      <div class="blog-card__img">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
       <div class="blog-card__body">
         <span class="blog-card__cat">Presion social</span>
         <h4>Pense que el problema era mi cuerpo</h4>
         <p>Nunca nadie me dijo directamente que mi cuerpo estaba mal. Pero lo senti muchas veces.</p>
-        <div class="blog-card__meta">Historia real · 10 Feb 2026</div>
+        <div class="blog-card__meta">Historia real &middot; 10 Feb 2026</div>
       </div>
     </div>
     <div class="blog-card card-hover" routerLink="/informate/prep-que-es">
-      <div class="blog-card__img">💊</div>
+      <div class="blog-card__img">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+          <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/>
+          <path d="m18 15-2-2"/>
+          <path d="m15 18-2-2"/>
+        </svg>
+      </div>
       <div class="blog-card__body">
         <span class="blog-card__cat">Prevencion</span>
         <h4>PrEP: que es y quien puede acceder</h4>
         <p>La profilaxis pre-exposicion al VIH tiene una eficacia cercana al 99% cuando se toma correctamente.</p>
-        <div class="blog-card__meta">Javier Ruiz · 5 May 2026</div>
+        <div class="blog-card__meta">Javier Ruiz &middot; 5 May 2026</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACTO / NEWSLETTER -->
+<!-- CONTACTO -->
 <section class="contact-cta">
   <div class="contact-cta__content">
-    <h2>¿Tienes alguna pregunta?</h2>
-    <p>Escribenos de forma anonima. Estamos aqui para ayudarte sin juicios.</p>
+    <h2>Tienes alguna pregunta?</h2>
+    <p>Escribenos de forma anonima. Estamos aqui para ayudarte sin juicios ni tabues.</p>
     <div class="contact-cta__form">
       <input type="email" placeholder="Tu email (opcional)" />
       <a routerLink="/chat" class="btn-primary" (click)="onCtaClick($event)">
-        Hablar con un enfermero/a
+        Hablar con un profesional
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
       </a>
     </div>
     <div class="contact-cta__links">
-      <span>✉️ hola&#64;be-nurse.es</span>
-      <span>📍 Espana</span>
+      <span>hola&#64;be-nurse.es</span>
+      <span>Espana</span>
     </div>
   </div>
 </section>
