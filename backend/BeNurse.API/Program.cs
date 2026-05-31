@@ -15,11 +15,15 @@ builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<IChatService, ChatService>();
 builder.Services.AddScoped<IContactService, ContactService>();
 
+var allowedOrigins = builder.Configuration["Frontend__Url"]
+    ?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    ?? new[] { "http://localhost:4200" };
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
