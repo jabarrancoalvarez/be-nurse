@@ -50,9 +50,9 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   slides: HeroSlide[] = [
     {
       pill: 'Respaldado por profesionales de enfermería',
-      title: 'Tu salud sexual,',
-      titleEm: 'con cuidado profesional',
-      sub: 'Conectamos pacientes con enfermeros/as especializados/as en salud sexual. Sin juicios, con toda la información.',
+      title: 'BE NURSE,',
+      titleEm: '"De jóvenes a jóvenes"',
+      sub: 'Transformamos la información en decisiones conscientes mediante educación sexual, prevención de ITS y promoción de la salud desde la Enfermería.',
       ctaLabel: 'Chat anónimo',
       ctaLink: '/chat',
       ctaOutlineLabel: 'Explorar contenidos',

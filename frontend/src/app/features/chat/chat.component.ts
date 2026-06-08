@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     sessionStorage.setItem('be-nurse-session', this.sessionId);
 
     this.messages.set([{
-      content: 'Hola, soy del equipo de be-nurse. Puedes preguntarme lo que necesites de forma completamente anonima. Sin juicios.',
+      content: 'Hola, soy del equipo de BE-nurse. Puedes preguntarme lo que necesites de forma completamente anonima. Sin juicios.',
       isFromUser: false,
       time: new Date()
     }]);

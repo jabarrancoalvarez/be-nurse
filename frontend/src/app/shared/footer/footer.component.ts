@@ -9,8 +9,8 @@ import { RouterLink } from '@angular/router';
       <div class="footer__container">
         <div class="footer__col">
           <div class="footer__logo">
-            <img src="logo.png" alt="be-nurse" style="width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1);" />
-            be-nurse
+            <img src="logo.png" alt="BE-nurse" style="width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1);" />
+            BE-nurse
           </div>
           <p class="footer__desc">Plataforma de salud sexual respaldada por profesionales de enfermeria. Sin juicios, con toda la informacion.</p>
         </div>
@@ -37,7 +37,7 @@ import { RouterLink } from '@angular/router';
         Este servicio NO es una emergencia. Para emergencias medicas contacta con el 112
       </div>
       <div class="footer__copy">
-        &copy; 2026 be-nurse. Todos los derechos reservados.
+        &copy; 2026 BE-nurse. Todos los derechos reservados.
       </div>
     </footer>
   `,
