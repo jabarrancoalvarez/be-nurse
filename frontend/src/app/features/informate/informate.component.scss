@@ -4,7 +4,7 @@
   border-bottom: 1px solid var(--color-border);
 
   &__content {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
   }
 
@@ -27,9 +27,9 @@
 }
 
 .informate-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 3rem 1rem;
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 3rem;
