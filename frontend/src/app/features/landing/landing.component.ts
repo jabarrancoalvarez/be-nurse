@@ -43,7 +43,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private swiperInstance: any = null;
 
-  statValues = [240, 98, 4800];
+  statValues = [22000, 18000, 8000];
 
   currentSlide = signal(0);
 
@@ -216,6 +216,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
         const counter = new CountUp(ref.nativeElement, this.statValues[i], {
           duration: 2.5,
           separator: '.',
+          prefix: '+',
           useEasing: true,
         });
         setTimeout(() => counter.start(), 600 + i * 150);
