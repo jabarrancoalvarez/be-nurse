@@ -18,8 +18,8 @@ import { RouterLink } from '@angular/router';
           <h4>Navegacion</h4>
           <ul>
             <li><a routerLink="/">Inicio</a></li>
-            <li><a routerLink="/informate">Informate</a></li>
-            <li><a routerLink="/cuidate">Cuidate</a></li>
+            <li><a routerLink="/informate">Infórmate</a></li>
+            <li><a routerLink="/cuidate">Cuídate</a></li>
             <li><a routerLink="/realidades">Realidades</a></li>
             <li><a routerLink="/chat">Chat anonimo</a></li>
           </ul>
