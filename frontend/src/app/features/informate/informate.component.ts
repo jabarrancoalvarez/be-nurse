@@ -90,6 +90,10 @@ export class InformateComponent implements AfterViewInit, OnDestroy {
     this.flippedCard.update(current => current === name ? null : name);
   }
 
+  scrollTo(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
   ngAfterViewInit() {
     if (!isPlatformBrowser(this.platformId)) return;
 

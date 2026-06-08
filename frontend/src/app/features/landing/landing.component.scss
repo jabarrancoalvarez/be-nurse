@@ -35,9 +35,19 @@
     width: 80px;
     height: 80px;
     object-fit: contain;
-    margin: 0 auto 2rem;
+    margin: 0 auto 0.75rem;
     display: block;
     filter: drop-shadow(0 4px 24px rgba(0, 184, 107, 0.25));
+  }
+
+  &__brand {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    text-align: center;
+    margin-bottom: 1.5rem;
   }
 
   .pill {

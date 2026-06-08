@@ -10,10 +10,10 @@
   <nav class="toc">
     <h4>Contenidos</h4>
     <ul>
-      <li [class.active]="activeSection() === 'nace-benurse'"><a href="#nace-benurse">¿Cómo nace BE NURSE?</a></li>
-      <li [class.active]="activeSection() === 'que-son-its'"><a href="#que-son-its">¿Qué son las ITS?</a></li>
-      <li [class.active]="activeSection() === 'realidad'"><a href="#realidad">Una realidad</a></li>
-      <li [class.active]="activeSection() === 'its'"><a href="#its">Las ITS</a></li>
+      <li [class.active]="activeSection() === 'nace-benurse'"><a (click)="scrollTo('nace-benurse')">¿Cómo nace BE NURSE?</a></li>
+      <li [class.active]="activeSection() === 'que-son-its'"><a (click)="scrollTo('que-son-its')">¿Qué son las ITS?</a></li>
+      <li [class.active]="activeSection() === 'realidad'"><a (click)="scrollTo('realidad')">Una realidad</a></li>
+      <li [class.active]="activeSection() === 'its'"><a (click)="scrollTo('its')">Las ITS</a></li>
     </ul>
   </nav>
 
