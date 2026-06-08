@@ -51,7 +51,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       pill: 'Respaldado por profesionales de enfermería',
       title: 'BE nurse,',
-      titleEm: '"De jóvenes a jóvenes"',
+      titleEm: 'De jóvenes a jóvenes',
       sub: 'Transformamos la información en decisiones conscientes mediante educación sexual, prevención de ITS y promoción de la salud desde la Enfermería.',
       ctaLabel: 'Chat anónimo',
       ctaLink: '/chat',
