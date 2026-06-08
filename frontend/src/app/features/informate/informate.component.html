@@ -2,7 +2,7 @@
   <div class="page-hero__content">
     <span class="section-tag">Informacion sexual</span>
     <h1 class="page-hero__title">Informate</h1>
-    <p>Informacion clara, rigurosa y sin tabues sobre las infecciones de transmision sexual.</p>
+    <p>Informacion clara, rigurosa y sin tabues sobre la salud sexual y las infecciones de transmision sexual.</p>
   </div>
 </section>
 
@@ -10,49 +10,91 @@
   <nav class="toc">
     <h4>Contenidos</h4>
     <ul>
-      <li [class.active]="activeSection() === 'definicion'"><a href="#definicion">Definicion de ITS</a></li>
-      <li [class.active]="activeSection() === 'principales'"><a href="#principales">Principales ITS</a></li>
-      <li [class.active]="activeSection() === 'its-comunes'"><a href="#its-comunes">ITS mas comunes</a></li>
-      <li [class.active]="activeSection() === 'deteccion'"><a href="#deteccion">Deteccion y pruebas</a></li>
-      <li [class.active]="activeSection() === 'faq'"><a href="#faq">Preguntas frecuentes</a></li>
+      <li [class.active]="activeSection() === 'nace-benurse'"><a href="#nace-benurse">¿Cómo nace BE NURSE?</a></li>
+      <li [class.active]="activeSection() === 'que-son-its'"><a href="#que-son-its">¿Qué son las ITS?</a></li>
+      <li [class.active]="activeSection() === 'realidad'"><a href="#realidad">Una realidad</a></li>
+      <li [class.active]="activeSection() === 'its'"><a href="#its">Las ITS</a></li>
     </ul>
   </nav>
 
   <div class="informate-content">
-    <section id="definicion" class="content-section">
-      <h2>Definicion de ITS</h2>
-      <p>Las Infecciones de Transmision Sexual (ITS) se caracterizan por contagiarse a través del contacto sexual. En la mayoria de los casos las manifestaciones clinicas comprometen la zona genital y las mucosas, dando lugar a complicaciones medicas. Ademas, muchas de estas infecciones pueden no ser sintomaticas, por lo que se dificulta su tratamiento y diagnostico.</p>
+
+    <section id="nace-benurse" class="content-section">
+      <h2>¿Cómo nace BE NURSE?</h2>
+      <p>BE NURSE nace de la experiencia de enfermeras que, en su práctica diaria, observan una realidad cada vez más frecuente: el aumento de las Infecciones de Transmisión Sexual (ITS), los embarazos no planificados y las dudas que muchos jóvenes presentan sobre su salud sexual.</p>
+      <p>El contacto directo con adolescentes y jóvenes nos permitió identificar la necesidad de crear un espacio cercano, accesible y basado en evidencia científica donde hablar de salud sexual sin tabúes, resolver dudas y promover decisiones informadas.</p>
+      <p>BE NURSE surge con el propósito de acercar la educación sexual, la prevención de ITS y la promoción de la salud a los jóvenes mediante un lenguaje claro, recursos accesibles y el compromiso de la Enfermería con la comunidad.</p>
+      <p class="quote">Porque la información no solo educa. También protege.</p>
     </section>
 
-    <section id="principales" class="content-section">
-      <h2>Principales ITS</h2>
-      <p>La Organizacion Mundial de la Salud estima que cada año se producen mas de 370 millones de nuevas ITS en todo el mundo, entre ellas la sifilis, la gonorrea, la clamidia y la tricomoniasis. A pesar de que muchas tienen tratamiento, siguen representando un importante problema de salud publica. Las ITS pueden afectar de forma significativa a la calidad de vida, facilitar la transmision del VIH y en algunos casos provocar complicaciones graves como infertilidad o cancer.</p>
+    <section id="que-son-its" class="content-section">
+      <h2>¿Qué son las ITS?</h2>
+      <p>Las Infecciones de Transmisión Sexual (ITS) son infecciones que se transmiten principalmente a través del contacto sexual. Algunas pueden afectar a la zona genital y las mucosas, provocando complicaciones para la salud. Además, muchas pueden no presentar síntomas, dificultando su diagnóstico y tratamiento.</p>
     </section>
 
-    <section id="its-comunes" class="content-section">
-      <h2>ITS más comunes</h2>
-      <p class="section-lead">Pasa el cursor sobre cada tarjeta para conocer los detalles de cada infección.</p>
+    <section id="realidad" class="content-section">
+      <h2>Una realidad que no podemos ignorar</h2>
+      <p>Las Infecciones de Transmisión Sexual (ITS) continúan aumentando entre la población joven. Según los datos de la Red Nacional de Vigilancia Epidemiológica –RENAVE–, infecciones como la clamidia, la gonorrea y la sífilis han experimentado un incremento significativo en los últimos años, especialmente entre jóvenes y adultos jóvenes.</p>
+
+      <div class="stats-grid">
+        <div class="stats-block">
+          <h3>España (2022)</h3>
+          <ul>
+            <li>Más de 22.000 casos de clamidia</li>
+            <li>Cerca de 18.000 casos de gonorrea</li>
+            <li>Más de 8.000 casos de sífilis</li>
+          </ul>
+        </div>
+        <div class="stats-block">
+          <h3>Canarias (2023)</h3>
+          <ul>
+            <li>1.342 casos de clamidia</li>
+            <li>1.011 casos de gonorrea</li>
+            <li>1.185 casos de sífilis</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Los grupos más afectados son los jóvenes. En Canarias, la mayor incidencia se registró en hombres de 25 a 34 años y en mujeres de 15 a 24 años.</p>
+      <p>Estos datos reflejan la necesidad de reforzar la educación sexual, la prevención y el acceso a información basada en evidencia científica, especialmente entre la población joven.</p>
+    </section>
+
+    <section id="its" class="content-section">
+      <h2>Las ITS</h2>
+      <p class="section-lead">Toca cada tarjeta para conocer los detalles de cada infección.</p>
       <div class="its-grid">
         @for (its of itsCards; track its.name) {
           <div class="its-card" [class.flipped]="flippedCard() === its.name" (click)="toggleCard(its.name)">
             <div class="its-card__inner">
+
               <div class="its-card__front">
-                <span class="its-card__emoji">{{ its.emoji }}</span>
+                <div class="its-card__img-wrap">
+                  <img [src]="its.image" [alt]="its.name" class="its-card__img" />
+                </div>
                 <h4>{{ its.name }}</h4>
                 <span class="its-card__hint">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                   Toca para saber más
                 </span>
               </div>
+
               <div class="its-card__back">
                 <div class="its-card__back-header">
-                  <span class="its-card__emoji-sm">{{ its.emoji }}</span>
                   <h4>{{ its.name }}</h4>
                 </div>
-                <p>{{ its.desc }}</p>
-                <div class="its-card__transmission">
-                  <span class="its-card__transmission-label">Transmisión</span>
-                  <span>{{ its.transmission }}</span>
+                <div class="its-card__sections">
+                  <div class="its-section">
+                    <span class="its-section__label">¿Qué es?</span>
+                    <p>{{ its.queEs }}</p>
+                  </div>
+                  <div class="its-section">
+                    <span class="its-section__label">Síntomas</span>
+                    <p>{{ its.sintomas }}</p>
+                  </div>
+                  <div class="its-section">
+                    <span class="its-section__label">Tratamiento</span>
+                    <p>{{ its.tratamiento }}</p>
+                  </div>
                 </div>
                 <div class="its-card__tags">
                   @for (tag of its.tags; track tag) {
@@ -60,55 +102,12 @@
                   }
                 </div>
               </div>
+
             </div>
           </div>
         }
       </div>
     </section>
 
-    <section id="deteccion" class="content-section">
-      <h2>Deteccion y pruebas</h2>
-      <h3>¿Cuando tiene sentido hacerse pruebas?</h3>
-      <ul class="check-list">
-        <li>Si has tenido sexo sin preservativo</li>
-        <li>Si has cambiado de pareja sexual</li>
-        <li>Si tienes sintomas genitales o generales</li>
-        <li>Si tu pareja tuvo un diagnostico positivo</li>
-        <li>Si quieres quedarte tranquilo/a — todos son motivos validos</li>
-      </ul>
-      <h3>¿Que tipo de pruebas existen?</h3>
-      <ul class="check-list">
-        <li><strong>Analisis de sangre:</strong> VIH, sifilis, hepatitis B y C</li>
-        <li><strong>Muestras locales:</strong> orina, exudado vaginal/uretral, anal o de garganta para clamidia y gonorrea</li>
-        <li><strong>Revisiones visuales:</strong> verrugas, herpes u otras lesiones</li>
-      </ul>
-      <h3>Ventana diagnostica</h3>
-      <p>Algunas pruebas no detectan la infeccion inmediatamente tras la exposicion. Hay un periodo de ventana necesario: por ejemplo, el VIH puede tardar hasta 45 dias en ser detectable con pruebas de cuarta generacion.</p>
-      <h3>¿Donde hacerse pruebas?</h3>
-      <ul class="check-list">
-        <li>Centro de salud (medico de familia)</li>
-        <li>Centros de salud sexual e ITS (gratuitos, sin cita previa en muchos casos)</li>
-        <li>Servicios comunitarios y ONG especializadas</li>
-      </ul>
-      <h3>Si sale positiva...</h3>
-      <p>No estas solo/a. La mayoria de las ITS tienen tratamiento eficaz. Sigue las indicaciones medicas, comunica el resultado a tus parejas recientes para que puedan hacerse pruebas, y recuerda: sin culpas, solo responsabilidad.</p>
-    </section>
-
-    <section id="faq" class="content-section">
-      <h2>Preguntas frecuentes</h2>
-      <div class="faq">
-        @for (faq of faqs(); track faq.question; let i = $index) {
-          <div class="faq__item" [class.open]="faq.open">
-            <button class="faq__question" (click)="toggleFaq(i)">
-              {{ faq.question }}
-              <span class="faq__icon" [class.rotated]="faq.open">▾</span>
-            </button>
-            <div class="faq__content" #faqContent>
-              <div class="faq__answer">{{ faq.answer }}</div>
-            </div>
-          </div>
-        }
-      </div>
-    </section>
   </div>
 </div>

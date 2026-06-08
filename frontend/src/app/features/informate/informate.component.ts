@@ -1,16 +1,17 @@
 import {
-  Component, OnInit, OnDestroy, AfterViewInit,
-  signal, ElementRef, ViewChildren, QueryList,
-  ChangeDetectionStrategy, PLATFORM_ID, inject
+  Component, OnDestroy, AfterViewInit,
+  signal, ChangeDetectionStrategy, PLATFORM_ID, inject
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { gsap, ScrollTrigger } from '../../core/animations/gsap.config';
-import { staggerFadeIn } from '../../core/animations/animations';
 
-interface FaqItem {
-  question: string;
-  answer: string;
-  open: boolean;
+interface ItsCard {
+  name: string;
+  image: string;
+  queEs: string;
+  sintomas: string;
+  tratamiento: string;
+  tags: string[];
 }
 
 @Component({
@@ -19,114 +20,88 @@ interface FaqItem {
   styleUrl: './informate.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InformateComponent implements OnInit, AfterViewInit, OnDestroy {
+export class InformateComponent implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
 
-  @ViewChildren('faqContent') faqContents!: QueryList<ElementRef>;
-
-  faqs = signal<FaqItem[]>([
+  itsCards: ItsCard[] = [
     {
-      question: '¿Puedo tener una ITS sin sintomas?',
-      answer: 'Si. Muchas ITS como la clamidia, el VPH o incluso el VIH pueden no dar sintomas durante meses o años. Por eso las pruebas periodicas son fundamentales.',
-      open: false
+      name: 'VIH',
+      image: 'assets/its/vih.png',
+      queEs: 'El VIH es un virus que ataca el sistema inmunitario y debilita las defensas del organismo.',
+      sintomas: 'Muchas personas no presentan síntomas al inicio. Los más frecuentes son fiebre, cansancio, ganglios inflamados, dolor de garganta, erupciones cutáneas y pérdida de peso.',
+      tratamiento: 'Actualmente no existe cura, pero los tratamientos antirretrovirales permiten controlar el virus y llevar una vida larga y saludable.',
+      tags: ['Virus', 'Crónico', 'Tratable']
     },
     {
-      question: '¿El preservativo protege al 100%?',
-      answer: 'El preservativo usado correctamente tiene una eficacia muy alta (98%) pero no es 100% infalible. Protege frente a la mayoria de ITS, aunque algunas como el herpes o el VPH pueden transmitirse por contacto con areas no cubiertas.',
-      open: false
+      name: 'Trichomonas vaginalis',
+      image: 'assets/its/trichomonasvaginalis.png',
+      queEs: 'Infección causada por un protozoo (parásito microscópico) llamado Trichomonas vaginalis.',
+      sintomas: 'Muchas personas no presentan síntomas. Cuando aparecen: flujo vaginal con mal olor, picor, irritación genital y molestias al orinar. En los hombres suele ser asintomática.',
+      tratamiento: 'Tiene cura y se trata con antibióticos prescritos por un profesional sanitario.',
+      tags: ['Protozoo', 'Curable', 'Frecuentemente asintomática']
     },
     {
-      question: '¿El sexo oral tiene riesgo?',
-      answer: 'Si. El sexo oral puede transmitir gonorrea, sifilis, herpes, VPH y en menor medida VIH. El riesgo se reduce con el uso de preservativo o dental dam.',
-      open: false
+      name: 'Herpes Simple (VHS)',
+      image: 'assets/its/vhs.png',
+      queEs: 'Infección causada por el Virus del Herpes Simple. El VHS-1 se asocia al herpes labial y el VHS-2 principalmente al herpes genital.',
+      sintomas: 'Puede cursar sin síntomas. Cuando aparecen: vesículas o úlceras dolorosas, picor y escozor. En la primera infección puede haber fiebre, malestar e inflamación de ganglios.',
+      tratamiento: 'No tiene cura definitiva, pero los antivirales controlan los síntomas, reducen los brotes y disminuyen el riesgo de transmisión.',
+      tags: ['Virus', 'Crónico', 'Tratable']
     },
     {
-      question: '¿Me da verguenza pedir una prueba, es normal?',
-      answer: 'Completamente normal. Pero recuerda que los profesionales sanitarios estan acostumbrados y no juzgan. Hacerse pruebas es un acto de responsabilidad con tu salud.',
-      open: false
+      name: 'Papiloma Humano (VPH)',
+      image: 'assets/its/vph.png',
+      queEs: 'Infección causada por el Virus del Papiloma Humano. Existen más de 200 tipos; algunos afectan la zona genital.',
+      sintomas: 'La mayoría no presentan síntomas y eliminan el virus de forma natural. En algunos casos provoca verrugas genitales o aumenta el riesgo de ciertos tipos de cáncer.',
+      tratamiento: 'No existe tratamiento que elimine el virus, pero sí para las lesiones que produce. La vacunación es la principal medida de prevención.',
+      tags: ['Virus', 'Muy frecuente', 'Vacuna']
     },
     {
-      question: '¿Si una prueba sale positiva, que hago?',
-      answer: 'Primero, no entrar en panico. La mayoria de las ITS tienen tratamiento. Contacta con tu medico o centro de salud sexual, sigue el tratamiento y comunica el resultado a tus parejas recientes para que puedan hacerse pruebas.',
-      open: false
-    }
-  ]);
-
-  itsCards = [
-    {
-      name: 'VIH', emoji: '🔴',
-      desc: 'Virus que ataca el sistema inmunitario. Sin tratamiento puede evolucionar a SIDA. Con terapia antirretroviral moderna, las personas con VIH tienen una esperanza de vida normal.',
-      tags: ['Crónico', 'Tratable', 'PrEP disponible'],
-      transmission: 'Sangre, fluidos sexuales, leche materna'
+      name: 'Gonorrea',
+      image: 'assets/its/gonorrea.png',
+      queEs: 'Infección causada por la bacteria Neisseria gonorrhoeae. Puede afectar a los genitales, el recto o la garganta.',
+      sintomas: 'Muchas personas no presentan síntomas. Cuando aparecen: escozor al orinar, aumento de secreciones genitales y molestias en la zona afectada. Puede provocar faringitis o proctitis.',
+      tratamiento: 'Tiene cura y se trata con antibióticos. El diagnóstico precoz ayuda a prevenir complicaciones y reducir la transmisión.',
+      tags: ['Bacteria', 'Curable', 'Frecuentemente asintomática']
     },
     {
-      name: 'VPH', emoji: '🟡',
-      desc: 'La infección de transmisión sexual más común. La mayoría de personas la contraen en algún momento. Puede causar verrugas genitales y en algunos casos cáncer de cuello uterino, anal u orofaríngeo.',
-      tags: ['Muy común', 'Vacuna disponible', 'Autolimitado'],
-      transmission: 'Contacto piel con piel, relaciones sexuales'
+      name: 'Clamidia',
+      image: 'assets/its/clamidia.png',
+      queEs: 'Infección causada por la bacteria Chlamydia trachomatis. Es una de las ITS bacterianas más frecuentes, especialmente entre jóvenes.',
+      sintomas: 'Muchas personas no presentan síntomas. Cuando aparecen: escozor al orinar, aumento de secreciones, sangrado entre menstruaciones o dolor durante las relaciones.',
+      tratamiento: 'Tiene cura y se trata con antibióticos. El diagnóstico y tratamiento precoz previenen complicaciones como la infertilidad.',
+      tags: ['Bacteria', 'Curable', 'Frecuentemente asintomática']
     },
     {
-      name: 'Clamidia', emoji: '🟠',
-      desc: 'La ITS bacteriana más frecuente. En la mayoría de los casos no da síntomas, por eso se la llama la infección silenciosa. Sin tratamiento puede causar enfermedad inflamatoria pélvica e infertilidad.',
-      tags: ['Sin síntomas', 'Curable', 'Antibióticos'],
-      transmission: 'Relaciones sexuales sin protección'
-    },
-    {
-      name: 'Gonorrea', emoji: '🟣',
-      desc: 'Bacteria que afecta genitales, recto y garganta. Está desarrollando resistencias a los antibióticos, lo que la hace cada vez más difícil de tratar. Requiere atención médica rápida.',
-      tags: ['Resistencia creciente', 'Curable', 'Urgente tratar'],
-      transmission: 'Relaciones sexuales sin protección'
-    },
-    {
-      name: 'Sífilis', emoji: '🔵',
-      desc: 'Infección bacteriana que progresa en fases: primaria, secundaria, latente y terciaria. En sus primeras fases es completamente curable con penicilina. Si no se trata puede causar daños graves.',
-      tags: ['Fases progresivas', 'Curable', 'Penicilina'],
-      transmission: 'Contacto directo con úlceras, relaciones sexuales'
-    },
-    {
-      name: 'Herpes genital', emoji: '⚪',
-      desc: 'Infección viral crónica causada por el VHS-2 (principalmente). No tiene cura pero el tratamiento antiviral reduce la frecuencia de brotes y el riesgo de transmisión de forma significativa.',
-      tags: ['Crónico', 'Tratable', 'Muy frecuente'],
-      transmission: 'Contacto piel con piel, también sin síntomas'
-    },
-    {
-      name: 'Hepatitis B', emoji: '🟤',
-      desc: 'Infección viral del hígado que puede cronificarse y derivar en cirrosis o cáncer hepático. Existe vacuna muy eficaz incluida en el calendario infantil. Los adultos en riesgo también pueden vacunarse.',
-      tags: ['Vacuna disponible', 'Puede cronificarse', 'Grave sin tratar'],
-      transmission: 'Sangre, fluidos sexuales, vertical (madre-hijo)'
-    },
-    {
-      name: 'Hepatitis C', emoji: '🟢',
-      desc: 'Se transmite principalmente por vía sanguínea. Muchas personas no saben que la tienen. Los tratamientos actuales con antivirales de acción directa logran tasas de curación superiores al 95%.',
-      tags: ['Curable', 'Alta eficacia tto.', 'Vía sanguínea'],
-      transmission: 'Principalmente por sangre contaminada'
+      name: 'Sífilis',
+      image: 'assets/its/sifilis.png',
+      queEs: 'Infección causada por la bacteria Treponema pallidum. Progresa en fases si no se trata.',
+      sintomas: 'Varía según la fase. Puede comenzar con una úlcera indolora y luego provocar erupciones cutáneas, fiebre y malestar. Algunas personas no presentan síntomas durante largos periodos.',
+      tratamiento: 'Tiene cura y se trata con antibióticos. El diagnóstico precoz es fundamental para evitar complicaciones graves.',
+      tags: ['Bacteria', 'Curable', 'Puede pasar desapercibida']
     }
   ];
 
   flippedCard = signal<string | null>(null);
-  activeSection = signal('definicion');
+  activeSection = signal('nace-benurse');
   private observer: IntersectionObserver | null = null;
 
   toggleCard(name: string) {
     this.flippedCard.update(current => current === name ? null : name);
   }
 
-  ngOnInit() {}
-
   ngAfterViewInit() {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    // ITS cards stagger
     const cards = document.querySelectorAll('.its-card');
     gsap.from(cards, {
       opacity: 0, y: 30,
       duration: 0.6, stagger: 0.08, ease: 'power3.out',
       immediateRender: false,
       clearProps: 'all',
-      scrollTrigger: { trigger: '#its-comunes', start: 'top 80%', once: true }
+      scrollTrigger: { trigger: '#its', start: 'top 80%', once: true }
     });
 
-    // Section observer
     this.initSectionObserver();
     setTimeout(() => ScrollTrigger.refresh(), 200);
   }
@@ -136,42 +111,12 @@ export class InformateComponent implements OnInit, AfterViewInit, OnDestroy {
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            this.activeSection.set(entry.target.id);
-          }
+          if (entry.isIntersecting) this.activeSection.set(entry.target.id);
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.25 }
     );
     sections.forEach(s => this.observer!.observe(s));
-  }
-
-  toggleFaq(index: number) {
-    const currentFaqs = this.faqs();
-    const isOpen = currentFaqs[index].open;
-
-    // Close all first
-    this.faqs.update(items => items.map(item => ({ ...item, open: false })));
-
-    // Get all content elements and close them
-    this.faqContents.forEach(ref => {
-      gsap.to(ref.nativeElement, { height: 0, duration: 0.35, ease: 'power2.in' });
-    });
-
-    if (!isOpen) {
-      // Open the clicked one
-      this.faqs.update(items =>
-        items.map((item, i) => ({ ...item, open: i === index }))
-      );
-
-      const contentEl = this.faqContents.toArray()[index]?.nativeElement;
-      if (contentEl) {
-        gsap.fromTo(contentEl,
-          { height: 0 },
-          { height: contentEl.scrollHeight, duration: 0.4, ease: 'power2.out' }
-        );
-      }
-    }
   }
 
   ngOnDestroy() {
