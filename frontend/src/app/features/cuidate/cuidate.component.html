@@ -8,211 +8,225 @@
 
 <div class="cuidate-container">
 
-  <!-- MÉTODOS DE BARRERA -->
-  <section class="content-section">
-    <div class="section-header">
-      <span class="section-tag">Protección básica</span>
-      <h2 class="section-title">Métodos de barrera</h2>
-      <p class="section-subtitle">La primera línea de defensa contra las ITS y el embarazo no deseado.</p>
-    </div>
-    <div class="cards-grid cards-grid--3">
-      <div class="info-card">
-        <div class="info-card__icon">🛡️</div>
-        <div class="info-card__content">
-          <h3>Preservativo masculino</h3>
-          <p>Con uso correcto, eficacia del 98% frente a ITS y embarazo. Úsalo desde el inicio, no solo al final.</p>
-          <ul class="check-list">
-            <li>Comprobar la fecha de caducidad</li>
-            <li>Abrir con cuidado, sin uñas ni dientes</li>
-            <li>Dejar espacio en la punta</li>
-            <li>Lubricante base acuosa o silicona</li>
-          </ul>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-card__icon">🌿</div>
-        <div class="info-card__content">
-          <h3>Preservativo femenino</h3>
-          <p>También llamado femidom, puede colocarse hasta 8 horas antes. Da autonomía a quien lo usa.</p>
-          <ul class="check-list">
-            <li>Eficacia similar al masculino con uso correcto</li>
-            <li>Compatible con lubricantes de todo tipo</li>
-            <li>Disponible en farmacias y centros de salud sexual</li>
-          </ul>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-card__icon">🦷</div>
-        <div class="info-card__content">
-          <h3>Dental dam</h3>
-          <p>Lámina de látex para el sexo oral. Protege frente a gonorrea, herpes y VPH en prácticas orales.</p>
-          <ul class="check-list">
-            <li>Se puede fabricar cortando un preservativo masculino</li>
-            <li>Colocar entre la boca y la zona genital o anal</li>
-            <li>No reutilizar</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  <nav class="toc">
+    <h4>Contenidos</h4>
+    <ul>
+      <li [class.active]="activeSection() === 'barrera'"><a (click)="scrollTo('barrera')">Métodos de barrera</a></li>
+      <li [class.active]="activeSection() === 'prep-pep'"><a (click)="scrollTo('prep-pep')">PrEP y PEP</a></li>
+      <li [class.active]="activeSection() === 'antirretroviral'"><a (click)="scrollTo('antirretroviral')">Tratamiento antirretroviral</a></li>
+      <li [class.active]="activeSection() === 'vacunacion'"><a (click)="scrollTo('vacunacion')">Vacunación</a></li>
+      <li [class.active]="activeSection() === 'chequeos'"><a (click)="scrollTo('chequeos')">Chequeos periódicos</a></li>
+    </ul>
+  </nav>
 
-  <!-- PREP Y PEP -->
-  <section class="content-section content-section--accent">
-    <div class="section-header">
-      <span class="section-tag">Profilaxis</span>
-      <h2 class="section-title">PrEP y PEP</h2>
-      <p class="section-subtitle">Medicación que reduce drásticamente el riesgo de infección por VIH.</p>
-    </div>
-    <div class="cards-grid cards-grid--2">
-      <div class="info-card info-card--featured">
-        <div class="info-card__badge">Pre-exposición</div>
-        <div class="info-card__icon">💊</div>
-        <div class="info-card__content">
-          <h3>PrEP</h3>
-          <p>Medicamento para personas VIH negativas que previene la infección por VIH antes de una posible exposición.</p>
-          <ul class="check-list">
-            <li>Eficacia cercana al 99% con toma correcta</li>
-            <li>No protege frente a otras ITS</li>
-            <li>Financiado por el SNS para personas con alto riesgo</li>
-            <li>Se solicita en centros de salud sexual o unidades de VIH</li>
-          </ul>
-        </div>
-      </div>
-      <div class="info-card info-card--featured info-card--urgent">
-        <div class="info-card__badge info-card__badge--urgent">Emergencia · 72h</div>
-        <div class="info-card__icon">🚨</div>
-        <div class="info-card__content">
-          <h3>PEP</h3>
-          <p>Tratamiento de emergencia tras una posible exposición al VIH. El tiempo es crítico.</p>
-          <ul class="check-list">
-            <li>Debe iniciarse en las primeras 72 horas (antes, mejor)</li>
-            <li>Se solicita en urgencias hospitalarias</li>
-            <li>Dura 28 días y requiere seguimiento médico</li>
-            <li>Gratuito en el sistema público</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="cuidate-content">
 
-  <!-- TRATAMIENTO ANTIRRETROVIRAL -->
-  <section class="content-section">
-    <div class="section-header">
-      <span class="section-tag">Tratamiento</span>
-      <h2 class="section-title">Tratamiento antirretroviral</h2>
-      <p class="section-subtitle">Las personas con VIH que reciben tratamiento antirretroviral pueden mantener una buena calidad de vida.</p>
-    </div>
-    <div class="cards-grid cards-grid--2">
-      <div class="info-card info-card--featured">
-        <div class="info-card__icon">💊</div>
-        <div class="info-card__content">
-          <h3>Tratamiento antirretroviral (TAR)</h3>
-          <p>El tratamiento antirretroviral controla la replicación del VIH, mantiene el sistema inmunitario y permite llevar una vida larga y saludable. Su toma debe ser constante y bajo seguimiento médico.</p>
+    <!-- MÉTODOS DE BARRERA -->
+    <section id="barrera" class="content-section">
+      <div class="section-header">
+        <span class="section-tag">Protección básica</span>
+        <h2 class="section-title">Métodos de barrera</h2>
+        <p class="section-subtitle">La primera línea de defensa contra las ITS y el embarazo no deseado.</p>
+      </div>
+      <div class="cards-grid cards-grid--3">
+        <div class="info-card">
+          <div class="info-card__icon">🛡️</div>
+          <div class="info-card__content">
+            <h3>Preservativo masculino</h3>
+            <p>Con uso correcto, eficacia del 98% frente a ITS y embarazo. Úsalo desde el inicio, no solo al final.</p>
+            <ul class="check-list">
+              <li>Comprobar la fecha de caducidad</li>
+              <li>Abrir con cuidado, sin uñas ni dientes</li>
+              <li>Dejar espacio en la punta</li>
+              <li>Lubricante base acuosa o silicona</li>
+            </ul>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card__icon">🌿</div>
+          <div class="info-card__content">
+            <h3>Preservativo femenino</h3>
+            <p>También llamado femidom, puede colocarse hasta 8 horas antes. Da autonomía a quien lo usa.</p>
+            <ul class="check-list">
+              <li>Eficacia similar al masculino con uso correcto</li>
+              <li>Compatible con lubricantes de todo tipo</li>
+              <li>Disponible en farmacias y centros de salud sexual</li>
+            </ul>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card__icon">🦷</div>
+          <div class="info-card__content">
+            <h3>Dental dam</h3>
+            <p>Lámina de látex para el sexo oral. Protege frente a gonorrea, herpes y VPH en prácticas orales.</p>
+            <ul class="check-list">
+              <li>Se puede fabricar cortando un preservativo masculino</li>
+              <li>Colocar entre la boca y la zona genital o anal</li>
+              <li>No reutilizar</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="info-card info-card--featured">
-        <div class="info-card__icon">🔬</div>
-        <div class="info-card__content">
-          <h3>I=I: Indetectable = Intransmisible</h3>
-          <p>Cuando la carga viral es indetectable de forma mantenida gracias al tratamiento, la persona con VIH no transmite el virus por vía sexual. Este principio, avalado por la evidencia científica, es clave para reducir el estigma y la transmisión.</p>
-          <ul class="check-list">
-            <li>Carga viral indetectable significa tratamiento eficaz.</li>
-            <li>Sin riesgo de transmisión sexual con carga indetectable sostenida.</li>
-            <li>Fundamental para normalizar la vida con VIH.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- VACUNACIÓN -->
-  <section class="content-section content-section--accent">
-    <div class="section-header">
-      <span class="section-tag">Inmunización</span>
-      <h2 class="section-title">Vacunación</h2>
-      <p class="section-subtitle">Protección a largo plazo frente a algunas de las ITS más frecuentes.</p>
-    </div>
-    <div class="cards-grid cards-grid--3">
-      <div class="info-card">
-        <div class="info-card__icon">💉</div>
-        <div class="info-card__content">
-          <h3>Vacuna del VPH</h3>
-          <p>Protege frente a los tipos de VPH causantes de la mayoría de los cánceres relacionados.</p>
-          <ul class="check-list">
-            <li>Incluida en el calendario vacunal en España</li>
-            <li>Recomendada hasta los 26 años (y hasta los 45 en ciertos casos)</li>
-            <li>3 dosis en adultos no vacunados</li>
-          </ul>
+    <!-- PREP Y PEP -->
+    <section id="prep-pep" class="content-section content-section--accent">
+      <div class="section-header">
+        <span class="section-tag">Profilaxis</span>
+        <h2 class="section-title">PrEP y PEP</h2>
+        <p class="section-subtitle">Medicación que reduce drásticamente el riesgo de infección por VIH.</p>
+      </div>
+      <div class="cards-grid cards-grid--2">
+        <div class="info-card info-card--featured">
+          <div class="info-card__badge">Pre-exposición</div>
+          <div class="info-card__icon">💊</div>
+          <div class="info-card__content">
+            <h3>PrEP</h3>
+            <p>Medicamento para personas VIH negativas que previene la infección por VIH antes de una posible exposición.</p>
+            <ul class="check-list">
+              <li>Eficacia cercana al 99% con toma correcta</li>
+              <li>No protege frente a otras ITS</li>
+              <li>Financiado por el SNS para personas con alto riesgo</li>
+              <li>Se solicita en centros de salud sexual o unidades de VIH</li>
+            </ul>
+          </div>
+        </div>
+        <div class="info-card info-card--featured info-card--urgent">
+          <div class="info-card__badge info-card__badge--urgent">Emergencia · 72h</div>
+          <div class="info-card__icon">🚨</div>
+          <div class="info-card__content">
+            <h3>PEP</h3>
+            <p>Tratamiento de emergencia tras una posible exposición al VIH. El tiempo es crítico.</p>
+            <ul class="check-list">
+              <li>Debe iniciarse en las primeras 72 horas (antes, mejor)</li>
+              <li>Se solicita en urgencias hospitalarias</li>
+              <li>Dura 28 días y requiere seguimiento médico</li>
+              <li>Gratuito en el sistema público</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="info-card">
-        <div class="info-card__icon">🟡</div>
-        <div class="info-card__content">
-          <h3>Hepatitis A</h3>
-          <p>Recomendada para personas con múltiples parejas, HSH y viajeros a zonas de riesgo.</p>
-          <ul class="check-list">
-            <li>2 dosis con 6 meses de diferencia</li>
-            <li>Disponible en centros de salud</li>
-          </ul>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-card__icon">🔵</div>
-        <div class="info-card__content">
-          <h3>Hepatitis B</h3>
-          <p>Protección frente a un virus que se transmite por sangre y fluidos sexuales.</p>
-          <ul class="check-list">
-            <li>3 dosis: 0, 1 y 6 meses</li>
-            <li>Muy recomendada para personas con múltiples parejas</li>
-            <li>Incluida en el calendario infantil, gratuita para adultos en riesgo</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CHEQUEOS -->
-  <section class="content-section">
-    <div class="section-header">
-      <span class="section-tag">Seguimiento</span>
-      <h2 class="section-title">Chequeos periódicos</h2>
-      <p class="section-subtitle">Hacerse pruebas regularmente es parte del autocuidado, no solo una respuesta al riesgo.</p>
-    </div>
-    <div class="table-wrapper">
-      <table class="chequeo-table">
-        <thead>
-          <tr>
-            <th>Perfil</th>
-            <th>Prueba recomendada</th>
-            <th>Frecuencia</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Población general sexualmente activa</td>
-            <td>Clamidia, gonorrea</td>
-            <td><span class="freq-badge">Anual</span></td>
-          </tr>
-          <tr>
-            <td>Hombres que tienen sexo con hombres</td>
-            <td>VIH, sífilis, gonorrea, clamidia, hepatitis</td>
-            <td><span class="freq-badge freq-badge--high">Cada 3-6 meses</span></td>
-          </tr>
-          <tr>
-            <td>Personas con VIH</td>
-            <td>Todas las ITS + carga viral + CD4</td>
-            <td><span class="freq-badge freq-badge--high">Cada 6 meses</span></td>
-          </tr>
-          <tr>
-            <td>Prácticas de riesgo ocasionales</td>
-            <td>VIH, sífilis, gonorrea, clamidia</td>
-            <td><span class="freq-badge freq-badge--event">Tras cada evento</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <!-- TRATAMIENTO ANTIRRETROVIRAL -->
+    <section id="antirretroviral" class="content-section">
+      <div class="section-header">
+        <span class="section-tag">Tratamiento</span>
+        <h2 class="section-title">Tratamiento antirretroviral</h2>
+        <p class="section-subtitle">Las personas con VIH que reciben tratamiento antirretroviral pueden mantener una buena calidad de vida.</p>
+      </div>
+      <div class="cards-grid cards-grid--2">
+        <div class="info-card info-card--featured">
+          <div class="info-card__icon">💊</div>
+          <div class="info-card__content">
+            <h3>Tratamiento antirretroviral (TAR)</h3>
+            <p>El tratamiento antirretroviral controla la replicación del VIH, mantiene el sistema inmunitario y permite llevar una vida larga y saludable. Su toma debe ser constante y bajo seguimiento médico.</p>
+          </div>
+        </div>
+        <div class="info-card info-card--featured">
+          <div class="info-card__icon">🔬</div>
+          <div class="info-card__content">
+            <h3>I=I: Indetectable = Intransmisible</h3>
+            <p>Cuando la carga viral es indetectable de forma mantenida gracias al tratamiento, la persona con VIH no transmite el virus por vía sexual. Este principio, avalado por la evidencia científica, es clave para reducir el estigma y la transmisión.</p>
+            <ul class="check-list">
+              <li>Carga viral indetectable significa tratamiento eficaz.</li>
+              <li>Sin riesgo de transmisión sexual con carga indetectable sostenida.</li>
+              <li>Fundamental para normalizar la vida con VIH.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- VACUNACIÓN -->
+    <section id="vacunacion" class="content-section content-section--accent">
+      <div class="section-header">
+        <span class="section-tag">Inmunización</span>
+        <h2 class="section-title">Vacunación</h2>
+        <p class="section-subtitle">Protección a largo plazo frente a algunas de las ITS más frecuentes.</p>
+      </div>
+      <div class="cards-grid cards-grid--3">
+        <div class="info-card">
+          <div class="info-card__icon">💉</div>
+          <div class="info-card__content">
+            <h3>Vacuna del VPH</h3>
+            <p>Protege frente a los tipos de VPH causantes de la mayoría de los cánceres relacionados.</p>
+            <ul class="check-list">
+              <li>Incluida en el calendario vacunal en España</li>
+              <li>Recomendada hasta los 26 años (y hasta los 45 en ciertos casos)</li>
+              <li>3 dosis en adultos no vacunados</li>
+            </ul>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card__icon">🟡</div>
+          <div class="info-card__content">
+            <h3>Hepatitis A</h3>
+            <p>Recomendada para personas con múltiples parejas, HSH y viajeros a zonas de riesgo.</p>
+            <ul class="check-list">
+              <li>2 dosis con 6 meses de diferencia</li>
+              <li>Disponible en centros de salud</li>
+            </ul>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card__icon">🔵</div>
+          <div class="info-card__content">
+            <h3>Hepatitis B</h3>
+            <p>Protección frente a un virus que se transmite por sangre y fluidos sexuales.</p>
+            <ul class="check-list">
+              <li>3 dosis: 0, 1 y 6 meses</li>
+              <li>Muy recomendada para personas con múltiples parejas</li>
+              <li>Incluida en el calendario infantil, gratuita para adultos en riesgo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHEQUEOS -->
+    <section id="chequeos" class="content-section">
+      <div class="section-header">
+        <span class="section-tag">Seguimiento</span>
+        <h2 class="section-title">Chequeos periódicos</h2>
+        <p class="section-subtitle">Hacerse pruebas regularmente es parte del autocuidado, no solo una respuesta al riesgo.</p>
+      </div>
+      <div class="table-wrapper">
+        <table class="chequeo-table">
+          <thead>
+            <tr>
+              <th>Perfil</th>
+              <th>Prueba recomendada</th>
+              <th>Frecuencia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Población general sexualmente activa</td>
+              <td>Clamidia, gonorrea</td>
+              <td><span class="freq-badge">Anual</span></td>
+            </tr>
+            <tr>
+              <td>Hombres que tienen sexo con hombres</td>
+              <td>VIH, sífilis, gonorrea, clamidia, hepatitis</td>
+              <td><span class="freq-badge freq-badge--high">Cada 3-6 meses</span></td>
+            </tr>
+            <tr>
+              <td>Personas con VIH</td>
+              <td>Todas las ITS + carga viral + CD4</td>
+              <td><span class="freq-badge freq-badge--high">Cada 6 meses</span></td>
+            </tr>
+            <tr>
+              <td>Prácticas de riesgo ocasionales</td>
+              <td>VIH, sífilis, gonorrea, clamidia</td>
+              <td><span class="freq-badge freq-badge--event">Tras cada evento</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
 </div>
 
 <!-- CTA -->

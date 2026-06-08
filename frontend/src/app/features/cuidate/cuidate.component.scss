@@ -31,9 +31,62 @@
 .cuidate-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 3rem 1.5rem;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  align-items: start;
+
+  @media (max-width: 768px) { grid-template-columns: 1fr; }
+}
+
+.toc {
+  position: sticky;
+  top: 80px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+
+  h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.85rem;
+  }
+
+  ul { list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
+
+  li {
+    border-radius: 8px;
+    transition: var(--transition-fast);
+
+    &.active { background: rgba(30, 107, 60, 0.07); }
+    &.active a { color: var(--color-primary); font-weight: 600; }
+  }
+
+  a {
+    display: block;
+    padding: 6px 10px;
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+
+    &:hover { color: var(--color-primary); }
+  }
+
+  @media (max-width: 768px) { position: static; }
+}
+
+.cuidate-content {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 /* CONTENT SECTIONS */
@@ -60,11 +113,10 @@
     background: #f4fdf8;
     border-radius: var(--radius-xl);
     padding: 4rem 3rem;
-    margin: 2rem -1rem;
+    margin: 0;
 
     @media (max-width: 768px) {
       padding: 3rem 1.5rem;
-      margin: 1.5rem 0;
       border-radius: var(--radius-lg);
     }
   }
