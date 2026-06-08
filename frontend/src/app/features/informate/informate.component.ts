@@ -84,7 +84,7 @@ export class InformateComponent implements AfterViewInit, OnDestroy {
 
   flippedCard = signal<string | null>(null);
   activeSection = signal('nace-benurse');
-  private observer: IntersectionObserver | null = null;
+  private scrollHandler: (() => void) | null = null;
 
   toggleCard(name: string) {
     this.flippedCard.update(current => current === name ? null : name);
@@ -114,20 +114,30 @@ export class InformateComponent implements AfterViewInit, OnDestroy {
   }
 
   private initSectionObserver() {
-    const sections = document.querySelectorAll('.content-section');
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) this.activeSection.set(entry.target.id);
-        });
-      },
-      { rootMargin: '-96px 0px -55% 0px', threshold: 0 }
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>('.content-section')
     );
-    sections.forEach(s => this.observer!.observe(s));
+
+    const onScroll = () => {
+      const offset = 112;
+      let current = sections[0]?.id ?? 'nace-benurse';
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= offset) {
+          current = section.id;
+        }
+      }
+      this.activeSection.set(current);
+    };
+
+    this.scrollHandler = onScroll;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 
   ngOnDestroy() {
-    this.observer?.disconnect();
+    if (this.scrollHandler) {
+      window.removeEventListener('scroll', this.scrollHandler);
+    }
     ScrollTrigger.getAll().forEach(t => t.kill());
   }
 }
