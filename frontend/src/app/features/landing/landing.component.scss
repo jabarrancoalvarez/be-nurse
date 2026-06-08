@@ -41,10 +41,11 @@
   }
 
   &__brand {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.04em;
+    text-transform: none;
     color: var(--color-text);
     text-align: center;
     margin-bottom: 1.5rem;
