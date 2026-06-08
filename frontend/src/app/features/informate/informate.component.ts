@@ -91,7 +91,10 @@ export class InformateComponent implements AfterViewInit, OnDestroy {
   }
 
   scrollTo(id: string) {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 96;
+    window.scrollTo({ top, behavior: 'smooth' });
   }
 
   ngAfterViewInit() {
@@ -118,7 +121,7 @@ export class InformateComponent implements AfterViewInit, OnDestroy {
           if (entry.isIntersecting) this.activeSection.set(entry.target.id);
         });
       },
-      { threshold: 0.25 }
+      { rootMargin: '-96px 0px -55% 0px', threshold: 0 }
     );
     sections.forEach(s => this.observer!.observe(s));
   }
