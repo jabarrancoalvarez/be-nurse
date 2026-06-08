@@ -82,12 +82,40 @@ export class InformateComponent implements AfterViewInit, OnDestroy {
     }
   ];
 
+  faqs = [
+    {
+      q: '¿Puedo tener una ITS sin síntomas?',
+      a: 'Sí. Muchas ITS pueden no dar síntomas durante un tiempo (o nunca) y aun así transmitirse. Por eso las pruebas y el uso de métodos de protección son importantes.'
+    },
+    {
+      q: '¿El preservativo protege al 100%?',
+      a: 'Reduce muchísimo el riesgo, pero no siempre lo elimina al 100%, especialmente en ITS que se transmiten por contacto piel con piel (como VPH o herpes) si hay zonas no cubiertas. Aun así, es una de las mejores herramientas de prevención.'
+    },
+    {
+      q: '¿El sexo oral tiene riesgo?',
+      a: 'Sí, puede haber riesgo de transmisión de algunas ITS. Usar preservativo o barreras de látex reduce el riesgo.'
+    },
+    {
+      q: '¿Me da vergüenza pedir una prueba… ¿es normal?',
+      a: 'Es muy común sentir vergüenza, pero pedir una prueba es un acto de autocuidado. Los profesionales sanitarios están para ayudarte sin juzgar.'
+    },
+    {
+      q: 'Si una prueba sale positiva, ¿qué hago?',
+      a: 'Busca atención sanitaria para tratamiento o seguimiento. Muchas ITS tienen tratamiento o control. Y si necesitas orientación, puedes escribirnos en el chat anónimo.'
+    }
+  ];
+
   flippedCard = signal<string | null>(null);
+  openFaq = signal<number | null>(null);
   activeSection = signal('nace-benurse');
   private scrollHandler: (() => void) | null = null;
 
   toggleCard(name: string) {
     this.flippedCard.update(current => current === name ? null : name);
+  }
+
+  toggleFaq(i: number) {
+    this.openFaq.update(current => current === i ? null : i);
   }
 
   scrollTo(id: string) {

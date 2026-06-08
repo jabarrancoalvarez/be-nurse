@@ -14,6 +14,8 @@
       <li [class.active]="activeSection() === 'que-son-its'"><a (click)="scrollTo('que-son-its')">¿Qué son las ITS?</a></li>
       <li [class.active]="activeSection() === 'realidad'"><a (click)="scrollTo('realidad')">Una realidad</a></li>
       <li [class.active]="activeSection() === 'its'"><a (click)="scrollTo('its')">Las ITS</a></li>
+      <li [class.active]="activeSection() === 'deteccion'"><a (click)="scrollTo('deteccion')">Detección y pruebas</a></li>
+      <li [class.active]="activeSection() === 'faq'"><a (click)="scrollTo('faq')">Preguntas frecuentes</a></li>
     </ul>
   </nav>
 
@@ -103,6 +105,66 @@
                 </div>
               </div>
 
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section id="deteccion" class="content-section">
+      <h2>Detección y pruebas</h2>
+      <p>Hacerse pruebas no es "exagerar": es cuidarse. Muchas ITS pueden no dar síntomas y aun así transmitirse.</p>
+
+      <h3>¿Cuándo tiene sentido hacerse pruebas?</h3>
+      <ul class="check-list">
+        <li>Si has tenido sexo sin preservativo (vaginal, anal u oral) o si se rompió.</li>
+        <li>Si has cambiado de pareja o tienes varias parejas.</li>
+        <li>Si tienes síntomas (pero recuerda: puede no haber).</li>
+        <li>Si tu pareja ha tenido un diagnóstico o duda.</li>
+        <li>Si quieres quedarte tranquilo/a: también es válido.</li>
+      </ul>
+
+      <h3>¿Qué tipo de pruebas existen?</h3>
+      <ul class="check-list">
+        <li><strong>Análisis de sangre:</strong> por ejemplo para VIH, sífilis, hepatitis.</li>
+        <li><strong>Muestras locales:</strong> orina, exudado vaginal/uretral, anal o de garganta (según prácticas) para clamidia/gonorrea, etc.</li>
+        <li><strong>Revisiones:</strong> según edad y recomendaciones (por ejemplo, cribado de VPH/citología en algunos casos).</li>
+      </ul>
+
+      <h3>Ventana diagnóstica (muy importante)</h3>
+      <p>Algunas pruebas no detectan la infección inmediatamente. Existe un tiempo llamado <strong>ventana diagnóstica</strong>.</p>
+      <ul class="check-list">
+        <li>Si te haces la prueba "demasiado pronto", puede salir negativa aunque haya infección.</li>
+        <li>Si tienes dudas sobre el momento adecuado, pregunta: te orientamos sin juzgar.</li>
+      </ul>
+
+      <h3>¿Dónde hacerse pruebas?</h3>
+      <ul class="check-list">
+        <li>Centro de salud (médico/a de familia, enfermería).</li>
+        <li>Centros de salud sexual / ITS (según tu ciudad).</li>
+        <li>Servicios comunitarios o recursos específicos para jóvenes.</li>
+      </ul>
+
+      <h3>Si sale positiva…</h3>
+      <ul class="check-list">
+        <li>No estás solo/a: la mayoría de ITS tienen tratamiento o control.</li>
+        <li>Seguir el tratamiento y avisar a parejas recientes es parte del cuidado (con apoyo profesional).</li>
+        <li>Evita culpas: lo importante es actuar.</li>
+      </ul>
+      <p class="quote">Si no sabes por dónde empezar, puedes escribirnos en el chat anónimo y te orientamos.</p>
+    </section>
+
+    <section id="faq" class="content-section">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        @for (faq of faqs; track faq.q; let i = $index) {
+          <div class="faq__item" [class.open]="openFaq() === i">
+            <button class="faq__question" (click)="toggleFaq(i)">
+              {{ faq.q }}
+              <span class="faq__icon">▾</span>
+            </button>
+            <div class="faq__body">
+              <p class="faq__answer">{{ faq.a }}</p>
             </div>
           </div>
         }
