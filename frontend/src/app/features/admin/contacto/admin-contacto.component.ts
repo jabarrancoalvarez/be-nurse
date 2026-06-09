@@ -46,4 +46,9 @@ export class AdminContactoComponent implements OnInit {
       setTimeout(() => this.copied.set(false), 2000);
     });
   }
+
+  openMailto() {
+    const s = this.selected()!;
+    window.open(`mailto:${s.email}?subject=RE: ${encodeURIComponent(s.subject)}`);
+  }
 }
