@@ -1,0 +1,92 @@
+@use '../admin-shared' as *;
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.contact-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  background: var(--color-bg-white);
+
+  &:last-child { border-bottom: none; }
+  &:hover, &.active { background: var(--color-primary-soft); }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__info { flex: 1; min-width: 0; }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.2rem;
+  }
+
+  &__name { font-weight: 600; font-size: 0.9rem; color: var(--color-text); }
+  &__date { font-size: 0.75rem; color: var(--color-text-muted); flex-shrink: 0; }
+  &__subject { font-size: 0.85rem; color: var(--color-text); margin-bottom: 0.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  &__preview { font-size: 0.8rem; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+
+.contact-detail {
+  position: fixed;
+  top: 0; right: 0;
+  width: 480px;
+  height: 100vh;
+  background: var(--color-bg-white);
+  border-left: 1px solid var(--color-border);
+  box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+
+  @media (max-width: 768px) { width: 100%; }
+
+  &__header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+
+    h2 { font-family: var(--font-display); font-size: 1.2rem; color: var(--color-text); margin: 0.75rem 0 0.5rem; }
+  }
+
+  &__close {
+    background: none; border: none; cursor: pointer;
+    color: var(--color-text-muted); padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast);
+    &:hover { color: var(--color-text); }
+  }
+
+  &__meta {
+    display: flex; flex-direction: column; gap: 0.2rem;
+    font-size: 0.82rem; color: var(--color-text-muted);
+  }
+
+  &__body {
+    padding: 1.5rem; flex: 1; overflow-y: auto;
+    p { font-size: 0.95rem; line-height: 1.75; color: var(--color-text-muted); white-space: pre-wrap; }
+  }
+
+  &__actions { padding: 1.25rem 1.5rem; border-top: 1px solid var(--color-border); }
+}

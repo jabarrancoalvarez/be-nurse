@@ -5,4 +5,5 @@ namespace BeNurse.Application.Interfaces;
 public interface IContactRepository
 {
     Task SaveAsync(ContactForm form);
+    Task<List<ContactForm>> GetAllAsync();
 }

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -29,5 +30,20 @@ export const routes: Routes = [
     path: 'chat',
     loadComponent: () => import('./features/chat/chat.component').then(m => m.ChatComponent)
   },
+  {
+    path: 'login',
+    loadComponent: () => import('./features/login/login.component').then(m => m.LoginComponent)
+  },
+  {
+    path: 'admin/contacto',
+    loadComponent: () => import('./features/admin/contacto/admin-contacto.component').then(m => m.AdminContactoComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'admin/chat',
+    loadComponent: () => import('./features/admin/chat/admin-chat.component').then(m => m.AdminChatComponent),
+    canActivate: [authGuard]
+  },
+  { path: 'admin', redirectTo: 'admin/contacto', pathMatch: 'full' },
   { path: '**', redirectTo: '' }
 ];

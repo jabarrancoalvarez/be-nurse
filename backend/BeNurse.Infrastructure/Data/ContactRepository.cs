@@ -1,5 +1,6 @@
 using BeNurse.Application.Interfaces;
 using BeNurse.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace BeNurse.Infrastructure.Data;
 
@@ -16,5 +17,12 @@ public class ContactRepository : IContactRepository
     {
         _context.ContactForms.Add(form);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<ContactForm>> GetAllAsync()
+    {
+        return await _context.ContactForms
+            .OrderByDescending(c => c.SubmittedAt)
+            .ToListAsync();
     }
 }

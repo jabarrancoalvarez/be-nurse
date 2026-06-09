@@ -4,6 +4,7 @@ import {
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { gsap } from '../../core/animations/gsap.config';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ import { gsap } from '../../core/animations/gsap.config';
 export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   private router = inject(Router);
   private el = inject(ElementRef);
+  auth = inject(AuthService);
 
   scrolled = signal(false);
   menuOpen = signal(false);
