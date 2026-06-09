@@ -35,6 +35,15 @@ export class AdminContactoComponent implements OnInit {
     });
   }
 
-  select(c: ContactForm) { this.selected.set(c); }
+  copied = signal(false);
+
+  select(c: ContactForm) { this.selected.set(c); this.copied.set(false); }
   close() { this.selected.set(null); }
+
+  copyEmail(email: string) {
+    navigator.clipboard.writeText(email).then(() => {
+      this.copied.set(true);
+      setTimeout(() => this.copied.set(false), 2000);
+    });
+  }
 }
