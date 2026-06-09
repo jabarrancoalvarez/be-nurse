@@ -28,6 +28,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   search = '';
   searchInput = '';
   loading = signal(false);
+  loadError = signal(false);
   openItems = signal<Set<string>>(new Set());
 
   @ViewChild('boardTop') boardTop!: ElementRef;
@@ -76,7 +77,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         this.currentPage.set(res.page);
         this.loading.set(false);
       },
-      error: () => this.loading.set(false)
+      error: () => { this.loading.set(false); this.loadError.set(true); }
     });
   }
 

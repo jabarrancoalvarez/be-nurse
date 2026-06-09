@@ -35,51 +35,47 @@ public class ChatRepository : IChatRepository
             .ToListAsync();
     }
 
-    public async Task<(List<QuestionDto> Items, int Total)> GetQuestionsAsync(string? search, int page, int pageSize)
+    public async Task<(List<QuestionDto> Items, int Total)> GetQuestionsAsync(
+        string? search, int page, int pageSize)
     {
-        var sessionIds = await _context.ChatMessages
-            .Where(m => m.IsFromUser)
-            .Select(m => m.SessionId)
-            .Distinct()
+        // Load all messages in one query and group in memory
+        var allMessages = await _context.ChatMessages
+            .OrderBy(m => m.CreatedAt)
             .ToListAsync();
 
-        var questions = new List<QuestionDto>();
-
-        foreach (var sid in sessionIds)
-        {
-            var msgs = await _context.ChatMessages
-                .Where(m => m.SessionId == sid)
-                .OrderBy(m => m.CreatedAt)
-                .ToListAsync();
-
-            var firstUser = msgs.FirstOrDefault(m => m.IsFromUser);
-            if (firstUser == null) continue;
-
-            var nurseReply = msgs.LastOrDefault(m => m.IsNurseReply);
-
-            questions.Add(new QuestionDto
+        var grouped = allMessages
+            .GroupBy(m => m.SessionId)
+            .Select(g =>
             {
-                SessionId = sid,
-                Question = firstUser.Content,
-                QuestionDate = firstUser.CreatedAt,
-                Answer = nurseReply?.Content,
-                AnswerDate = nurseReply?.CreatedAt
-            });
-        }
+                var userMsg = g.FirstOrDefault(m => m.IsFromUser);
+                // Use !IsFromUser for nurse replies — covers replies sent before IsNurseReply field existed
+                var nurseMsg = g.LastOrDefault(m => !m.IsFromUser);
+                return new { userMsg, nurseMsg };
+            })
+            .Where(g => g.userMsg != null)
+            .Select(g => new QuestionDto
+            {
+                SessionId = g.userMsg!.SessionId,
+                Question = g.userMsg.Content,
+                QuestionDate = g.userMsg.CreatedAt,
+                Answer = g.nurseMsg?.Content,
+                AnswerDate = g.nurseMsg?.CreatedAt
+            })
+            .ToList();
 
         if (!string.IsNullOrWhiteSpace(search))
         {
             var term = search.ToLower();
-            questions = questions
+            grouped = grouped
                 .Where(q => q.Question.ToLower().Contains(term) ||
                             (q.Answer?.ToLower().Contains(term) ?? false))
                 .ToList();
         }
 
-        questions = questions.OrderByDescending(q => q.QuestionDate).ToList();
+        grouped = grouped.OrderByDescending(q => q.QuestionDate).ToList();
 
-        var total = questions.Count;
-        var items = questions.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+        var total = grouped.Count;
+        var items = grouped.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
         return (items, total);
     }

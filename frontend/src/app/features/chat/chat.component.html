@@ -92,6 +92,11 @@
 
     @if (loading()) {
       <div class="qa-loading">Cargando preguntas...</div>
+    } @else if (loadError()) {
+      <div class="qa-empty">
+        <p>No se pudieron cargar las preguntas. Inténtalo de nuevo.</p>
+        <button class="btn-outline" (click)="loadError.set(false); loadQuestions(1)">Reintentar</button>
+      </div>
     } @else if (questions().length === 0) {
       <div class="qa-empty">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
