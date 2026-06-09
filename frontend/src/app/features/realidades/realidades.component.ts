@@ -42,7 +42,7 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
       date: '10 de febrero de 2026',
       readTime: '5 min',
       emoji: '🎬',
-      bg: '#1b4332'
+      bg: '#52796f'
     },
     {
       title: 'Pense que el problema era mi cuerpo',
@@ -53,7 +53,7 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
       date: '10 de febrero de 2026',
       readTime: '4 min',
       emoji: '💭',
-      bg: '#1b5e20'
+      bg: '#5a8c5a'
     },
     {
       title: 'ChemSex: cuando las drogas y el sexo se mezclan',
@@ -64,7 +64,7 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
       date: '20 de abril de 2026',
       readTime: '6 min',
       emoji: '💊',
-      bg: '#1a1a3e'
+      bg: '#5c5c8a'
     }
   ];
 
