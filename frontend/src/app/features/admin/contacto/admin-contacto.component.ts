@@ -47,8 +47,9 @@ export class AdminContactoComponent implements OnInit {
     });
   }
 
-  openMailto() {
+  openGmail() {
     const s = this.selected()!;
-    window.location.href = `mailto:${s.email}?subject=RE: ${encodeURIComponent(s.subject)}`;
+    const url = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(s.email)}&su=${encodeURIComponent('RE: ' + s.subject)}`;
+    window.open(url, '_blank');
   }
 }
