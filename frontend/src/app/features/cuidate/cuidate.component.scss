@@ -87,6 +87,10 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+
+  > .content-section:first-child {
+    padding-top: 0;
+  }
 }
 
 /* CONTENT SECTIONS */
