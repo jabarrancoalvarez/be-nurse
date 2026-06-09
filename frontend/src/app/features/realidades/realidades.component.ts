@@ -30,7 +30,7 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
 
   activeFilter = signal('Todas');
-  filters = ['Todas', 'Porno y sexualidad', 'Presion social, expectativas y cuerpo'];
+  filters = ['Todas', 'Porno y sexualidad', 'Presion social, expectativas y cuerpo', 'ChemSex'];
 
   articulos: Articulo[] = [
     {
@@ -54,6 +54,17 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
       readTime: '4 min',
       emoji: '💭',
       bg: '#1b5e20'
+    },
+    {
+      title: 'ChemSex: cuando las drogas y el sexo se mezclan',
+      slug: 'chemsex-drogas-y-sexo',
+      category: 'ChemSex',
+      excerpt: 'El ChemSex es el uso de sustancias como la metanfetamina, mefedrona o GHB para potenciar las relaciones sexuales. Entender sus riesgos es clave para tomar decisiones informadas y pedir ayuda sin miedo.',
+      author: 'Javier Ruiz',
+      date: '20 de abril de 2026',
+      readTime: '6 min',
+      emoji: '💊',
+      bg: '#1a1a3e'
     }
   ];
 
