@@ -107,9 +107,7 @@
         @for (q of questions(); track q.sessionId) {
           <div class="qa-item" [class.qa-item--answered]="q.answer">
             <div class="qa-item__question">
-              <div class="qa-item__q-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              </div>
+              <div class="qa-item__q-icon">?</div>
               <div class="qa-item__q-body">
                 <p>{{ q.question }}</p>
                 <span class="qa-item__date">{{ q.questionDate | date:'d MMM yyyy' }}</span>
