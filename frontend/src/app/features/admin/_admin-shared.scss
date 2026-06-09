@@ -107,6 +107,24 @@
   padding: 2px 10px;
 }
 
+.admin-error {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(220,38,38,0.06);
+  border: 1px solid rgba(220,38,38,0.2);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  color: #dc2626;
+  svg { flex-shrink: 0; }
+  .err-btn {
+    background: none; border: none; cursor: pointer;
+    color: #dc2626; font-weight: 700; font-size: 0.875rem;
+    text-decoration: underline; padding: 0;
+  }
+}
+
 .admin-loading, .admin-empty {
   display: flex;
   flex-direction: column;

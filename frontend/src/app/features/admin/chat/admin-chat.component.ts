@@ -38,6 +38,7 @@ export class AdminChatComponent implements OnInit {
   reply = '';
   loading = signal(true);
   sending = signal(false);
+  errorMsg = signal('');
 
   ngOnInit() {
     this.loadSessions();
@@ -45,8 +46,11 @@ export class AdminChatComponent implements OnInit {
 
   loadSessions() {
     this.http.get<Session[]>(`${environment.apiUrl}/admin/chat/sessions`).subscribe({
-      next: data => { this.sessions.set(data); this.loading.set(false); },
-      error: () => this.loading.set(false)
+      next: data => { this.sessions.set(data); this.loading.set(false); this.errorMsg.set(''); },
+      error: (err) => {
+        this.loading.set(false);
+        this.errorMsg.set(`Error ${err.status}: ${err.status === 401 ? 'Sesión caducada — cierra sesión y vuelve a entrar' : 'No se pudieron cargar las sesiones'}`);
+      }
     });
   }
 
