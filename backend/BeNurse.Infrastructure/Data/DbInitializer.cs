@@ -1,4 +1,5 @@
 using BeNurse.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace BeNurse.Infrastructure.Data;
 
@@ -8,9 +9,7 @@ public static class DbInitializer
     {
         await context.Database.EnsureCreatedAsync();
 
-        if (context.Articles.Any()) return;
-
-        var articles = new List<Article>
+        var seed = new List<Article>
         {
             new()
             {
@@ -18,7 +17,7 @@ public static class DbInitializer
                 Slug = "definicion-its",
                 Category = "informate",
                 SubCategory = "definicion",
-                AuthorName = "Equipo be-nurse",
+                AuthorName = "Equipo BE nurse",
                 Content = "Las Infecciones de Transmision Sexual (ITS) se caracterizan por contagiarse a traves del contacto sexual. En la mayoria de los casos las manifestaciones clinicas comprometen la zona genital y las mucosas, dando lugar a complicaciones medicas. Ademas, muchas de estas infecciones pueden no ser sintomaticas, por lo que se dificulta su tratamiento y diagnostico.",
                 Excerpt = "Que son las ITS y por que es importante conocerlas.",
                 PublishedAt = new DateTime(2026, 2, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -141,10 +140,61 @@ public static class DbInitializer
                 PublishedAt = new DateTime(2026, 5, 5, 0, 0, 0, DateTimeKind.Utc),
                 IsPublished = true,
                 ImageUrl = ""
+            },
+            new()
+            {
+                Title = "ChemSex: cuando las drogas y el sexo se mezclan",
+                Slug = "chemsex-drogas-y-sexo",
+                Category = "realidades",
+                SubCategory = "chemsex",
+                AuthorName = "Javier Ruiz",
+                Content = @"El ChemSex es la practica de consumir sustancias psicoactivas especificas con el objetivo de potenciar, prolongar o facilitar las relaciones sexuales. Las sustancias mas frecuentemente asociadas son la metanfetamina, la mefedrona y el GHB/GBL, aunque tambien puede implicar otras drogas como la ketamina o el poppers.
+
+Aunque puede darse en cualquier persona, el ChemSex esta documentado principalmente en la comunidad de hombres que tienen sexo con hombres (HSH), donde factores como el estigma, la soledad o la busqueda de desinhibicion social pueden actuar como desencadenantes.
+
+Que riesgos tiene?
+
+El ChemSex no es solo un tema de salud sexual. Sus riesgos son multiples:
+
+Riesgos para la salud sexual: bajo los efectos de estas sustancias aumenta la probabilidad de tener relaciones sin proteccion, lo que incrementa el riesgo de transmision de VIH y otras ITS. Ademas, las lesiones genitales pueden pasar desapercibidas por el efecto anestesiante de algunas drogas.
+
+Riesgos de salud mental: el uso continuado puede generar ansiedad, paranoia, depresion y episodios psicoticos, especialmente asociados a la metanfetamina.
+
+Riesgo de sobredosis: el GHB y el GBL tienen un margen de seguridad muy estrecho. Una dosis ligeramente superior a la habitual puede provocar perdida de consciencia, coma o muerte. Combinados con alcohol, el riesgo se multiplica.
+
+Dependencia: aunque no todas las personas que practican ChemSex desarrollan una adiccion, las sustancias implicadas tienen alto potencial adictivo.
+
+Por que cuesta pedir ayuda?
+
+Muchas personas que practican ChemSex no buscan ayuda por miedo al juicio, a la discriminacion o a no ser comprendidas. El estigma que rodea tanto el consumo de drogas como la sexualidad de los colectivos mas afectados dificulta el acceso a recursos sanitarios.
+
+Desde BE nurse queremos que sepas que aqui no hay juicios. Si tienes dudas, si crees que el consumo esta afectando tu vida o si simplemente quieres informarte, puedes escribirnos en el chat anonimo.
+
+Como reducir riesgos?
+
+Si en este momento no puedes o no quieres dejar de consumir, hay medidas que pueden reducir el riesgo:
+
+No mezclar GHB o GBL con alcohol ni otras depresoras del sistema nervioso central.
+No consumir solo. Tener a alguien de confianza cerca puede salvar una vida en caso de sobredosis.
+Hacerse pruebas de ITS con regularidad, especialmente VIH y hepatitis C.
+Usar siempre metodos de barrera (preservativo, dental dam).
+Informar a tu medico o enfermero sobre el consumo para recibir atencion sin juicios.
+
+No estas solo o sola. Pedir ayuda es un acto de valentía.",
+                Excerpt = "El ChemSex es el uso de sustancias como metanfetamina, mefedrona o GHB para potenciar relaciones sexuales. Entender sus riesgos es clave para tomar decisiones informadas y pedir ayuda sin miedo.",
+                PublishedAt = new DateTime(2026, 4, 20, 0, 0, 0, DateTimeKind.Utc),
+                IsPublished = true,
+                ImageUrl = ""
             }
         };
 
-        context.Articles.AddRange(articles);
-        await context.SaveChangesAsync();
+        var existingSlugs = await context.Articles.Select(a => a.Slug).ToListAsync();
+        var newArticles = seed.Where(a => !existingSlugs.Contains(a.Slug)).ToList();
+
+        if (newArticles.Any())
+        {
+            context.Articles.AddRange(newArticles);
+            await context.SaveChangesAsync();
+        }
     }
 }
