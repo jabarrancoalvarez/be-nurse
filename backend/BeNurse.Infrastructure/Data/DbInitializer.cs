@@ -9,6 +9,11 @@ public static class DbInitializer
     {
         await context.Database.EnsureCreatedAsync();
 
+        await context.Database.ExecuteSqlRawAsync(@"
+            ALTER TABLE ""ChatMessages""
+            ADD COLUMN IF NOT EXISTS ""IsNurseReply"" boolean NOT NULL DEFAULT false
+        ");
+
         var seed = new List<Article>
         {
             new()

@@ -1,72 +1,121 @@
-import { Component, inject, signal, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import {
+  Component, inject, signal, OnInit, computed, ViewChild, ElementRef, AfterViewChecked
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ChatService } from '../../core/services/chat.service';
-
-interface Message {
-  content: string;
-  isFromUser: boolean;
-  time: Date;
-}
+import { DatePipe } from '@angular/common';
+import { ChatService, QuestionItem, QuestionsPage } from '../../core/services/chat.service';
 
 @Component({
   selector: 'app-chat',
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent implements OnInit, AfterViewChecked {
   private chatService = inject(ChatService);
 
-  @ViewChild('messagesEnd') messagesEnd!: ElementRef;
-
-  messages = signal<Message[]>([]);
-  input = '';
+  // Submit
   sessionId = '';
+  input = '';
   sending = signal(false);
+  submitted = signal(false);
+
+  // Q&A board
+  questions = signal<QuestionItem[]>([]);
+  totalPages = signal(1);
+  total = signal(0);
+  currentPage = signal(1);
+  search = '';
+  searchInput = '';
+  loading = signal(false);
+  openItems = signal<Set<string>>(new Set());
+
+  @ViewChild('boardTop') boardTop!: ElementRef;
+  private scrollAfterSend = false;
 
   ngOnInit() {
     this.sessionId = sessionStorage.getItem('be-nurse-session') ?? crypto.randomUUID();
     sessionStorage.setItem('be-nurse-session', this.sessionId);
-
-    this.messages.set([{
-      content: 'Hola, soy del equipo de BE-nurse. Puedes preguntarme lo que necesites de forma completamente anonima. Sin juicios.',
-      isFromUser: false,
-      time: new Date()
-    }]);
+    this.loadQuestions();
   }
 
   ngAfterViewChecked() {
-    this.messagesEnd?.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    if (this.scrollAfterSend && this.boardTop) {
+      this.boardTop.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.scrollAfterSend = false;
+    }
   }
 
   send() {
     const content = this.input.trim();
     if (!content || this.sending()) return;
-
-    this.messages.update(msgs => [...msgs, { content, isFromUser: true, time: new Date() }]);
-    this.input = '';
     this.sending.set(true);
 
     this.chatService.sendMessage(this.sessionId, content).subscribe({
-      next: res => {
-        this.messages.update(msgs => [...msgs, { content: res.message, isFromUser: false, time: new Date() }]);
+      next: () => {
+        this.input = '';
         this.sending.set(false);
+        this.submitted.set(true);
+        this.loadQuestions();
       },
-      error: () => {
-        this.messages.update(msgs => [...msgs, {
-          content: 'Ha ocurrido un error. Por favor, intentalo de nuevo.',
-          isFromUser: false,
-          time: new Date()
-        }]);
-        this.sending.set(false);
-      }
+      error: () => this.sending.set(false)
     });
   }
 
-  onKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      this.send();
-    }
+  onKeyDown(e: KeyboardEvent) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); this.send(); }
+  }
+
+  loadQuestions(page = this.currentPage()) {
+    this.loading.set(true);
+    this.chatService.getQuestions(this.search, page).subscribe({
+      next: (res: QuestionsPage) => {
+        this.questions.set(res.items);
+        this.totalPages.set(res.totalPages);
+        this.total.set(res.total);
+        this.currentPage.set(res.page);
+        this.loading.set(false);
+      },
+      error: () => this.loading.set(false)
+    });
+  }
+
+  doSearch() {
+    this.search = this.searchInput;
+    this.loadQuestions(1);
+  }
+
+  clearSearch() {
+    this.search = '';
+    this.searchInput = '';
+    this.loadQuestions(1);
+  }
+
+  goToPage(p: number) {
+    if (p < 1 || p > this.totalPages()) return;
+    this.loadQuestions(p);
+    this.scrollAfterSend = true;
+  }
+
+  toggleItem(id: string) {
+    this.openItems.update(set => {
+      const next = new Set(set);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  }
+
+  isOpen(id: string) { return this.openItems().has(id); }
+
+  pages(): number[] {
+    const total = this.totalPages();
+    const cur = this.currentPage();
+    if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+    const pages: number[] = [1];
+    if (cur > 3) pages.push(-1);
+    for (let i = Math.max(2, cur - 1); i <= Math.min(total - 1, cur + 1); i++) pages.push(i);
+    if (cur < total - 2) pages.push(-1);
+    pages.push(total);
+    return pages;
   }
 }

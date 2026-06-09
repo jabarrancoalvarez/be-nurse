@@ -6,5 +6,6 @@ public class ChatMessage
     public string SessionId { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;
     public bool IsFromUser { get; set; }
+    public bool IsNurseReply { get; set; }
     public DateTime CreatedAt { get; set; }
 }

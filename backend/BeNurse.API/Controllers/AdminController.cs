@@ -65,6 +65,7 @@ public class AdminController : ControllerBase
             SessionId = sessionId,
             Content = dto.Content,
             IsFromUser = false,
+            IsNurseReply = true,
             CreatedAt = DateTime.UtcNow
         };
         await _chat.SaveAsync(message);
