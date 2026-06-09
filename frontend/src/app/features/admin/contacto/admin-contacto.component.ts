@@ -49,6 +49,6 @@ export class AdminContactoComponent implements OnInit {
 
   openMailto() {
     const s = this.selected()!;
-    window.open(`mailto:${s.email}?subject=RE: ${encodeURIComponent(s.subject)}`);
+    window.location.href = `mailto:${s.email}?subject=RE: ${encodeURIComponent(s.subject)}`;
   }
 }
