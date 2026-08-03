@@ -1,7 +1,9 @@
 using System.Text;
 using BeNurse.Application.Interfaces;
 using BeNurse.Application.Services;
+using BeNurse.Application.Settings;
 using BeNurse.Infrastructure.Data;
+using BeNurse.Infrastructure.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -10,6 +12,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<BeNurseDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var emailSection = builder.Configuration.GetSection(EmailSettings.SectionName);
+builder.Services.Configure<EmailSettings>(emailSection);
+
+// Render bloquea los puertos SMTP en el plan gratuito, por eso el proveedor por defecto es la API HTTP de Brevo.
+if (string.Equals(emailSection["Provider"], "smtp", StringComparison.OrdinalIgnoreCase))
+{
+    builder.Services.AddScoped<IEmailSender, SmtpEmailSender>();
+}
+else
+{
+    builder.Services.AddHttpClient<IEmailSender, BrevoEmailSender>()
+        .ConfigureHttpClient(client => client.Timeout = TimeSpan.FromSeconds(15));
+}
 
 builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
