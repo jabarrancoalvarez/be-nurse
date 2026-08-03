@@ -21,7 +21,7 @@
 
     @if (related().length > 0) {
       <section class="related">
-        <h3>Articulos relacionados</h3>
+        <h3>Artículos relacionados</h3>
         <div class="related__grid">
           @for (art of related(); track art.slug) {
             <a [routerLink]="['/realidades', art.slug]" class="related-card">
@@ -36,7 +36,7 @@
   </article>
 } @else {
   <div class="not-found">
-    <p>Articulo no encontrado.</p>
+    <p>Artículo no encontrado.</p>
     <a routerLink="/realidades">← Volver a Realidades</a>
   </div>
 }

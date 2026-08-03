@@ -107,7 +107,7 @@ export class InformateComponent implements AfterViewInit, OnDestroy {
 
   flippedCard = signal<string | null>(null);
   openFaq = signal<number | null>(null);
-  activeSection = signal('nace-benurse');
+  activeSection = signal('que-son-its');
   private scrollHandler: (() => void) | null = null;
 
   toggleCard(name: string) {
@@ -148,7 +148,7 @@ export class InformateComponent implements AfterViewInit, OnDestroy {
 
     const onScroll = () => {
       const offset = 112;
-      let current = sections[0]?.id ?? 'nace-benurse';
+      let current = sections[0]?.id ?? 'que-son-its';
       for (const section of sections) {
         if (section.getBoundingClientRect().top <= offset) {
           current = section.id;

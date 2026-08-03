@@ -30,25 +30,25 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
 
   activeFilter = signal('Todas');
-  filters = ['Todas', 'Porno y sexualidad', 'Presion social, expectativas y cuerpo', 'ChemSex'];
+  filters = ['Todas', 'Porno y sexualidad', 'Presión social, expectativas y cuerpo', 'ChemSex'];
 
   articulos: Articulo[] = [
     {
-      title: 'Por que el porno distorsiona expectativas',
+      title: 'Por qué el porno distorsiona expectativas',
       slug: 'porno-distorsiona-expectativas',
       category: 'Porno y sexualidad',
-      excerpt: 'El porno esta en internet, en redes y en muchos moviles. Verlo no te convierte en una mala persona. El problema no es verlo, sino aprender de el.',
-      author: 'Lucia Garcia',
+      excerpt: 'El porno está en internet, en redes y en muchos móviles. Verlo no te convierte en una mala persona. El problema no es verlo, sino aprender de él.',
+      author: 'Lucía García',
       date: '10 de febrero de 2026',
       readTime: '5 min',
       emoji: '🎬',
       bg: '#52796f'
     },
     {
-      title: 'Pense que el problema era mi cuerpo',
+      title: 'Pensé que el problema era mi cuerpo',
       slug: 'problema-era-mi-cuerpo',
-      category: 'Presion social, expectativas y cuerpo',
-      excerpt: 'Nunca nadie me dijo directamente que mi cuerpo estaba mal. Pero lo senti muchas veces.',
+      category: 'Presión social, expectativas y cuerpo',
+      excerpt: 'Nunca nadie me dijo directamente que mi cuerpo estaba mal. Pero lo sentí muchas veces.',
       author: 'Historia real',
       date: '10 de febrero de 2026',
       readTime: '4 min',
