@@ -16,7 +16,8 @@
 
     <div class="detalle__body">
       <p class="detalle__excerpt">{{ article()!.excerpt }}</p>
-      <div class="detalle__content">{{ article()!.content }}</div>
+      <!-- El contenido llega como HTML desde la API; Angular lo sanea al pintarlo. -->
+      <div class="detalle__content" [innerHTML]="article()!.content"></div>
     </div>
 
     @if (related().length > 0) {

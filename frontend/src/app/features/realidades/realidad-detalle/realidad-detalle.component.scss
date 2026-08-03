@@ -51,11 +51,88 @@
     margin-bottom: 2rem;
   }
 
+  /* El contenido se inyecta con [innerHTML], asi que los estilos de sus etiquetas
+     no llevan el atributo de encapsulacion: hay que declararlos con ::ng-deep. */
   &__content {
     font-size: 1.05rem;
     line-height: 1.85;
     color: var(--color-text);
-    white-space: pre-wrap;
+
+    ::ng-deep {
+      p {
+        margin-bottom: 1.25rem;
+      }
+
+      h2 {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: var(--color-text);
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+        margin: 2.75rem 0 1rem;
+      }
+
+      h3 {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--color-primary);
+        margin: 1.75rem 0 0.5rem;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0 0 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      li {
+        position: relative;
+        padding-left: 1.5rem;
+        font-size: 1rem;
+        line-height: 1.7;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0.65em;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--color-primary);
+        }
+      }
+
+      blockquote {
+        margin: 2rem 0;
+        padding: 1.25rem 1.5rem;
+        background: var(--color-primary-soft);
+        border-left: 4px solid var(--color-primary);
+        border-radius: var(--radius-lg);
+        font-size: 1.05rem;
+        font-style: italic;
+        color: var(--color-text);
+      }
+
+      a {
+        color: var(--color-primary);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      strong {
+        font-weight: 600;
+      }
+
+      > :first-child {
+        margin-top: 0;
+      }
+    }
   }
 }
 

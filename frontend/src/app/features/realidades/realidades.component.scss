@@ -34,6 +34,188 @@
   padding: 3.5rem 1.5rem 6rem;
 }
 
+/* MITOS Y REALIDADES + DUDAS */
+.mitos,
+.dudas {
+  margin-bottom: 4rem;
+
+  &__header {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 500;
+      color: var(--color-text);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-top: 0.75rem;
+    }
+  }
+}
+
+.sabias-que {
+  background: var(--color-primary-soft);
+  border: 1px solid rgba(0, 184, 107, 0.2);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+
+  &__label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+  }
+}
+
+.mitos__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mito-card {
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &__block {
+    padding: 1.5rem 1.75rem;
+
+    p {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--color-text-muted);
+    }
+
+    &--mito {
+      background: rgba(239, 68, 68, 0.04);
+      border-bottom: 1px solid var(--color-border);
+
+      .mito-card__label {
+        color: #dc2626;
+      }
+    }
+
+    &--realidad {
+      flex: 1;
+
+      .mito-card__label {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.duda {
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 0.85rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+
+    + p {
+      margin-top: 0.85rem;
+    }
+  }
+
+  a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .check-list {
+    list-style: none;
+    margin-top: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    li {
+      position: relative;
+      padding-left: 1.4rem;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--color-text-muted);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.6em;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--color-primary);
+      }
+    }
+  }
+}
+
+.screening-point {
+  margin-top: 1.5rem;
+  background: var(--color-primary-soft);
+  border: 1px solid rgba(0, 184, 107, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+
+  h4 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 0.75rem;
+  }
+}
+
 /* HEADER ROW */
 .realidades-header {
   display: flex;

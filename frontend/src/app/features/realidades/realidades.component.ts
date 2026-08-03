@@ -34,13 +34,13 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   articulos: Articulo[] = [
     {
-      title: 'Por qué el porno distorsiona expectativas',
+      title: 'Por qué el porno distorsiona las expectativas',
       slug: 'porno-distorsiona-expectativas',
       category: 'Porno y sexualidad',
-      excerpt: 'El porno está en internet, en redes y en muchos móviles. Verlo no te convierte en una mala persona. El problema no es verlo, sino aprender de él.',
+      excerpt: 'La pornografía forma parte del entorno digital de muchas personas jóvenes, pero no está diseñada para educar. Puede distorsionar expectativas sobre el cuerpo, el deseo, el consentimiento y las relaciones. En este artículo hablamos de cómo mirarla con pensamiento crítico y qué recursos pueden ayudar a construir una sexualidad más sana, libre y respetuosa.',
       author: 'Lucía García',
       date: '10 de febrero de 2026',
-      readTime: '5 min',
+      readTime: '9 min',
       emoji: '🎬',
       bg: '#52796f'
     },
