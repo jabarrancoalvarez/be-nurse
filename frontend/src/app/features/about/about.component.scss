@@ -31,7 +31,7 @@
 .about-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 1.5rem 6rem;
+  padding: 4rem 1.5rem 3rem;
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 3rem;
@@ -40,6 +40,21 @@
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+}
+
+/* Los textos largos van a ancho completo: en la barra lateral de 380px se leen mal
+   y desequilibran la altura de las dos columnas. */
+.about-story {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -223,6 +238,19 @@
     color: var(--color-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.7;
+
+    + p {
+      margin-top: 0.85rem;
+    }
+  }
+
+  .about-lead {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .about-quote {
+    color: var(--color-primary);
   }
 }
 
