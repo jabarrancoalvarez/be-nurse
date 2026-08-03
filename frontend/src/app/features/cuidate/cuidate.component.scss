@@ -205,6 +205,22 @@
     line-height: 1;
   }
 
+  &__photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-primary-soft);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
