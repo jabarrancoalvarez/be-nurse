@@ -29,3 +29,7 @@ Thumbs.db
 # Claude / tooling
 .claude/
 .playwright-mcp/
+
+# Documentos y material fuente (no forman parte de la app)
+Documento WEB.*
+fotos metodos barrera/
