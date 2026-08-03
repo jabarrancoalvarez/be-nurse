@@ -82,36 +82,76 @@
         <h2 class="section-title">PrEP y PEP</h2>
         <p class="section-subtitle">Medicación que reduce drásticamente el riesgo de infección por VIH.</p>
       </div>
-      <div class="cards-grid cards-grid--2">
-        <div class="info-card info-card--featured">
-          <div class="info-card__badge">Pre-exposición</div>
-          <div class="info-card__icon">💊</div>
-          <div class="info-card__content">
-            <h3>PrEP</h3>
-            <p>Medicamento para personas VIH negativas que previene la infección por VIH antes de una posible exposición.</p>
-            <ul class="check-list">
-              <li>Eficacia cercana al 99% con toma correcta</li>
-              <li>No protege frente a otras ITS</li>
-              <li>Financiado por el SNS para personas con alto riesgo</li>
-              <li>Se solicita en centros de salud sexual o unidades de VIH</li>
-            </ul>
-          </div>
+      <app-flip-card frontLabel="Saber más sobre la PrEP" backLabel="Volver">
+        <div front class="prep-front">
+            <div class="card-media">
+              <img src="assets/cuidate/prep-pep.jpg"
+                   alt="Frasco de PrEP junto a un blister de comprimidos" loading="lazy">
+            </div>
+              <div class="prep-grid">
+                <div class="prep-grid__item">
+                  <div class="info-card__badge">Pre-exposición</div>
+                  <h3>PrEP</h3>
+                  <p>Medicamento para personas VIH negativas que previene la infección por VIH antes de una posible exposición.</p>
+                  <ul class="check-list">
+                    <li>Eficacia cercana al 99% con toma correcta</li>
+                    <li>No protege frente a otras ITS</li>
+                    <li>Financiado por el SNS para personas con alto riesgo</li>
+                    <li>Se solicita en centros de salud sexual o unidades de VIH</li>
+                  </ul>
+                </div>
+                <div class="prep-grid__item">
+                  <div class="info-card__badge info-card__badge--urgent">Emergencia · 72h</div>
+                  <h3>PEP</h3>
+                  <p>Tratamiento de emergencia tras una posible exposición al VIH. El tiempo es crítico.</p>
+                  <ul class="check-list">
+                    <li>Debe iniciarse en las primeras 72 horas (antes, mejor)</li>
+                    <li>Se solicita en urgencias hospitalarias</li>
+                    <li>Dura 28 días y requiere seguimiento médico</li>
+                    <li>Gratuito en el sistema público</li>
+                  </ul>
+                </div>
+              </div>
         </div>
-        <div class="info-card info-card--featured info-card--urgent">
-          <div class="info-card__badge info-card__badge--urgent">Emergencia · 72h</div>
-          <div class="info-card__icon">🚨</div>
-          <div class="info-card__content">
-            <h3>PEP</h3>
-            <p>Tratamiento de emergencia tras una posible exposición al VIH. El tiempo es crítico.</p>
-            <ul class="check-list">
-              <li>Debe iniciarse en las primeras 72 horas (antes, mejor)</li>
-              <li>Se solicita en urgencias hospitalarias</li>
-              <li>Dura 28 días y requiere seguimiento médico</li>
-              <li>Gratuito en el sistema público</li>
-            </ul>
-          </div>
+
+        <div back class="prep-detail">
+              <span class="section-tag">PrEP · Profilaxis Preexposición</span>
+              <h3>Prevención realista frente al VIH</h3>
+
+              <p>La PrEP o Profilaxis Preexposición al VIH es una estrategia preventiva dirigida a personas sin VIH que pueden tener mayor riesgo de exposición. Consiste en tomar medicación antirretroviral antes de una posible exposición para reducir el riesgo de adquirir el VIH.</p>
+
+              <p>Cuando se toma según indicación, la PrEP reduce el riesgo de adquirir VIH por vía sexual en aproximadamente un 99%, según los CDC.
+                <a href="https://www.cdc.gov/stophivtogether/hiv-prevention/prep.html#print" target="_blank" rel="noopener noreferrer">Fuente: CDC</a>
+              </p>
+
+              <p>Sin embargo, la PrEP no debe entenderse como una medida aislada. Forma parte de la prevención combinada, junto con el preservativo, el cribado de ITS, la educación sexual, la reducción del estigma y el acceso rápido a recursos sanitarios.</p>
+
+              <h4>El problema: cuando la prevención llega tarde</h4>
+              <p>En la práctica, uno de los grandes retos es el tiempo de acceso. Si una persona solicita PrEP porque identifica que puede estar en riesgo, una lista de espera de casi tres meses puede dejarla durante semanas sin una herramienta preventiva eficaz.</p>
+              <p>Esto es importante porque la PrEP no actúa «después» de una exposición de riesgo; para eso existe la profilaxis postexposición PPE/PEP, que debe valorarse de forma urgente tras una exposición reciente. La PrEP, en cambio, está pensada para prevenir antes de que ocurra la exposición.</p>
+              <p>Si una persona reconoce su riesgo y pide ayuda, el sistema debería aprovechar ese momento. Retrasar el acceso puede convertirse en una oportunidad perdida de prevención.</p>
+
+              <h4>Por qué reducir la espera importa</h4>
+              <p>Reducir los tiempos de acceso a PrEP permite:</p>
+              <ul class="check-list">
+                <li>Iniciar prevención antes en personas con mayor vulnerabilidad.</li>
+                <li>Evitar exposiciones al VIH durante el periodo de espera.</li>
+                <li>Aprovechar el momento en que la persona está motivada para cuidarse.</li>
+                <li>Realizar cribado de VIH, ITS y hepatitis.</li>
+                <li>Ofrecer educación sexual individualizada y sin juicio.</li>
+                <li>Reforzar el uso del preservativo y otras medidas de prevención.</li>
+              </ul>
+
+              <p>En Canarias, el protocolo de implantación de PrEP-VIH establece seguimiento periódico cada 3 meses, incluyendo serología de VIH, cribado de ITS y test de embarazo en mujeres fértiles. Esto refuerza una idea importante: la PrEP no es solo «dar una pastilla»; es una puerta de entrada a un circuito de prevención, seguimiento, cribado y educación sexual.
+                <a href="https://www3.gobiernodecanarias.org/noticias/sanidad-establece-un-protocolo-para-la-implantacion-del-tratamiento-prep-vih-en-canarias/" target="_blank" rel="noopener noreferrer">Fuente: Gobierno de Canarias</a>
+              </p>
+
+              <div class="prep-detail__message">
+                <h4>Mensaje BE NURSE</h4>
+                <p>Desde BE NURSE, defendemos que hablar de PrEP es hablar de prevención realista, salud pública y equidad. No todas las personas tienen las mismas posibilidades de protegerse, acceder a información fiable o llegar rápido a un recurso sanitario.</p>
+              </div>
         </div>
-      </div>
+      </app-flip-card>
     </section>
 
     <!-- TRATAMIENTO ANTIRRETROVIRAL -->
@@ -126,18 +166,31 @@
           <div class="info-card__icon">💊</div>
           <div class="info-card__content">
             <h3>Tratamiento antirretroviral (TAR)</h3>
-            <p>El tratamiento antirretroviral controla la replicación del VIH, mantiene el sistema inmunitario y permite llevar una vida larga y saludable. Su toma debe ser constante y bajo seguimiento médico.</p>
+            <dl class="term-list">
+              <dt>Definición</dt>
+              <dd>Terapia combinada que bloquea la multiplicación del VIH, protege y restaura el sistema inmunitario y permite llevar una vida plena y saludable.</dd>
+
+              <dt>Indetectable = Intransmisible (I=I)</dt>
+              <dd>Al mantener la carga viral indetectable en sangre, la persona no transmite el virus durante las relaciones sexuales.</dd>
+
+              <dt>Adherencia continuada</dt>
+              <dd>La toma constante y sin interrupciones previene la aparición de cepas virales resistentes a los fármacos.</dd>
+
+              <dt>Tratamientos modernos</dt>
+              <dd>Pautas simplificadas de 1 pastilla al día con mínimos efectos secundarios, o formulaciones inyectables de acción prolongada cada 2 meses.</dd>
+            </dl>
           </div>
         </div>
         <div class="info-card info-card--featured">
           <div class="info-card__icon">🔬</div>
           <div class="info-card__content">
-            <h3>I=I: Indetectable = Intransmisible</h3>
-            <p>Cuando la carga viral es indetectable de forma mantenida gracias al tratamiento, la persona con VIH no transmite el virus por vía sexual. Este principio, avalado por la evidencia científica, es clave para reducir el estigma y la transmisión.</p>
+            <h3>I = I: Indetectable = Intransmisible</h3>
+            <p>Cuando una persona con VIH mantiene una carga viral indetectable gracias al tratamiento, no transmite el VIH por vía sexual. Los CDC explican que una persona con VIH que mantiene carga viral indetectable o suprimida no transmite el virus a sus parejas sexuales.</p>
             <ul class="check-list">
-              <li>Carga viral indetectable significa tratamiento eficaz.</li>
-              <li>Sin riesgo de transmisión sexual con carga indetectable sostenida.</li>
-              <li>Fundamental para normalizar la vida con VIH.</li>
+              <li>Carga viral indetectable = tratamiento eficaz.</li>
+              <li>Indetectable mantenido = no transmisión sexual del VIH.</li>
+              <li>I=I ayuda a reducir miedo, culpa y estigma.</li>
+              <li>Las personas con VIH pueden tener relaciones, proyectos, maternidad/paternidad y vida afectiva con normalidad y seguimiento sanitario.</li>
             </ul>
           </div>
         </div>
@@ -148,45 +201,91 @@
     <section id="vacunacion" class="content-section content-section--accent">
       <div class="section-header">
         <span class="section-tag">Inmunización</span>
-        <h2 class="section-title">Vacunación</h2>
-        <p class="section-subtitle">Protección a largo plazo frente a algunas de las ITS más frecuentes.</p>
+        <h2 class="section-title">Vacunación frente a ITS prevenibles</h2>
+        <p class="section-subtitle">Algunas infecciones relacionadas con la salud sexual pueden prevenirse mediante vacunación. Revisar el estado vacunal es una forma de autocuidado, especialmente si hay nuevas parejas, múltiples parejas sexuales o prácticas de mayor exposición.</p>
       </div>
+
       <div class="cards-grid cards-grid--3">
-        <div class="info-card">
-          <div class="info-card__icon">💉</div>
-          <div class="info-card__content">
-            <h3>Vacuna del VPH</h3>
-            <p>Protege frente a los tipos de VPH causantes de la mayoría de los cánceres relacionados.</p>
+
+        <app-flip-card frontLabel="Clic para detalles" backLabel="Volver a general">
+          <div front class="vacuna">
+            <div class="card-media card-media--small">
+              <img src="assets/cuidate/vacuna-vph.jpg" alt="Caja de vacuna del VPH junto a una jeringa" loading="lazy">
+            </div>
+            <h3>Vacuna VPH</h3>
+            <p>El virus del papiloma humano (VPH o HPV) es una de las infecciones de transmisión sexual más frecuentes. Existen distintos genotipos: algunos se relacionan con verrugas genitales y otros con lesiones precancerosas y cánceres asociados al VPH.</p>
             <ul class="check-list">
-              <li>Incluida en el calendario vacunal en España</li>
-              <li>Recomendada hasta los 26 años (y hasta los 45 en ciertos casos)</li>
-              <li>3 dosis en adultos no vacunados</li>
+              <li>Protege frente a 9 genotipos</li>
+              <li>1 dosis a los 12 años en España</li>
+              <li>Vacunación de rescate y grupos de riesgo</li>
             </ul>
           </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card__icon">🟡</div>
-          <div class="info-card__content">
-            <h3>Hepatitis A</h3>
-            <p>Recomendada para personas con múltiples parejas, HSH y viajeros a zonas de riesgo.</p>
+          <div back class="vacuna-detalle">
+            <h3>Detalles: Vacuna VPH</h3>
+            <p>La vacuna nonavalente protege frente a 9 genotipos: <strong>6 y 11</strong>, relacionados principalmente con verrugas genitales, y <strong>16, 18, 31, 33, 45, 52 y 58</strong>, relacionados con mayor riesgo de lesiones precancerosas y cánceres como cuello uterino, ano, vulva, vagina, pene y orofaringe.</p>
+            <h4>¿Cuántas dosis son?</h4>
             <ul class="check-list">
-              <li>2 dosis con 6 meses de diferencia</li>
+              <li>En España, la vacunación sistemática actual se realiza con 1 dosis a los 12 años.</li>
+              <li>Existe vacunación de rescate en personas no vacunadas hasta los 18 años incluidos.</li>
+              <li>En determinados grupos de riesgo puede recomendarse pauta de 3 dosis: 0, 1-2 y 6 meses, hasta los 45 años incluidos.</li>
+            </ul>
+          </div>
+        </app-flip-card>
+
+        <app-flip-card frontLabel="Clic para detalles" backLabel="Volver a general">
+          <div front class="vacuna">
+            <div class="card-media card-media--small">
+              <img src="assets/cuidate/vacuna-hepatitis-a.jpg" alt="Caja de vacuna de la hepatitis A junto a una jeringa" loading="lazy">
+            </div>
+            <h3>Vacuna Hepatitis A</h3>
+            <p>La vacuna frente a hepatitis A puede estar indicada en personas con mayor exposición, como algunas prácticas sexuales de riesgo, hombres que tienen sexo con hombres, personas con VIH o viajes a zonas de riesgo.</p>
+            <ul class="check-list">
+              <li>Pauta habitual de 2 dosis</li>
+              <li>Indicada en grupos de riesgo</li>
               <li>Disponible en centros de salud</li>
             </ul>
           </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card__icon">🔵</div>
-          <div class="info-card__content">
-            <h3>Hepatitis B</h3>
-            <p>Protección frente a un virus que se transmite por sangre y fluidos sexuales.</p>
+          <div back class="vacuna-detalle">
+            <h3>Detalles: Vacuna Hepatitis A</h3>
+            <h4>¿Cuántas dosis son?</h4>
             <ul class="check-list">
-              <li>3 dosis: 0, 1 y 6 meses</li>
-              <li>Muy recomendada para personas con múltiples parejas</li>
-              <li>Incluida en el calendario infantil, gratuita para adultos en riesgo</li>
+              <li>La pauta habitual de hepatitis A es de 2 dosis.</li>
+              <li>La segunda dosis se administra habitualmente a partir de los 6 meses de la primera, según indicación sanitaria.</li>
+              <li>Está recomendada en determinados grupos o situaciones de riesgo, no como vacunación universal de adultos.</li>
             </ul>
           </div>
-        </div>
+        </app-flip-card>
+
+        <app-flip-card frontLabel="Clic para detalles" backLabel="Volver a general">
+          <div front class="vacuna">
+            <div class="card-media card-media--small">
+              <img src="assets/cuidate/vacuna-hepatitis-b.jpg" alt="Caja de vacuna de la hepatitis B junto a una jeringa" loading="lazy">
+            </div>
+            <h3>Vacuna Hepatitis B</h3>
+            <p>La hepatitis B se transmite por sangre y fluidos sexuales. Puede cronificarse y afectar gravemente al hígado, por eso la vacunación es una herramienta clave de prevención.</p>
+            <ul class="check-list">
+              <li>Incluida en el calendario infantil</li>
+              <li>3 dosis en adultos con indicación</li>
+              <li>Reforzada en Canarias en grupos de riesgo</li>
+            </ul>
+          </div>
+          <div back class="vacuna-detalle">
+            <h3>Detalles: Vacuna Hepatitis B</h3>
+            <h4>¿Cuántas dosis son?</h4>
+            <p>Está incluida en el calendario infantil. En adultos no vacunados con indicación, la pauta habitual es de 3 dosis:</p>
+            <ul class="check-list">
+              <li><strong>1.ª dosis:</strong> inicia la protección.</li>
+              <li><strong>2.ª dosis:</strong> al mes, refuerza la respuesta.</li>
+              <li><strong>3.ª dosis:</strong> a los 6 meses, completa la pauta y consolida la protección.</li>
+            </ul>
+            <p>Canarias ha reforzado la vacunación frente a hepatitis B en adultos con determinados factores de riesgo.</p>
+          </div>
+        </app-flip-card>
+
+      </div>
+
+      <div class="highlight-note">
+        <strong>Importante:</strong> vacunarse también es salud sexual. No sustituye al preservativo, pero añade una capa de protección frente a infecciones prevenibles como VPH, hepatitis A y hepatitis B.
       </div>
     </section>
 

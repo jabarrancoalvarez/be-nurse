@@ -1,0 +1,106 @@
+:host {
+  display: block;
+}
+
+.flip-card {
+  perspective: 2000px;
+  /* Sin girar ocupa la altura del hueco: asi una fila de tarjetas queda pareja.
+     Al girar, la altura pasa a fijarse en linea segun el contenido del reverso. */
+  height: 100%;
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &__inner {
+    position: relative;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &--flipped &__inner {
+    transform: rotateY(180deg);
+  }
+
+  &__face {
+    background: var(--color-bg-white);
+    border: 1px solid rgba(0, 184, 107, 0.25);
+    border-radius: var(--radius-xl);
+    backface-visibility: hidden;
+    /* El navegador no descarta la cara trasera cuando esta tiene overflow distinto
+       de visible, asi que ademas se oculta a mano justo a mitad del giro. */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, visibility 0s linear 0.35s;
+
+    &--front {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      visibility: visible;
+      cursor: pointer;
+    }
+
+    &--back {
+      position: absolute;
+      inset: 0;
+      transform: rotateY(180deg);
+      overflow-y: auto;
+      visibility: hidden;
+    }
+
+    &:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-xl), var(--shadow-glow);
+    }
+  }
+
+  &--flipped &__face--front {
+    visibility: hidden;
+  }
+
+  &--flipped &__face--back {
+    visibility: visible;
+  }
+
+  &__content {
+    min-height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    @media (max-width: 600px) {
+      padding: 1.25rem;
+    }
+  }
+
+  &__toggle {
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    border: 1px solid rgba(0, 184, 107, 0.2);
+    border-radius: var(--radius-full);
+    padding: 0.6rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+
+    &:hover {
+      background: var(--color-primary);
+      color: #fff;
+    }
+  }
+
+  /* El giro es decorativo: sin el, la tarjeta sigue alternando cara. */
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &__inner,
+    &__face {
+      transition: none;
+    }
+  }
+}

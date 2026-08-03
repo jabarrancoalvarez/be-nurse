@@ -4,12 +4,13 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FlipCardComponent } from '../../shared/flip-card/flip-card.component';
 
 @Component({
   selector: 'app-cuidate',
   templateUrl: './cuidate.component.html',
   styleUrl: './cuidate.component.scss',
-  imports: [RouterLink]
+  imports: [RouterLink, FlipCardComponent]
 })
 export class CuidateComponent implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
