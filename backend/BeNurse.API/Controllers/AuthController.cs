@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -11,10 +12,12 @@ namespace BeNurse.API.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IConfiguration _config;
+    private readonly ILogger<AuthController> _logger;
 
-    public AuthController(IConfiguration config)
+    public AuthController(IConfiguration config, ILogger<AuthController> logger)
     {
         _config = config;
+        _logger = logger;
     }
 
     [HttpPost("login")]
@@ -23,11 +26,33 @@ public class AuthController : ControllerBase
         var expectedEmail = _config["NurseCredentials:Email"];
         var expectedPassword = _config["NurseCredentials:Password"];
 
-        if (dto.Email != expectedEmail || dto.Password != expectedPassword)
-            return Unauthorized(new { message = "Credenciales incorrectas" });
+        // Sin credenciales configuradas no se entra: de lo contrario, unos valores
+        // vacios dejarian la sesion de administrador abierta a cualquiera.
+        if (string.IsNullOrWhiteSpace(expectedEmail) || string.IsNullOrWhiteSpace(expectedPassword))
+        {
+            _logger.LogError("Intento de acceso sin NurseCredentials configuradas.");
+            return Unauthorized(new { message = "El acceso no esta configurado en el servidor." });
+        }
 
-        var token = GenerateToken(dto.Email);
-        return Ok(new { token });
+        var emailOk = string.Equals(dto.Email?.Trim(), expectedEmail, StringComparison.OrdinalIgnoreCase);
+        var passwordOk = FixedTimeEquals(dto.Password, expectedPassword);
+
+        if (!emailOk || !passwordOk)
+        {
+            return Unauthorized(new { message = "Credenciales incorrectas" });
+        }
+
+        return Ok(new { token = GenerateToken(expectedEmail) });
+    }
+
+    /// <summary>Comparacion de tiempo constante: no filtra cuantos caracteres coinciden.</summary>
+    private static bool FixedTimeEquals(string? provided, string expected)
+    {
+        if (provided is null) return false;
+
+        return CryptographicOperations.FixedTimeEquals(
+            Encoding.UTF8.GetBytes(provided),
+            Encoding.UTF8.GetBytes(expected));
     }
 
     private string GenerateToken(string email)

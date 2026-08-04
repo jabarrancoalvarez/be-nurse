@@ -2,6 +2,7 @@ using System.Text;
 using BeNurse.Application.Interfaces;
 using BeNurse.Application.Services;
 using BeNurse.Application.Settings;
+using BeNurse.Infrastructure.Content;
 using BeNurse.Infrastructure.Data;
 using BeNurse.Infrastructure.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -27,6 +28,9 @@ else
         .ConfigureHttpClient(client => client.Timeout = TimeSpan.FromSeconds(15));
 }
 
+builder.Services.AddScoped<IContentService, ContentService>();
+builder.Services.AddScoped<IMediaService, MediaService>();
+
 builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
@@ -34,7 +38,15 @@ builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<IChatService, ChatService>();
 builder.Services.AddScoped<IContactService, ContactService>();
 
-var jwtSecret = builder.Configuration["Jwt:Secret"]!;
+// Arrancar sin secreto, o con uno corto, permitiria fabricar tokens de
+// administrador: con el CMS eso es control total del contenido de la web.
+var jwtSecret = builder.Configuration["Jwt:Secret"];
+if (string.IsNullOrWhiteSpace(jwtSecret) || jwtSecret.Length < 32)
+{
+    throw new InvalidOperationException(
+        "Jwt:Secret no esta configurado o es demasiado corto (minimo 32 caracteres). " +
+        "Defínelo en la variable de entorno Jwt__Secret, o en appsettings.Development.json para desarrollo local.");
+}
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
