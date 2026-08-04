@@ -1,8 +1,8 @@
 <section class="page-hero">
   <div class="page-hero__content">
-    <span class="section-tag">Contacto</span>
-    <h1 class="page-hero__title">¿Hablamos?</h1>
-    <p>Escríbenos de forma anónima. Nuestro equipo de enfermería responde sin juicios.</p>
+    <span class="section-tag" beEditable="contacto.general.span1">Contacto</span>
+    <h1 class="page-hero__title" beEditable="contacto.general.h11">¿Hablamos?</h1>
+    <p beEditable="contacto.general.p1">Escríbenos de forma anónima. Nuestro equipo de enfermería responde sin juicios.</p>
   </div>
 </section>
 
@@ -16,7 +16,7 @@
         <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
         <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
       </svg>
-      <span>Este servicio <strong>NO es urgencias.</strong> Para emergencias médicas contacta con <strong>Screening Point</strong> o tu médico de cabecera.</span>
+      <span beEditable="contacto.general.span2">Este servicio <strong>NO es urgencias.</strong> Para emergencias médicas contacta con <strong>Screening Point</strong> o tu médico de cabecera.</span>
     </div>
 
     @if (submitted()) {
@@ -27,14 +27,14 @@
             <polyline points="22 4 12 14.01 9 11.01"/>
           </svg>
         </div>
-        <h3>¡Mensaje enviado!</h3>
-        <p>Nos pondremos en contacto contigo en menos de 48 horas.</p>
+        <h3 beEditable="contacto.general.h31">¡Mensaje enviado!</h3>
+        <p beEditable="contacto.general.p2">Nos pondremos en contacto contigo en menos de 48 horas.</p>
       </div>
     } @else {
       <form class="contact-form" (ngSubmit)="submit()" #f="ngForm">
         <div class="contact-form__header">
-          <h2>Envíanos un mensaje</h2>
-          <p>Todos los campos marcados con * son obligatorios.</p>
+          <h2 beEditable="contacto.general.h21">Envíanos un mensaje</h2>
+          <p beEditable="contacto.general.p3">Todos los campos marcados con * son obligatorios.</p>
         </div>
 
         @if (error()) {
@@ -90,8 +90,8 @@
   <div class="about-info-col">
 
     <div class="about-card">
-      <h3>Sobre BE-nurse</h3>
-      <p>Somos una plataforma de salud sexual respaldada por profesionales de enfermería especializados. Nuestro objetivo es proporcionar información rigurosa y acceso a apoyo profesional sin barreras ni juicios.</p>
+      <h3 beEditable="contacto.general.h32">Sobre BE-nurse</h3>
+      <p beEditable="contacto.general.p4">Somos una plataforma de salud sexual respaldada por profesionales de enfermería especializados. Nuestro objetivo es proporcionar información rigurosa y acceso a apoyo profesional sin barreras ni juicios.</p>
     </div>
 
     <div class="contact-items">
@@ -153,16 +153,16 @@
 <!-- QUIENES SOMOS Y QUE HACEMOS -->
 <section class="about-story">
   <div class="about-card">
-    <h3>¿Cómo nace BE-nurse?</h3>
-    <p>BE NURSE nace de la experiencia de enfermeras que, en su práctica diaria, observan una realidad cada vez más frecuente: el aumento de las Infecciones de Transmisión Sexual (ITS), los embarazos no planificados y las dudas que muchos jóvenes presentan sobre su salud sexual.</p>
-    <p>El contacto directo con adolescentes y jóvenes nos permitió identificar la necesidad de crear un espacio cercano, accesible y basado en evidencia científica donde hablar de salud sexual sin tabúes, resolver dudas y promover decisiones informadas.</p>
-    <p>BE NURSE surge con el propósito de acercar la educación sexual, la prevención de ITS y la promoción de la salud a los jóvenes mediante un lenguaje claro, recursos accesibles y el compromiso de la Enfermería con la comunidad.</p>
-    <p class="about-quote"><em>Porque la información no solo educa. También protege.</em></p>
+    <h3 beEditable="contacto.general.h33">¿Cómo nace BE-nurse?</h3>
+    <p beEditable="contacto.general.p5">BE NURSE nace de la experiencia de enfermeras que, en su práctica diaria, observan una realidad cada vez más frecuente: el aumento de las Infecciones de Transmisión Sexual (ITS), los embarazos no planificados y las dudas que muchos jóvenes presentan sobre su salud sexual.</p>
+    <p beEditable="contacto.general.p6">El contacto directo con adolescentes y jóvenes nos permitió identificar la necesidad de crear un espacio cercano, accesible y basado en evidencia científica donde hablar de salud sexual sin tabúes, resolver dudas y promover decisiones informadas.</p>
+    <p beEditable="contacto.general.p7">BE NURSE surge con el propósito de acercar la educación sexual, la prevención de ITS y la promoción de la salud a los jóvenes mediante un lenguaje claro, recursos accesibles y el compromiso de la Enfermería con la comunidad.</p>
+    <p class="about-quote" beEditable="contacto.general.p8"><em>Porque la información no solo educa. También protege.</em></p>
   </div>
 
   <div class="about-card">
-    <h3>Nuestros servicios</h3>
-    <p class="about-lead">Formación, consultoría y recursos innovadores para promover una educación afectivo-sexual basada en la evidencia.</p>
-    <p>Diseñamos programas educativos, talleres, campañas de sensibilización, materiales didácticos y soluciones digitales dirigidas a centros educativos, administraciones, familias y profesionales, con el objetivo de prevenir las ITS, fomentar relaciones saludables y ofrecer a los jóvenes herramientas para tomar decisiones informadas.</p>
+    <h3 beEditable="contacto.general.h34">Nuestros servicios</h3>
+    <p class="about-lead" beEditable="contacto.general.p9">Formación, consultoría y recursos innovadores para promover una educación afectivo-sexual basada en la evidencia.</p>
+    <p beEditable="contacto.general.p10">Diseñamos programas educativos, talleres, campañas de sensibilización, materiales didácticos y soluciones digitales dirigidas a centros educativos, administraciones, familias y profesionales, con el objetivo de prevenir las ITS, fomentar relaciones saludables y ofrecer a los jóvenes herramientas para tomar decisiones informadas.</p>
   </div>
 </section>

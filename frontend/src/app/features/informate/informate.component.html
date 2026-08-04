@@ -1,14 +1,14 @@
 <section class="page-hero">
   <div class="page-hero__content">
-    <span class="section-tag">Información sexual</span>
-    <h1 class="page-hero__title">Infórmate</h1>
-    <p>Información clara, rigurosa y sin tabúes sobre la salud sexual y las infecciones de transmisión sexual.</p>
+    <span class="section-tag" beEditable="informate.general.span1">Información sexual</span>
+    <h1 class="page-hero__title" beEditable="informate.general.h11">Infórmate</h1>
+    <p beEditable="informate.general.p1">Información clara, rigurosa y sin tabúes sobre la salud sexual y las infecciones de transmisión sexual.</p>
   </div>
 </section>
 
 <div class="informate-container">
   <nav class="toc">
-    <h4>Contenidos</h4>
+    <h4 beEditable="informate.general.h41">Contenidos</h4>
     <ul>
       <li [class.active]="activeSection() === 'que-son-its'"><a (click)="scrollTo('que-son-its')">¿Qué son las ITS?</a></li>
       <li [class.active]="activeSection() === 'realidad'"><a (click)="scrollTo('realidad')">Una realidad</a></li>
@@ -21,56 +21,66 @@
   <div class="informate-content">
 
     <section id="que-son-its" class="content-section">
-      <span class="section-tag">Definición</span>
-      <h2>¿Qué son las ITS?</h2>
-      <p>Las Infecciones de Transmisión Sexual (ITS) son infecciones que se transmiten principalmente a través del contacto sexual. Algunas pueden afectar a la zona genital y las mucosas, provocando complicaciones para la salud. Además, muchas pueden no presentar síntomas, dificultando su diagnóstico y tratamiento.</p>
+      <span class="section-tag" beEditable="informate.que-son-its.span1">Definición</span>
+      <h2 beEditable="informate.que-son-its.h21">¿Qué son las ITS?</h2>
+      <p beEditable="informate.que-son-its.p1">Las Infecciones de Transmisión Sexual (ITS) son infecciones que se transmiten principalmente a través del contacto sexual. Algunas pueden afectar a la zona genital y las mucosas, provocando complicaciones para la salud. Además, muchas pueden no presentar síntomas, dificultando su diagnóstico y tratamiento.</p>
     </section>
 
     <section id="realidad" class="content-section">
-      <span class="section-tag">Epidemiología</span>
-      <h2>Una realidad que no podemos ignorar</h2>
-      <p>Las Infecciones de Transmisión Sexual (ITS) continúan aumentando entre la población joven. Según los datos de la Red Nacional de Vigilancia Epidemiológica –RENAVE–, infecciones como la clamidia, la gonorrea y la sífilis han experimentado un incremento significativo en los últimos años, especialmente entre jóvenes y adultos jóvenes.</p>
+      <span class="section-tag" beEditable="informate.realidad.span1">Epidemiología</span>
+      <h2 beEditable="informate.realidad.h21">Una realidad que no podemos ignorar</h2>
+      <p beEditable="informate.realidad.p1">Las Infecciones de Transmisión Sexual (ITS) continúan aumentando entre la población joven. Según los datos de la Red Nacional de Vigilancia Epidemiológica –RENAVE–, infecciones como la clamidia, la gonorrea y la sífilis han experimentado un incremento significativo en los últimos años, especialmente entre jóvenes y adultos jóvenes.</p>
 
       <div class="stats-grid">
         <div class="stats-block">
-          <h3>España (2024)</h3>
+          <h3 beEditable="informate.realidad.h31">España (2024)</h3>
           <ul>
-            <li>41.918 casos de infección por <em>Chlamydia trachomatis</em></li>
-            <li>37.257 casos de gonococia, tasa de 76,63 por 100.000 habitantes</li>
-            <li>11.930 casos de sífilis</li>
+            <li beEditable="informate.realidad.li1">41.918 casos de infección por <em>Chlamydia trachomatis</em></li>
+            <li beEditable="informate.realidad.li2">37.257 casos de gonococia, tasa de 76,63 por 100.000 habitantes</li>
+            <li beEditable="informate.realidad.li3">11.930 casos de sífilis</li>
           </ul>
-          <p class="stats-block__note">Tendencia 2017-2024 ascendente: gonococia +24,5% anual, sífilis +14,1% anual y clamidia +18,6% anual.</p>
+          <p class="stats-block__note" beEditable="informate.realidad.p2">Tendencia 2017-2024 ascendente: gonococia +24,5% anual, sífilis +14,1% anual y clamidia +18,6% anual.</p>
         </div>
         <div class="stats-block">
-          <h3>Canarias (2024)</h3>
+          <h3 beEditable="informate.realidad.h32">Canarias (2024)</h3>
           <ul>
-            <li>2.130 casos de clamidia, tasa 95,07/100.000 hab. (+59,7% respecto a 2023): la ITS más notificada</li>
-            <li>1.461 casos de gonococia, tasa 65,26/100.000 hab. (+41,1% respecto a 2023)</li>
-            <li>929 casos de sífilis, tasa 41,50/100.000 hab. (-22,1% respecto a 2023, pero sigue siendo una cifra relevante)</li>
+            <li beEditable="informate.realidad.li4">2.130 casos de clamidia, tasa 95,07/100.000 hab. (+59,7% respecto a 2023): la ITS más notificada</li>
+            <li beEditable="informate.realidad.li5">1.461 casos de gonococia, tasa 65,26/100.000 hab. (+41,1% respecto a 2023)</li>
+            <li beEditable="informate.realidad.li6">929 casos de sífilis, tasa 41,50/100.000 hab. (-22,1% respecto a 2023, pero sigue siendo una cifra relevante)</li>
           </ul>
-          <p class="stats-block__note">Tenerife presentó tasas elevadas: 75,4/100.000 en gonococia, 111,4/100.000 en clamidia y 37,7/100.000 en sífilis.</p>
+          <p class="stats-block__note" beEditable="informate.realidad.p3">Tenerife presentó tasas elevadas: 75,4/100.000 en gonococia, 111,4/100.000 en clamidia y 37,7/100.000 en sífilis.</p>
         </div>
       </div>
 
-      <p>Según la <strong>Encuesta Nacional de Salud Sexual 2025</strong>, el 75,2% de las personas no utilizó preservativo en su última relación con penetración vaginal.</p>
-      <p>Los grupos más afectados son los jóvenes. En Canarias, la mayor incidencia se registró en hombres de 25 a 34 años y en mujeres de 15 a 24 años.</p>
-      <p class="quote">El aumento de las ITS muestra que la educación sexual no puede limitarse a informar: debe ayudar a tomar decisiones reales sobre protección, consentimiento y autocuidado.</p>
+      <p beEditable="informate.realidad.p4">Según la <strong>Encuesta Nacional de Salud Sexual 2025</strong>, el 75,2% de las personas no utilizó preservativo en su última relación con penetración vaginal.</p>
+      <p beEditable="informate.realidad.p5">Los grupos más afectados son los jóvenes. En Canarias, la mayor incidencia se registró en hombres de 25 a 34 años y en mujeres de 15 a 24 años.</p>
+      <p class="quote" beEditable="informate.realidad.p6">El aumento de las ITS muestra que la educación sexual no puede limitarse a informar: debe ayudar a tomar decisiones reales sobre protección, consentimiento y autocuidado.</p>
     </section>
 
     <section id="its" class="content-section">
-      <span class="section-tag">Infecciones</span>
-      <h2>Las ITS</h2>
-      <p class="section-lead">Toca cada tarjeta para conocer los detalles de cada infección.</p>
+      <span class="section-tag" beEditable="informate.its.span1">Infecciones</span>
+      <h2 beEditable="informate.its.h21">Las ITS</h2>
+      <p class="section-lead" beEditable="informate.its.p1">Toca cada tarjeta para conocer los detalles de cada infección.</p>
       <div class="its-grid">
-        @for (its of itsCards; track its.name) {
-          <div class="its-card" [class.flipped]="flippedCard() === its.name" (click)="toggleCard(its.name)">
+        @for (card of its.cards(); track $index; let i = $index) {
+          <div class="its-card" [class.flipped]="flippedCard() === card.title"
+               (click)="!editMode.active() && toggleCard(card.title)">
+            @if (editMode.active()) {
+              <button type="button" class="card-remove" (click)="its.removeCard(i)"
+                      title="Eliminar esta tarjeta" aria-label="Eliminar esta tarjeta">×</button>
+            }
             <div class="its-card__inner">
 
               <div class="its-card__front">
                 <div class="its-card__img-wrap">
-                  <img [src]="its.image" [alt]="its.name" class="its-card__img" />
+                  <img [src]="its.imageOf(card)" [alt]="card.title" class="its-card__img"
+                       [class.be-editable-image]="editMode.active()"
+                       [title]="editMode.active() ? 'Haz clic para cambiar esta imagen' : ''"
+                       (click)="editMode.active() && its.changeImage(i)" />
                 </div>
-                <h4>{{ its.name }}</h4>
+                <h4 [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                    [class.be-editable]="editMode.active()"
+                    (blur)="its.updateField(i, 'title', $event)">{{ card.title }}</h4>
                 <span class="its-card__hint">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                   Toca para saber más
@@ -79,25 +89,37 @@
 
               <div class="its-card__back">
                 <div class="its-card__back-header">
-                  <h4>{{ its.name }}</h4>
+                  <h4>{{ card.title }}</h4>
                 </div>
                 <div class="its-card__sections">
                   <div class="its-section">
                     <span class="its-section__label">¿Qué es?</span>
-                    <p>{{ its.queEs }}</p>
+                    <p [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                       [class.be-editable]="editMode.active()"
+                       (blur)="its.updateField(i, 'body', $event)">{{ card.body }}</p>
                   </div>
                   <div class="its-section">
                     <span class="its-section__label">Síntomas</span>
-                    <p>{{ its.sintomas }}</p>
+                    <p [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                       [class.be-editable]="editMode.active()"
+                       (blur)="its.updateNamedField(i, 'sintomas', $event)">{{ its.field(card, 'sintomas') }}</p>
                   </div>
                   <div class="its-section">
                     <span class="its-section__label">Tratamiento</span>
-                    <p>{{ its.tratamiento }}</p>
+                    <p [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                       [class.be-editable]="editMode.active()"
+                       (blur)="its.updateNamedField(i, 'tratamiento', $event)">{{ its.field(card, 'tratamiento') }}</p>
                   </div>
                 </div>
                 <div class="its-card__tags">
-                  @for (tag of its.tags; track tag) {
-                    <span class="its-tag">{{ tag }}</span>
+                  @for (tag of card.items; track $index; let t = $index) {
+                    <span class="its-tag"
+                          [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                          [class.be-editable]="editMode.active()"
+                          (blur)="its.updateItem(i, t, $event)">{{ tag }}</span>
+                  }
+                  @if (editMode.active()) {
+                    <button type="button" class="card-add-item" (click)="its.addItem(i)">+ etiqueta</button>
                   }
                 </div>
               </div>
@@ -105,62 +127,75 @@
             </div>
           </div>
         }
+
+        @if (editMode.active()) {
+          <button type="button" class="card-add" (click)="its.addCard({ title: 'Nueva ITS', body: 'Describe aquí la infección.' })">
+            <span class="card-add__plus">+</span>
+            Añadir ITS
+          </button>
+        }
       </div>
+
+      @if (editMode.active()) {
+        <button type="button" class="group-restore" (click)="its.restore()">
+          Restaurar tarjetas originales
+        </button>
+      }
     </section>
 
     <section id="deteccion" class="content-section">
-      <span class="section-tag">Diagnóstico</span>
-      <h2>Detección y pruebas</h2>
-      <p>Hacerse pruebas no es "exagerar": es cuidarse. Muchas ITS pueden no dar síntomas y aun así transmitirse.</p>
+      <span class="section-tag" beEditable="informate.deteccion.span1">Diagnóstico</span>
+      <h2 beEditable="informate.deteccion.h21">Detección y pruebas</h2>
+      <p beEditable="informate.deteccion.p1">Hacerse pruebas no es "exagerar": es cuidarse. Muchas ITS pueden no dar síntomas y aun así transmitirse.</p>
 
-      <h3>¿Cuándo tiene sentido hacerse pruebas?</h3>
+      <h3 beEditable="informate.deteccion.h31">¿Cuándo tiene sentido hacerse pruebas?</h3>
       <ul class="check-list">
-        <li>Si has tenido sexo sin preservativo (vaginal, anal u oral) o si se rompió.</li>
-        <li>Si has cambiado de pareja o tienes varias parejas.</li>
-        <li>Si tienes síntomas (pero recuerda: puede no haber).</li>
-        <li>Si tu pareja ha tenido un diagnóstico o duda.</li>
-        <li>Si quieres quedarte tranquilo/a: también es válido.</li>
+        <li beEditable="informate.deteccion.li1">Si has tenido sexo sin preservativo (vaginal, anal u oral) o si se rompió.</li>
+        <li beEditable="informate.deteccion.li2">Si has cambiado de pareja o tienes varias parejas.</li>
+        <li beEditable="informate.deteccion.li3">Si tienes síntomas (pero recuerda: puede no haber).</li>
+        <li beEditable="informate.deteccion.li4">Si tu pareja ha tenido un diagnóstico o duda.</li>
+        <li beEditable="informate.deteccion.li5">Si quieres quedarte tranquilo/a: también es válido.</li>
       </ul>
 
-      <h3>¿Qué tipo de pruebas existen?</h3>
+      <h3 beEditable="informate.deteccion.h32">¿Qué tipo de pruebas existen?</h3>
       <ul class="check-list">
-        <li><strong>Análisis de sangre:</strong> por ejemplo para VIH, sífilis, hepatitis.</li>
-        <li><strong>Muestras locales:</strong> orina, exudado vaginal/uretral, anal o de garganta (según prácticas) para clamidia/gonorrea, etc.</li>
-        <li><strong>Revisiones:</strong> según edad y recomendaciones (por ejemplo, cribado de VPH/citología en algunos casos).</li>
+        <li beEditable="informate.deteccion.li6"><strong>Análisis de sangre:</strong> por ejemplo para VIH, sífilis, hepatitis.</li>
+        <li beEditable="informate.deteccion.li7"><strong>Muestras locales:</strong> orina, exudado vaginal/uretral, anal o de garganta (según prácticas) para clamidia/gonorrea, etc.</li>
+        <li beEditable="informate.deteccion.li8"><strong>Revisiones:</strong> según edad y recomendaciones (por ejemplo, cribado de VPH/citología en algunos casos).</li>
       </ul>
 
-      <h3>Ventana diagnóstica (muy importante)</h3>
-      <p>Algunas pruebas no detectan la infección inmediatamente. Existe un tiempo llamado <strong>ventana diagnóstica</strong>.</p>
+      <h3 beEditable="informate.deteccion.h33">Ventana diagnóstica (muy importante)</h3>
+      <p beEditable="informate.deteccion.p2">Algunas pruebas no detectan la infección inmediatamente. Existe un tiempo llamado <strong>ventana diagnóstica</strong>.</p>
       <ul class="check-list">
-        <li>Si te haces la prueba "demasiado pronto", puede salir negativa aunque haya infección.</li>
-        <li>Si tienes dudas sobre el momento adecuado, pregunta: te orientamos sin juzgar.</li>
+        <li beEditable="informate.deteccion.li9">Si te haces la prueba "demasiado pronto", puede salir negativa aunque haya infección.</li>
+        <li beEditable="informate.deteccion.li10">Si tienes dudas sobre el momento adecuado, pregunta: te orientamos sin juzgar.</li>
       </ul>
 
-      <h3>¿Dónde hacerse pruebas?</h3>
+      <h3 beEditable="informate.deteccion.h34">¿Dónde hacerse pruebas?</h3>
       <ul class="check-list">
-        <li>Centro de salud (médico/a de familia, enfermería).</li>
-        <li>Centros de salud sexual / ITS (según tu ciudad).</li>
-        <li>Servicios comunitarios o recursos específicos para jóvenes.</li>
+        <li beEditable="informate.deteccion.li11">Centro de salud (médico/a de familia, enfermería).</li>
+        <li beEditable="informate.deteccion.li12">Centros de salud sexual / ITS (según tu ciudad).</li>
+        <li beEditable="informate.deteccion.li13">Servicios comunitarios o recursos específicos para jóvenes.</li>
       </ul>
 
-      <h3>Si sale positiva…</h3>
+      <h3 beEditable="informate.deteccion.h35">Si sale positiva…</h3>
       <ul class="check-list">
-        <li>No estás solo/a: la mayoría de ITS tienen tratamiento o control.</li>
-        <li>Seguir el tratamiento y avisar a parejas recientes es parte del cuidado (con apoyo profesional).</li>
-        <li>Evita culpas: lo importante es actuar.</li>
+        <li beEditable="informate.deteccion.li14">No estás solo/a: la mayoría de ITS tienen tratamiento o control.</li>
+        <li beEditable="informate.deteccion.li15">Seguir el tratamiento y avisar a parejas recientes es parte del cuidado (con apoyo profesional).</li>
+        <li beEditable="informate.deteccion.li16">Evita culpas: lo importante es actuar.</li>
       </ul>
-      <p class="quote">Si no sabes por dónde empezar, puedes escribirnos en el chat anónimo y te orientamos.</p>
+      <p class="quote" beEditable="informate.deteccion.p3">Si no sabes por dónde empezar, puedes escribirnos en el chat anónimo y te orientamos.</p>
     </section>
 
     <section id="faq" class="content-section">
-      <span class="section-tag">Dudas</span>
-      <h2>Preguntas frecuentes</h2>
+      <span class="section-tag" beEditable="informate.faq.span1">Dudas</span>
+      <h2 beEditable="informate.faq.h21">Preguntas frecuentes</h2>
       <div class="faq">
         @for (faq of faqs; track faq.q; let i = $index) {
           <div class="faq__item" [class.open]="openFaq() === i">
             <button class="faq__question" (click)="toggleFaq(i)">
               {{ faq.q }}
-              <span class="faq__icon">▾</span>
+              <span class="faq__icon" beEditable="informate.faq.span2">▾</span>
             </button>
             <div class="faq__body">
               <p class="faq__answer">{{ faq.a }}</p>

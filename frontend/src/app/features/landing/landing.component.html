@@ -41,16 +41,16 @@
 
   <div class="hero__stats" #heroStats>
     <div class="stat">
-      <span class="stat__num" #statNum>0</span>
-      <span class="stat__label">casos de clamidia en España (2022)</span>
+      <span class="stat__num" #statNum beEditable="landing.general.span1">0</span>
+      <span class="stat__label" beEditable="landing.general.span2">casos de clamidia en España (2022)</span>
     </div>
     <div class="stat">
-      <span class="stat__num" #statNum>0</span>
-      <span class="stat__label">casos de gonorrea (2022)</span>
+      <span class="stat__num" #statNum beEditable="landing.general.span3">0</span>
+      <span class="stat__label" beEditable="landing.general.span4">casos de gonorrea (2022)</span>
     </div>
     <div class="stat">
-      <span class="stat__num" #statNum>0</span>
-      <span class="stat__label">casos de sífilis (2022)</span>
+      <span class="stat__num" #statNum beEditable="landing.general.span5">0</span>
+      <span class="stat__label" beEditable="landing.general.span6">casos de sífilis (2022)</span>
     </div>
   </div>
 
@@ -70,20 +70,20 @@
 <!-- PILARES -->
 <section class="pillars">
   <div class="pillars__header">
-    <span class="section-tag">Nuestro contenido</span>
-    <h2 class="section-title">Tres pilares para tu bienestar</h2>
+    <span class="section-tag" beEditable="landing.general.span7">Nuestro contenido</span>
+    <h2 class="section-title" beEditable="landing.general.h21">Tres pilares para tu bienestar</h2>
   </div>
   <div class="pillars__grid">
 
     <div class="pillar-card pillar-card--informate card-hover" routerLink="/informate" #pillarCard>
       <div class="card-cursor"></div>
       <div class="pillar-card__img">
-        <img src="ilustracion-informate.svg" alt="Infórmate sobre salud sexual" />
+        <img beEditableImage="landing.general.img1" src="ilustracion-informate.svg" alt="Infórmate sobre salud sexual" />
       </div>
       <div class="pillar-card__body">
-        <h3>Infórmate</h3>
-        <h4>Conoce y comprende</h4>
-        <p>Todo sobre las ITS, su detección y cómo afectan tu salud. Información respaldada por profesionales.</p>
+        <h3 beEditable="landing.general.h31">Infórmate</h3>
+        <h4 beEditable="landing.general.h41">Conoce y comprende</h4>
+        <p beEditable="landing.general.p1">Todo sobre las ITS, su detección y cómo afectan tu salud. Información respaldada por profesionales.</p>
         <div class="pillar-card__arrow">
           Explorar 
           <span class="arrow-icon">
@@ -98,12 +98,12 @@
     <div class="pillar-card pillar-card--cuidate card-hover" routerLink="/cuidate" #pillarCard>
       <div class="card-cursor"></div>
       <div class="pillar-card__img">
-        <img src="ilustracion-cuidate.svg" alt="Cuídate y previene" />
+        <img beEditableImage="landing.general.img2" src="ilustracion-cuidate.svg" alt="Cuídate y previene" />
       </div>
       <div class="pillar-card__body">
-        <h3>Cuídate</h3>
-        <h4>Prevención activa</h4>
-        <p>Métodos, vacunas y profilaxis para protegerte de forma eficaz. Tu salud es nuestra prioridad.</p>
+        <h3 beEditable="landing.general.h32">Cuídate</h3>
+        <h4 beEditable="landing.general.h42">Prevención activa</h4>
+        <p beEditable="landing.general.p2">Métodos, vacunas y profilaxis para protegerte de forma eficaz. Tu salud es nuestra prioridad.</p>
         <div class="pillar-card__arrow">
           Explorar 
           <span class="arrow-icon">
@@ -118,12 +118,12 @@
     <div class="pillar-card pillar-card--realidades card-hover" routerLink="/realidades" #pillarCard>
       <div class="card-cursor"></div>
       <div class="pillar-card__img">
-        <img src="ilustracion-realidades.svg" alt="Realidades sin filtros" />
+        <img beEditableImage="landing.general.img3" src="ilustracion-realidades.svg" alt="Realidades sin filtros" />
       </div>
       <div class="pillar-card__body">
-        <h3>Realidades</h3>
-        <h4>Sin filtros ni tabúes</h4>
-        <p>Historias reales y preguntas incómodas sobre sexualidad. Conversaciones necesarias.</p>
+        <h3 beEditable="landing.general.h33">Realidades</h3>
+        <h4 beEditable="landing.general.h43">Sin filtros ni tabúes</h4>
+        <p beEditable="landing.general.p3">Historias reales y preguntas incómodas sobre sexualidad. Conversaciones necesarias.</p>
         <div class="pillar-card__arrow">
           Explorar 
           <span class="arrow-icon">
@@ -141,8 +141,8 @@
 <!-- COMO FUNCIONA -->
 <section class="how">
   <div class="how__header">
-    <span class="section-tag">Proceso</span>
-    <h2 class="section-title">Cómo funciona</h2>
+    <span class="section-tag" beEditable="landing.general.span8">Proceso</span>
+    <h2 class="section-title" beEditable="landing.general.h22">Cómo funciona</h2>
   </div>
   <div class="how__grid">
     <div class="how__step how__step--1">
@@ -152,8 +152,8 @@
           <path d="M21 21l-4.35-4.35"/>
         </svg>
       </div>
-      <h4>Explora el contenido</h4>
-      <p>Accede a información rigurosa sobre ITS, prevención y salud sexual organizada por temas.</p>
+      <h4 beEditable="landing.general.h44">Explora el contenido</h4>
+      <p beEditable="landing.general.p4">Accede a información rigurosa sobre ITS, prevención y salud sexual organizada por temas.</p>
     </div>
     <div class="how__step how__step--2">
       <div class="how__icon">
@@ -161,8 +161,8 @@
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
       </div>
-      <h4>Consulta de forma anónima</h4>
-      <p>Escribe tus dudas en el chat anónimo. Sin registro, sin juicios, sin barreras.</p>
+      <h4 beEditable="landing.general.h45">Consulta de forma anónima</h4>
+      <p beEditable="landing.general.p5">Escribe tus dudas en el chat anónimo. Sin registro, sin juicios, sin barreras.</p>
     </div>
     <div class="how__step how__step--3">
       <div class="how__icon">
@@ -171,8 +171,8 @@
           <polyline points="22 4 12 14.01 9 11.01"/>
         </svg>
       </div>
-      <h4>Recibe orientación profesional</h4>
-      <p>Un enfermero/a especializado responde con información basada en evidencia científica.</p>
+      <h4 beEditable="landing.general.h46">Recibe orientación profesional</h4>
+      <p beEditable="landing.general.p6">Un enfermero/a especializado responde con información basada en evidencia científica.</p>
     </div>
     <div class="how__step how__step--4">
       <div class="how__icon">
@@ -181,8 +181,8 @@
           <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
       </div>
-      <h4>Tu privacidad, garantizada</h4>
-      <p>No guardamos datos ni identificamos usuarios. Lo que preguntas aquí, aquí se queda.</p>
+      <h4 beEditable="landing.general.h47">Tu privacidad, garantizada</h4>
+      <p beEditable="landing.general.p7">No guardamos datos ni identificamos usuarios. Lo que preguntas aquí, aquí se queda.</p>
     </div>
   </div>
 </section>
@@ -190,49 +190,49 @@
 <!-- EQUIPO -->
 <section class="team">
   <div class="team__header">
-    <span class="section-tag">Nuestro equipo</span>
-    <h2 class="section-title">Profesionales especializados</h2>
+    <span class="section-tag" beEditable="landing.general.span9">Nuestro equipo</span>
+    <h2 class="section-title" beEditable="landing.general.h23">Profesionales especializados</h2>
   </div>
   <div class="team__grid">
     <div class="team-card">
       <div class="team-card__avatar">
-        <img src="enfermera1.jpg" alt="Ana Morales" />
+        <img beEditableImage="landing.general.img4" src="enfermera1.jpg" alt="Ana Morales" />
       </div>
       <div class="team-card__name">Ana Morales</div>
       <div class="team-card__role">Enfermera especialista</div>
-      <span class="team-card__badge"><span class="dot"></span>ITS y prevención</span>
+      <span class="team-card__badge" beEditable="landing.general.span10"><span class="dot"></span>ITS y prevención</span>
     </div>
     <div class="team-card">
       <div class="team-card__avatar">
-        <img src="enfermero1.jpg" alt="Javier Ruiz" />
+        <img beEditableImage="landing.general.img5" src="enfermero1.jpg" alt="Javier Ruiz" />
       </div>
       <div class="team-card__name">Javier Ruiz</div>
       <div class="team-card__role">Enfermero especialista</div>
-      <span class="team-card__badge"><span class="dot"></span>Salud sexual LGBT+</span>
+      <span class="team-card__badge" beEditable="landing.general.span11"><span class="dot"></span>Salud sexual LGBT+</span>
     </div>
     <div class="team-card">
       <div class="team-card__avatar">
-        <img src="enfermera2.jpg" alt="Lucia Garcia" />
+        <img beEditableImage="landing.general.img6" src="enfermera2.jpg" alt="Lucia Garcia" />
       </div>
       <div class="team-card__name">Lucia Garcia</div>
       <div class="team-card__role">Enfermera especialista</div>
-      <span class="team-card__badge"><span class="dot"></span>Adolescentes</span>
+      <span class="team-card__badge" beEditable="landing.general.span12"><span class="dot"></span>Adolescentes</span>
     </div>
     <div class="team-card">
       <div class="team-card__avatar">
-        <img src="enfermero2.jpg" alt="Miguel Torres" />
+        <img beEditableImage="landing.general.img7" src="enfermero2.jpg" alt="Miguel Torres" />
       </div>
       <div class="team-card__name">Miguel Torres</div>
       <div class="team-card__role">Enfermero especialista</div>
-      <span class="team-card__badge"><span class="dot"></span>VIH y SIDA</span>
+      <span class="team-card__badge" beEditable="landing.general.span13"><span class="dot"></span>VIH y SIDA</span>
     </div>
     <div class="team-card">
       <div class="team-card__avatar">
-        <img src="enfermera3.jpg" alt="Sara Ibanez" />
+        <img beEditableImage="landing.general.img8" src="enfermera3.jpg" alt="Sara Ibanez" />
       </div>
       <div class="team-card__name">Sara Ibanez</div>
       <div class="team-card__role">Enfermera especialista</div>
-      <span class="team-card__badge"><span class="dot"></span>Salud reproductiva</span>
+      <span class="team-card__badge" beEditable="landing.general.span14"><span class="dot"></span>Salud reproductiva</span>
     </div>
   </div>
 </section>
@@ -240,8 +240,8 @@
 <!-- BLOG -->
 <section class="blog">
   <div class="blog__header">
-    <span class="section-tag">Últimos artículos</span>
-    <h2 class="section-title">Contenido reciente</h2>
+    <span class="section-tag" beEditable="landing.general.span15">Últimos artículos</span>
+    <h2 class="section-title" beEditable="landing.general.h24">Contenido reciente</h2>
   </div>
   <div class="blog__grid">
     <div class="blog-card card-hover" routerLink="/realidades/porno-distorsiona-expectativas">
@@ -258,9 +258,9 @@
         </svg>
       </div>
       <div class="blog-card__body">
-        <span class="blog-card__cat">Porno y sexualidad</span>
-        <h4>Por qué el porno distorsiona expectativas</h4>
-        <p>El problema no es ver porno, sino aprender de él. El porno es entretenimiento, no educación sexual.</p>
+        <span class="blog-card__cat" beEditable="landing.general.span16">Porno y sexualidad</span>
+        <h4 beEditable="landing.general.h48">Por qué el porno distorsiona expectativas</h4>
+        <p beEditable="landing.general.p8">El problema no es ver porno, sino aprender de él. El porno es entretenimiento, no educación sexual.</p>
         <div class="blog-card__meta">Lucía García &middot; 10 Feb 2026</div>
         <span class="blog-card__arrow">Leer más <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
@@ -272,9 +272,9 @@
         </svg>
       </div>
       <div class="blog-card__body">
-        <span class="blog-card__cat">Presión social</span>
-        <h4>Pensé que el problema era mi cuerpo</h4>
-        <p>Nunca nadie me dijo directamente que mi cuerpo estaba mal. Pero lo sentí muchas veces.</p>
+        <span class="blog-card__cat" beEditable="landing.general.span17">Presión social</span>
+        <h4 beEditable="landing.general.h49">Pensé que el problema era mi cuerpo</h4>
+        <p beEditable="landing.general.p9">Nunca nadie me dijo directamente que mi cuerpo estaba mal. Pero lo sentí muchas veces.</p>
         <div class="blog-card__meta">Historia real &middot; 10 Feb 2026</div>
         <span class="blog-card__arrow">Leer más <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
@@ -289,9 +289,9 @@
         </svg>
       </div>
       <div class="blog-card__body">
-        <span class="blog-card__cat">Prevención</span>
-        <h4>PrEP: qué es y quién puede acceder</h4>
-        <p>La profilaxis pre-exposición al VIH tiene una eficacia cercana al 99% cuando se toma correctamente.</p>
+        <span class="blog-card__cat" beEditable="landing.general.span18">Prevención</span>
+        <h4 beEditable="landing.general.h410">PrEP: qué es y quién puede acceder</h4>
+        <p beEditable="landing.general.p10">La profilaxis pre-exposición al VIH tiene una eficacia cercana al 99% cuando se toma correctamente.</p>
         <div class="blog-card__meta">Javier Ruiz &middot; 5 May 2026</div>
         <span class="blog-card__arrow">Leer más <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
@@ -302,8 +302,8 @@
 <!-- CONTACTO -->
 <section class="contact-cta">
   <div class="contact-cta__content">
-    <h2>¿Tienes alguna pregunta?</h2>
-    <p>Escríbenos de forma anónima. Estamos aquí para ayudarte sin juicios ni tabúes.</p>
+    <h2 beEditable="landing.general.h25">¿Tienes alguna pregunta?</h2>
+    <p beEditable="landing.general.p11">Escríbenos de forma anónima. Estamos aquí para ayudarte sin juicios ni tabúes.</p>
     <div class="contact-cta__form">
       <a routerLink="/about" class="btn-primary" (click)="onCtaClick($event)">
         Ir al formulario de contacto
@@ -313,8 +313,8 @@
       </a>
     </div>
     <div class="contact-cta__links">
-      <span>Para emergencias médicas contacta con Screening Point o tu médico de cabecera.</span>
-      <span>España</span>
+      <span beEditable="landing.general.span19">Para emergencias médicas contacta con Screening Point o tu médico de cabecera.</span>
+      <span beEditable="landing.general.span20">España</span>
     </div>
   </div>
 </section>

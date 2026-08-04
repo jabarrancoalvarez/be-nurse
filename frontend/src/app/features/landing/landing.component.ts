@@ -7,6 +7,10 @@ import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { gsap, ScrollTrigger } from '../../core/animations/gsap.config';
 import { counterAnimation, staggerFadeIn, fadeInUp, scaleIn } from '../../core/animations/animations';
+import { EditableTextDirective } from '../../shared/editable/editable-text.directive';
+import { EditableImageDirective } from '../../shared/editable/editable-image.directive';
+import { ContentService } from '../../core/services/content.service';
+import { EditModeService } from '../../core/services/edit-mode.service';
 
 interface HeroSlide {
   pill: string;
@@ -21,12 +25,15 @@ interface HeroSlide {
 
 @Component({
   selector: 'app-landing',
-  imports: [RouterLink],
+  imports: [RouterLink, EditableTextDirective, EditableImageDirective],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
+  private content = inject(ContentService);
+  editMode = inject(EditModeService);
+
   private platformId = inject(PLATFORM_ID);
 
   @ViewChild('vantaHero') vantaHero!: ElementRef;
@@ -117,7 +124,9 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.content.load('landing');
+  }
 
   ngAfterViewInit() {
     if (!isPlatformBrowser(this.platformId)) return;

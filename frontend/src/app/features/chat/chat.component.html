@@ -1,8 +1,8 @@
 <section class="page-hero">
   <div class="page-hero__content">
-    <span class="section-tag">Consulta profesional</span>
-    <h1 class="page-hero__title">Chat anónimo</h1>
-    <p>Envía tu pregunta de forma anónima. Un enfermero/a especializado la responderá en menos de 48 horas.</p>
+    <span class="section-tag" beEditable="chat.general.span1">Consulta profesional</span>
+    <h1 class="page-hero__title" beEditable="chat.general.h11">Chat anónimo</h1>
+    <p beEditable="chat.general.p1">Envía tu pregunta de forma anónima. Un enfermero/a especializado la responderá en menos de 48 horas.</p>
     <div class="trust-row">
       <span class="trust-chip">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -27,7 +27,7 @@
     @if (!submitted()) {
       <div class="submit-card__header">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <h2>Haz tu pregunta</h2>
+        <h2 beEditable="chat.general.h21">Haz tu pregunta</h2>
       </div>
       <textarea
         [(ngModel)]="input"
@@ -54,8 +54,8 @@
         <div class="submit-success__icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
-        <h3>¡Pregunta enviada!</h3>
-        <p>Un enfermero/a del equipo BE NURSE la responderá en menos de 48 horas. Puedes verla en el listado de abajo cuando sea respondida.</p>
+        <h3 beEditable="chat.general.h31">¡Pregunta enviada!</h3>
+        <p beEditable="chat.general.p2">Un enfermero/a del equipo BE NURSE la responderá en menos de 48 horas. Puedes verla en el listado de abajo cuando sea respondida.</p>
         <button class="btn-outline" (click)="submitted.set(false); input = ''">Hacer otra pregunta</button>
       </div>
     }
@@ -65,7 +65,7 @@
   <div class="qa-board" #boardTop>
     <div class="qa-board__header">
       <div>
-        <h2>Preguntas y respuestas</h2>
+        <h2 beEditable="chat.general.h22">Preguntas y respuestas</h2>
         <span class="qa-count">{{ total() }} preguntas</span>
       </div>
       <div class="search-bar">
@@ -94,7 +94,7 @@
       <div class="qa-loading">Cargando preguntas...</div>
     } @else if (loadError()) {
       <div class="qa-empty">
-        <p>No se pudieron cargar las preguntas. Inténtalo de nuevo.</p>
+        <p beEditable="chat.general.p3">No se pudieron cargar las preguntas. Inténtalo de nuevo.</p>
         <button class="btn-outline" (click)="loadError.set(false); loadQuestions(1)">Reintentar</button>
       </div>
     } @else if (questions().length === 0) {
@@ -113,7 +113,7 @@
                 <span class="qa-item__date">{{ q.questionDate | date:'d MMM yyyy' }}</span>
               </div>
               @if (!q.answer) {
-                <span class="qa-badge qa-badge--pending">Pendiente de respuesta</span>
+                <span class="qa-badge qa-badge--pending" beEditable="chat.general.span2">Pendiente de respuesta</span>
               }
             </div>
 
@@ -129,7 +129,7 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
                   </div>
                   <div class="qa-answer__body">
-                    <span class="qa-answer__author">Equipo BE NURSE</span>
+                    <span class="qa-answer__author" beEditable="chat.general.span3">Equipo BE NURSE</span>
                     <p>{{ q.answer }}</p>
                     <span class="qa-item__date">{{ q.answerDate | date:'d MMM yyyy' }}</span>
                   </div>
@@ -163,7 +163,7 @@
 
   <p class="disclaimer">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-    Este servicio <strong>NO es urgencias médicas.</strong> Para emergencias contacta con <strong>Screening Point</strong> o tu médico de cabecera.
+    Este servicio <strong beEditable="chat.general.strong1">NO es urgencias médicas.</strong> Para emergencias contacta con <strong beEditable="chat.general.strong2">Screening Point</strong> o tu médico de cabecera.
   </p>
 
 </div>

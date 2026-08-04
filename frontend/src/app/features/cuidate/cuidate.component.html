@@ -1,8 +1,8 @@
 <section class="page-hero">
   <div class="page-hero__content">
-    <span class="section-tag">Prevención activa</span>
-    <h1 class="page-hero__title">Cuídate</h1>
-    <p>Métodos, vacunas y profilaxis para proteger tu salud sexual de forma eficaz.</p>
+    <span class="section-tag" beEditable="cuidate.hero.tag">Prevención activa</span>
+    <h1 class="page-hero__title" beEditable="cuidate.hero.title">Cuídate</h1>
+    <p beEditable="cuidate.hero.subtitle">Métodos, vacunas y profilaxis para proteger tu salud sexual de forma eficaz.</p>
   </div>
 </section>
 
@@ -24,68 +24,71 @@
     <!-- MÉTODOS DE BARRERA -->
     <section id="barrera" class="content-section">
       <div class="section-header">
-        <span class="section-tag">Protección básica</span>
-        <h2 class="section-title">Métodos de barrera</h2>
-        <p class="section-subtitle">La primera línea de defensa contra las ITS y el embarazo no deseado.</p>
+        <span class="section-tag" beEditable="cuidate.barrera.tag">Protección básica</span>
+        <h2 class="section-title" beEditable="cuidate.barrera.title">Métodos de barrera</h2>
+        <p class="section-subtitle" beEditable="cuidate.barrera.subtitle">La primera línea de defensa contra las ITS y el embarazo no deseado.</p>
       </div>
+
       <div class="cards-grid cards-grid--3">
-        <div class="info-card">
-          <div class="info-card__photo">
-            <img src="assets/metodos-barrera/preservativo-masculino.jpg" alt="Preservativo masculino" loading="lazy">
+        @for (card of barrera.cards(); track $index; let cardIndex = $index) {
+          <div class="info-card" [class.info-card--editing]="editMode.active()">
+            @if (editMode.active()) {
+              <button type="button" class="card-remove" (click)="barrera.removeCard(cardIndex)"
+                      title="Eliminar esta tarjeta" aria-label="Eliminar esta tarjeta">×</button>
+            }
+            <div class="info-card__photo">
+              <img [src]="barrera.imageOf(card)" [alt]="card.title" loading="lazy"
+                   [class.be-editable-image]="editMode.active()"
+                   [title]="editMode.active() ? 'Haz clic para cambiar esta imagen' : ''"
+                   (click)="editMode.active() && barrera.changeImage(cardIndex)">
+            </div>
+            <div class="info-card__content">
+              <h3 [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                  [class.be-editable]="editMode.active()"
+                  (blur)="barrera.updateField(cardIndex, 'title', $event)">{{ card.title }}</h3>
+              <p [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                 [class.be-editable]="editMode.active()"
+                 (blur)="barrera.updateField(cardIndex, 'body', $event)">{{ card.body }}</p>
+              <ul class="check-list">
+                @for (item of card.items; track $index; let itemIndex = $index) {
+                  <li [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                      [class.be-editable]="editMode.active()"
+                      (blur)="barrera.updateItem(cardIndex, itemIndex, $event)">{{ item }}</li>
+                }
+              </ul>
+              @if (editMode.active()) {
+                <button type="button" class="card-add-item" (click)="barrera.addItem(cardIndex)">+ Añadir punto</button>
+              }
+            </div>
           </div>
-          <div class="info-card__content">
-            <h3>Preservativo masculino</h3>
-            <p>Con uso correcto, eficacia del 98% frente a ITS y embarazo. Úsalo desde el inicio, no solo al final.</p>
-            <ul class="check-list">
-              <li>Comprobar la fecha de caducidad</li>
-              <li>Abrir con cuidado, sin uñas ni dientes</li>
-              <li>Dejar espacio en la punta</li>
-              <li>Lubricante base acuosa o silicona</li>
-            </ul>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card__photo">
-            <img src="assets/metodos-barrera/preservativo-femenino.jpg" alt="Preservativo femenino" loading="lazy">
-          </div>
-          <div class="info-card__content">
-            <h3>Preservativo femenino</h3>
-            <p>También llamado femidom, puede colocarse hasta 8 horas antes. Da autonomía a quien lo usa.</p>
-            <ul class="check-list">
-              <li>Eficacia similar al masculino con uso correcto</li>
-              <li>Compatible con lubricantes de todo tipo</li>
-              <li>Disponible en farmacias y centros de salud sexual</li>
-            </ul>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card__photo">
-            <img src="assets/metodos-barrera/dental-dam.jpg" alt="Dental dam" loading="lazy">
-          </div>
-          <div class="info-card__content">
-            <h3>Dental dam</h3>
-            <p>Lámina de látex para el sexo oral. Protege frente a gonorrea, herpes y VPH en prácticas orales.</p>
-            <ul class="check-list">
-              <li>Se puede fabricar cortando un preservativo masculino</li>
-              <li>Colocar entre la boca y la zona genital o anal</li>
-              <li>No reutilizar</li>
-            </ul>
-          </div>
-        </div>
+        }
+
+        @if (editMode.active()) {
+          <button type="button" class="card-add" (click)="barrera.addCard({ title: 'Nuevo método', body: 'Describe aquí este método de barrera.' })">
+            <span class="card-add__plus">+</span>
+            Añadir tarjeta
+          </button>
+        }
       </div>
+
+      @if (editMode.active()) {
+        <button type="button" class="group-restore" (click)="barrera.restore()">
+          Restaurar tarjetas originales
+        </button>
+      }
     </section>
 
     <!-- PREP Y PEP -->
     <section id="prep-pep" class="content-section content-section--accent">
       <div class="section-header">
-        <span class="section-tag">Profilaxis</span>
-        <h2 class="section-title">PrEP y PEP</h2>
-        <p class="section-subtitle">Medicación que reduce drásticamente el riesgo de infección por VIH.</p>
+        <span class="section-tag" beEditable="cuidate.prep.tag">Profilaxis</span>
+        <h2 class="section-title" beEditable="cuidate.prep.title">PrEP y PEP</h2>
+        <p class="section-subtitle" beEditable="cuidate.prep.subtitle">Medicación que reduce drásticamente el riesgo de infección por VIH.</p>
       </div>
       <app-flip-card frontLabel="Saber más sobre la PrEP" backLabel="Volver">
         <div front class="prep-front">
             <div class="card-media">
-              <img src="assets/cuidate/prep-pep.jpg"
+              <img beEditableImage="cuidate.prep.foto" src="assets/cuidate/prep-pep.jpg"
                    alt="Frasco de PrEP junto a un blister de comprimidos" loading="lazy">
             </div>
               <div class="prep-grid">
@@ -157,9 +160,9 @@
     <!-- TRATAMIENTO ANTIRRETROVIRAL -->
     <section id="antirretroviral" class="content-section">
       <div class="section-header">
-        <span class="section-tag">Tratamiento</span>
-        <h2 class="section-title">Tratamiento antirretroviral</h2>
-        <p class="section-subtitle">Las personas con VIH que reciben tratamiento antirretroviral pueden mantener una buena calidad de vida.</p>
+        <span class="section-tag" beEditable="cuidate.tar.tag">Tratamiento</span>
+        <h2 class="section-title" beEditable="cuidate.tar.title">Tratamiento antirretroviral</h2>
+        <p class="section-subtitle" beEditable="cuidate.tar.subtitle">Las personas con VIH que reciben tratamiento antirretroviral pueden mantener una buena calidad de vida.</p>
       </div>
       <div class="cards-grid cards-grid--2">
         <div class="info-card info-card--featured">
@@ -200,9 +203,9 @@
     <!-- VACUNACIÓN -->
     <section id="vacunacion" class="content-section content-section--accent">
       <div class="section-header">
-        <span class="section-tag">Inmunización</span>
-        <h2 class="section-title">Vacunación frente a ITS prevenibles</h2>
-        <p class="section-subtitle">Algunas infecciones relacionadas con la salud sexual pueden prevenirse mediante vacunación. Revisar el estado vacunal es una forma de autocuidado, especialmente si hay nuevas parejas, múltiples parejas sexuales o prácticas de mayor exposición.</p>
+        <span class="section-tag" beEditable="cuidate.vacunas.tag">Inmunización</span>
+        <h2 class="section-title" beEditable="cuidate.vacunas.title">Vacunación frente a ITS prevenibles</h2>
+        <p class="section-subtitle" beEditable="cuidate.vacunas.subtitle">Algunas infecciones relacionadas con la salud sexual pueden prevenirse mediante vacunación. Revisar el estado vacunal es una forma de autocuidado, especialmente si hay nuevas parejas, múltiples parejas sexuales o prácticas de mayor exposición.</p>
       </div>
 
       <div class="cards-grid cards-grid--3">
@@ -210,7 +213,7 @@
         <app-flip-card frontLabel="Clic para detalles" backLabel="Volver a general">
           <div front class="vacuna">
             <div class="card-media card-media--small">
-              <img src="assets/cuidate/vacuna-vph.jpg" alt="Caja de vacuna del VPH junto a una jeringa" loading="lazy">
+              <img beEditableImage="cuidate.vacunas.vph.foto" src="assets/cuidate/vacuna-vph.jpg" alt="Caja de vacuna del VPH junto a una jeringa" loading="lazy">
             </div>
             <h3>Vacuna VPH</h3>
             <p>El virus del papiloma humano (VPH o HPV) es una de las infecciones de transmisión sexual más frecuentes. Existen distintos genotipos: algunos se relacionan con verrugas genitales y otros con lesiones precancerosas y cánceres asociados al VPH.</p>
@@ -235,7 +238,7 @@
         <app-flip-card frontLabel="Clic para detalles" backLabel="Volver a general">
           <div front class="vacuna">
             <div class="card-media card-media--small">
-              <img src="assets/cuidate/vacuna-hepatitis-a.jpg" alt="Caja de vacuna de la hepatitis A junto a una jeringa" loading="lazy">
+              <img beEditableImage="cuidate.vacunas.hepa.foto" src="assets/cuidate/vacuna-hepatitis-a.jpg" alt="Caja de vacuna de la hepatitis A junto a una jeringa" loading="lazy">
             </div>
             <h3>Vacuna Hepatitis A</h3>
             <p>La vacuna frente a hepatitis A puede estar indicada en personas con mayor exposición, como algunas prácticas sexuales de riesgo, hombres que tienen sexo con hombres, personas con VIH o viajes a zonas de riesgo.</p>
@@ -259,7 +262,7 @@
         <app-flip-card frontLabel="Clic para detalles" backLabel="Volver a general">
           <div front class="vacuna">
             <div class="card-media card-media--small">
-              <img src="assets/cuidate/vacuna-hepatitis-b.jpg" alt="Caja de vacuna de la hepatitis B junto a una jeringa" loading="lazy">
+              <img beEditableImage="cuidate.vacunas.hepb.foto" src="assets/cuidate/vacuna-hepatitis-b.jpg" alt="Caja de vacuna de la hepatitis B junto a una jeringa" loading="lazy">
             </div>
             <h3>Vacuna Hepatitis B</h3>
             <p>La hepatitis B se transmite por sangre y fluidos sexuales. Puede cronificarse y afectar gravemente al hígado, por eso la vacunación es una herramienta clave de prevención.</p>
@@ -292,9 +295,9 @@
     <!-- CHEQUEOS -->
     <section id="chequeos" class="content-section">
       <div class="section-header">
-        <span class="section-tag">Seguimiento</span>
-        <h2 class="section-title">Chequeos periódicos</h2>
-        <p class="section-subtitle">Hacerse pruebas regularmente es parte del autocuidado, no solo una respuesta al riesgo.</p>
+        <span class="section-tag" beEditable="cuidate.chequeos.tag">Seguimiento</span>
+        <h2 class="section-title" beEditable="cuidate.chequeos.title">Chequeos periódicos</h2>
+        <p class="section-subtitle" beEditable="cuidate.chequeos.subtitle">Hacerse pruebas regularmente es parte del autocuidado, no solo una respuesta al riesgo.</p>
       </div>
       <div class="table-wrapper">
         <table class="chequeo-table">

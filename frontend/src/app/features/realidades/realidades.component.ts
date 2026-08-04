@@ -6,6 +6,9 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { gsap, ScrollTrigger } from '../../core/animations/gsap.config';
+import { EditableTextDirective } from '../../shared/editable/editable-text.directive';
+import { ContentService } from '../../core/services/content.service';
+import { EditModeService } from '../../core/services/edit-mode.service';
 
 interface Articulo {
   title: string;
@@ -21,12 +24,15 @@ interface Articulo {
 
 @Component({
   selector: 'app-realidades',
-  imports: [RouterLink],
+  imports: [RouterLink, EditableTextDirective],
   templateUrl: './realidades.component.html',
   styleUrl: './realidades.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
+  private content = inject(ContentService);
+  editMode = inject(EditModeService);
+
   private platformId = inject(PLATFORM_ID);
 
   activeFilter = signal('Todas');
@@ -81,7 +87,9 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.content.load('realidades');
+  }
 
   ngAfterViewInit() {
     if (!isPlatformBrowser(this.platformId)) return;

@@ -4,14 +4,20 @@ import {
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ChatService, QuestionItem, QuestionsPage } from '../../core/services/chat.service';
+import { EditableTextDirective } from '../../shared/editable/editable-text.directive';
+import { ContentService } from '../../core/services/content.service';
+import { EditModeService } from '../../core/services/edit-mode.service';
 
 @Component({
   selector: 'app-chat',
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, EditableTextDirective],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent implements OnInit, AfterViewChecked {
+  private content = inject(ContentService);
+  editMode = inject(EditModeService);
+
   private chatService = inject(ChatService);
 
   // Submit
@@ -35,6 +41,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   private scrollAfterSend = false;
 
   ngOnInit() {
+    this.content.load('chat');
     this.sessionId = sessionStorage.getItem('be-nurse-session') ?? crypto.randomUUID();
     sessionStorage.setItem('be-nurse-session', this.sessionId);
     this.loadQuestions();

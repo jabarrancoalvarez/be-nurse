@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { EditableImageDirective } from '../editable/editable-image.directive';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, EditableImageDirective],
   template: `
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__col">
           <div class="footer__logo">
-            <img src="logo.png" alt="BE-nurse" style="width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1);" />
+            <img beEditableImage="global.logo" src="logo.png" alt="BE-nurse" style="width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1);" />
             BE-nurse
           </div>
           <p class="footer__desc">Plataforma de salud sexual respaldada por profesionales de enfermería. Sin juicios, con toda la información.</p>

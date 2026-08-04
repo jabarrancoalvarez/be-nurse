@@ -5,10 +5,11 @@ import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/ro
 import { filter } from 'rxjs/operators';
 import { gsap } from '../../core/animations/gsap.config';
 import { AuthService } from '../../core/services/auth.service';
+import { EditableImageDirective } from '../editable/editable-image.directive';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, EditableImageDirective],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })

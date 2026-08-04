@@ -1,9 +1,12 @@
 import {
   Component, OnDestroy, AfterViewInit,
-  signal, ChangeDetectionStrategy, PLATFORM_ID, inject
-} from '@angular/core';
+  signal, ChangeDetectionStrategy, PLATFORM_ID, inject, OnInit} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { gsap, ScrollTrigger } from '../../core/animations/gsap.config';
+import { EditableTextDirective } from '../../shared/editable/editable-text.directive';
+import { ContentService, EditableCard } from '../../core/services/content.service';
+import { EditModeService } from '../../core/services/edit-mode.service';
+import { CardGroup } from '../../core/services/card-group';
 
 interface ItsCard {
   name: string;
@@ -15,12 +18,20 @@ interface ItsCard {
 }
 
 @Component({
+  imports: [EditableTextDirective],
   selector: 'app-informate',
   templateUrl: './informate.component.html',
   styleUrl: './informate.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InformateComponent implements AfterViewInit, OnDestroy {
+export class InformateComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  ngOnInit() {
+    this.content.load('informate');
+  }
+  private content = inject(ContentService);
+  editMode = inject(EditModeService);
+
   private platformId = inject(PLATFORM_ID);
 
   itsCards: ItsCard[] = [
@@ -81,6 +92,21 @@ export class InformateComponent implements AfterViewInit, OnDestroy {
       tags: ['Bacteria', 'Curable', 'Puede pasar desapercibida']
     }
   ];
+
+  /**
+   * Las tarjetas de arriba son el contenido del build; el grupo las expone en el
+   * formato editable comun y las sustituye si el administrador las ha cambiado.
+   */
+  private readonly itsDefaults: EditableCard[] = this.itsCards.map(its => ({
+    title: its.name,
+    body: its.queEs,
+    items: its.tags,
+    fields: { sintomas: its.sintomas, tratamiento: its.tratamiento },
+    image: its.image,
+    badge: ''
+  }));
+
+  its = new CardGroup('informate.its.cards', this.itsDefaults, this.content, this.editMode);
 
   faqs = [
     {
