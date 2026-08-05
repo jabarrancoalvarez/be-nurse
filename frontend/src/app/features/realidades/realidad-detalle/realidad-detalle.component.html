@@ -1,23 +1,43 @@
 @if (loading()) {
   <div class="loading">Cargando...</div>
-} @else if (article()) {
+} @else if (existe()) {
   <article class="detalle">
     <header class="detalle__header">
       <div class="detalle__header-inner">
         <a routerLink="/realidades" class="back-link">← Volver a Realidades</a>
-        <span class="category-badge">{{ article()!.category }}</span>
-        <h1>{{ article()!.title }}</h1>
+        <span class="category-badge"
+              [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+              [class.be-editable]="editMode.active()"
+              (blur)="guardar('category', $event)">{{ categoria() }}</span>
+        <h1 [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+            [class.be-editable]="editMode.active()"
+            (blur)="guardar('title', $event)">{{ titulo() }}</h1>
         <div class="detalle__meta">
-          <span>{{ article()!.authorName }}</span>
-          <span>{{ article()!.publishedAt | date:'d MMM yyyy' }}</span>
+          <span [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                [class.be-editable]="editMode.active()"
+                (blur)="guardar('author', $event)">{{ autor() }}</span>
+          @if (article()) {
+            <span>{{ article()!.publishedAt | date:'d MMM yyyy' }}</span>
+          }
         </div>
       </div>
     </header>
 
     <div class="detalle__body">
-      <p class="detalle__excerpt">{{ article()!.excerpt }}</p>
-      <!-- El contenido llega como HTML desde la API; Angular lo sanea al pintarlo. -->
-      <div class="detalle__content" [innerHTML]="article()!.content"></div>
+      <p class="detalle__excerpt"
+         [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+         [class.be-editable]="editMode.active()"
+         (blur)="guardar('excerpt', $event)">{{ entradilla() }}</p>
+
+      @if (editMode.active()) {
+        <!-- Editable con formato: aqui se admiten saltos de parrafo -->
+        <div class="detalle__content be-editable" contenteditable="true"
+             [innerHTML]="cuerpo()" (blur)="guardar('content', $event)"></div>
+        <p class="detalle__hint">Vacía cualquier campo para devolverlo a su versión publicada.</p>
+      } @else {
+        <!-- El contenido llega como HTML desde la API; Angular lo sanea al pintarlo. -->
+        <div class="detalle__content" [innerHTML]="cuerpo()"></div>
+      }
     </div>
 
     @if (related().length > 0) {

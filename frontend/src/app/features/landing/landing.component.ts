@@ -9,7 +9,8 @@ import { gsap, ScrollTrigger } from '../../core/animations/gsap.config';
 import { counterAnimation, staggerFadeIn, fadeInUp, scaleIn } from '../../core/animations/animations';
 import { EditableTextDirective } from '../../shared/editable/editable-text.directive';
 import { EditableImageDirective } from '../../shared/editable/editable-image.directive';
-import { ContentService } from '../../core/services/content.service';
+import { ContentService, EditableCard } from '../../core/services/content.service';
+import { CardGroup } from '../../core/services/card-group';
 import { EditModeService } from '../../core/services/edit-mode.service';
 
 interface HeroSlide {
@@ -33,6 +34,17 @@ interface HeroSlide {
 export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   private content = inject(ContentService);
   editMode = inject(EditModeService);
+
+  /** Equipo escrito en el build: se usa mientras el administrador no lo cambie. */
+  private readonly equipoDefaults: EditableCard[] = [
+    { title: 'Ana Morales', body: 'Enfermera especialista', badge: 'ITS y prevención', image: 'enfermera1.jpg', items: [], fields: {} },
+    { title: 'Javier Ruiz', body: 'Enfermero especialista', badge: 'Salud sexual LGBT+', image: 'enfermero1.jpg', items: [], fields: {} },
+    { title: 'Lucia Garcia', body: 'Enfermera especialista', badge: 'Adolescentes', image: 'enfermera2.jpg', items: [], fields: {} },
+    { title: 'Miguel Torres', body: 'Enfermero especialista', badge: 'VIH y SIDA', image: 'enfermero2.jpg', items: [], fields: {} },
+    { title: 'Sara Ibanez', body: 'Enfermera especialista', badge: 'Salud reproductiva', image: 'enfermera3.jpg', items: [], fields: {} }
+  ];
+
+  equipo = new CardGroup('landing.equipo.cards', this.equipoDefaults, this.content, this.editMode);
 
   private platformId = inject(PLATFORM_ID);
 

@@ -98,30 +98,43 @@
 
   <div class="articles-grid">
     @for (art of articulosFiltrados(); track art.slug; let i = $index) {
-      <a class="article-card" [class.article-card--featured]="i === 0 && activeFilter() === 'Todos'" [routerLink]="['/realidades', art.slug]">
-        <div class="article-card__img" [style.background]="art.bg">
-          <span class="article-card__emoji">{{ art.emoji }}</span>
-          <span class="article-card__cat-badge">{{ art.category }}</span>
-        </div>
-        <div class="article-card__body">
-          <h3>{{ art.title }}</h3>
-          <p>{{ art.excerpt }}</p>
-          <div class="article-card__meta">
-            <div class="article-card__author">
-              <div class="article-card__avatar">{{ art.author.charAt(0) }}</div>
-              <span>{{ art.author }}</span>
-            </div>
-            <div class="article-card__details">
-              <span>{{ art.date }}</span>
-              <span class="dot" beEditable="realidades.general.span9">·</span>
-              <span>{{ art.readTime }} lectura</span>
+      <div class="article-card-wrap">
+        @if (editMode.active()) {
+          <button type="button" class="card-remove" (click)="eliminarArticulo(art.slug)"
+                  title="Eliminar esta tarjeta" aria-label="Eliminar esta tarjeta">×</button>
+        }
+        <a class="article-card" [routerLink]="['/realidades', art.slug]">
+          <div class="article-card__img" [style.background]="art.bg">
+            <span class="article-card__emoji">{{ art.emoji }}</span>
+            <span class="article-card__cat-badge">{{ art.category }}</span>
+          </div>
+          <div class="article-card__body">
+            <h3>{{ art.title }}</h3>
+            <p>{{ art.excerpt }}</p>
+            <div class="article-card__meta">
+              <div class="article-card__author">
+                <div class="article-card__avatar">{{ art.author.charAt(0) }}</div>
+                <span>{{ art.author }}</span>
+              </div>
+              <div class="article-card__details">
+                <span>{{ art.date }}</span>
+                <span class="dot">·</span>
+                <span>{{ art.readTime }} lectura</span>
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
     }
 
-    @if (articulosFiltrados().length === 0) {
+    @if (editMode.active()) {
+      <button type="button" class="card-add" (click)="crearArticulo()">
+        <span class="card-add__plus">+</span>
+        Añadir artículo
+      </button>
+    }
+
+    @if (articulosFiltrados().length === 0 && !editMode.active()) {
       <div class="no-results">
         <div class="no-results__icon">📭</div>
         <h3 beEditable="realidades.general.h34">Sin artículos en esta categoría</h3>
@@ -129,5 +142,11 @@
       </div>
     }
   </div>
+
+  @if (editMode.active()) {
+    <button type="button" class="group-restore" (click)="grupoArticulos.restore()">
+      Restaurar artículos originales
+    </button>
+  }
 
 </div>

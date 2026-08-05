@@ -7,7 +7,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { gsap, ScrollTrigger } from '../../core/animations/gsap.config';
 import { EditableTextDirective } from '../../shared/editable/editable-text.directive';
-import { ContentService } from '../../core/services/content.service';
+import { ContentService, EditableCard } from '../../core/services/content.service';
+import { CardGroup } from '../../core/services/card-group';
 import { EditModeService } from '../../core/services/edit-mode.service';
 
 interface Articulo {
@@ -74,11 +75,68 @@ export class RealidadesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
+  /**
+   * Las tarjetas de arriba son el contenido del build. El grupo las expone en el
+   * formato editable comun: los datos propios del articulo (slug, autor, fecha)
+   * viajan como campos con nombre.
+   */
+  private readonly articulosDefaults: EditableCard[] = this.articulos.map(a => ({
+    title: a.title,
+    body: a.excerpt,
+    items: [],
+    fields: {
+      slug: a.slug,
+      author: a.author,
+      date: a.date,
+      readTime: a.readTime,
+      emoji: a.emoji,
+      bg: a.bg
+    },
+    image: '',
+    badge: a.category
+  }));
+
+  grupoArticulos = new CardGroup('realidades.articulos.cards', this.articulosDefaults, this.content, this.editMode);
+
+  /** Vista de las cards en la forma que espera la plantilla. */
+  private articulosVista = computed<Articulo[]>(() =>
+    this.grupoArticulos.cards().map(c => ({
+      title: c.title,
+      excerpt: c.body,
+      category: c.badge,
+      slug: c.fields?.['slug'] ?? '',
+      author: c.fields?.['author'] ?? 'BE-nurse',
+      date: c.fields?.['date'] ?? '',
+      readTime: c.fields?.['readTime'] ?? '5 min',
+      emoji: c.fields?.['emoji'] ?? '📄',
+      bg: c.fields?.['bg'] ?? '#52796f'
+    }))
+  );
+
   articulosFiltrados = computed(() => {
     const f = this.activeFilter();
-    if (f === 'Todas') return this.articulos;
-    return this.articulos.filter(a => a.category === f);
+    const todos = this.articulosVista();
+    if (f === 'Todas') return todos;
+    return todos.filter(a => a.category === f);
   });
+
+  /** Crea un articulo nuevo con su propia pagina, lista para rellenar. */
+  crearArticulo() {
+    const slug = 'articulo-' + Date.now().toString(36);
+    const hoy = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    this.grupoArticulos.addCard({
+      title: 'Nuevo artículo',
+      body: 'Escribe aquí el resumen que aparecerá en esta tarjeta.',
+      badge: this.activeFilter() === 'Todas' ? this.filters[1] : this.activeFilter(),
+      fields: { slug, author: 'BE-nurse', date: hoy, readTime: '5 min', emoji: '📝', bg: '#52796f' }
+    });
+  }
+
+  eliminarArticulo(slug: string) {
+    const index = this.grupoArticulos.cards().findIndex(c => c.fields?.['slug'] === slug);
+    if (index >= 0) this.grupoArticulos.removeCard(index);
+  }
 
   setFilter(filter: string) {
     this.activeFilter.set(filter);

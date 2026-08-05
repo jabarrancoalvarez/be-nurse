@@ -460,3 +460,13 @@
 
   p { color: var(--color-text-muted); font-size: 0.9375rem; }
 }
+
+/* Envoltorio para poder colocar el boton de eliminar sobre la tarjeta */
+.article-card-wrap {
+  position: relative;
+  display: flex;
+}
+
+.article-card-wrap > .article-card {
+  flex: 1;
+}
