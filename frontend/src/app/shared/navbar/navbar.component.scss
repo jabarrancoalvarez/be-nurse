@@ -32,6 +32,9 @@
     align-items: center;
     text-decoration: none;
     transition: var(--transition-fast);
+    /* El contenedor reparte con space-between, asi que este margen despega el
+       logo del borde y lo acerca al menu. */
+    margin-left: 2.5rem;
 
     &:hover {
       opacity: 0.85;
@@ -39,7 +42,7 @@
   }
 
   &__logo-img {
-    height: 44px;
+    height: 56px;
     width: auto;
     display: block;
   }
@@ -156,6 +159,15 @@
 
     &__container {
       padding: 0 1.25rem;
+    }
+
+    /* La barra baja a 64px y no hay menu al lado: el logo vuelve a su sitio. */
+    &__logo {
+      margin-left: 0;
+    }
+
+    &__logo-img {
+      height: 44px;
     }
 
     &__links {
