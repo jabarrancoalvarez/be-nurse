@@ -307,10 +307,11 @@
   display: flex;
   justify-content: center;
 
+  /* Ocupa todo el ancho disponible: el margen blanco lo da el padding de la
+     propia tarjeta, no un ancho maximo. */
   img {
     display: block;
     width: 100%;
-    max-width: 380px;
     height: auto;
     border-radius: var(--radius-lg);
     border: 5px solid #fff;

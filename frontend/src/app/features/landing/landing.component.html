@@ -194,47 +194,48 @@
     <h2 class="section-title" beEditable="landing.general.h23">Profesionales especializados</h2>
   </div>
   <div class="team__grid">
-    <div class="team-card">
-      <div class="team-card__avatar">
-        <img beEditableImage="landing.general.img4" src="enfermera1.jpg" alt="Ana Morales" />
+    @for (card of equipo.cards(); track $index; let i = $index) {
+      <div class="team-card" [class.team-card--editing]="editMode.active()">
+        @if (editMode.active()) {
+          <button type="button" class="card-remove" (click)="equipo.removeCard(i)"
+                  title="Eliminar este profesional" aria-label="Eliminar este profesional">×</button>
+        }
+        <div class="team-card__avatar">
+          <img [src]="equipo.imageOf(card)" [alt]="card.title"
+               [class.be-editable-image]="editMode.active()"
+               [title]="editMode.active() ? 'Haz clic para cambiar esta foto' : ''"
+               (click)="editMode.active() && equipo.changeImage(i)" />
+        </div>
+        <div class="team-card__name"
+             [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+             [class.be-editable]="editMode.active()"
+             (blur)="equipo.updateField(i, 'title', $event)">{{ card.title }}</div>
+        <div class="team-card__role"
+             [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+             [class.be-editable]="editMode.active()"
+             (blur)="equipo.updateField(i, 'body', $event)">{{ card.body }}</div>
+        <span class="team-card__badge">
+          <span class="dot"></span>
+          <span [attr.contenteditable]="editMode.active() ? 'plaintext-only' : null"
+                [class.be-editable]="editMode.active()"
+                (blur)="equipo.updateField(i, 'badge', $event)">{{ card.badge }}</span>
+        </span>
       </div>
-      <div class="team-card__name">Ana Morales</div>
-      <div class="team-card__role">Enfermera especialista</div>
-      <span class="team-card__badge" beEditable="landing.general.span10"><span class="dot"></span>ITS y prevención</span>
-    </div>
-    <div class="team-card">
-      <div class="team-card__avatar">
-        <img beEditableImage="landing.general.img5" src="enfermero1.jpg" alt="Javier Ruiz" />
-      </div>
-      <div class="team-card__name">Javier Ruiz</div>
-      <div class="team-card__role">Enfermero especialista</div>
-      <span class="team-card__badge" beEditable="landing.general.span11"><span class="dot"></span>Salud sexual LGBT+</span>
-    </div>
-    <div class="team-card">
-      <div class="team-card__avatar">
-        <img beEditableImage="landing.general.img6" src="enfermera2.jpg" alt="Lucia Garcia" />
-      </div>
-      <div class="team-card__name">Lucia Garcia</div>
-      <div class="team-card__role">Enfermera especialista</div>
-      <span class="team-card__badge" beEditable="landing.general.span12"><span class="dot"></span>Adolescentes</span>
-    </div>
-    <div class="team-card">
-      <div class="team-card__avatar">
-        <img beEditableImage="landing.general.img7" src="enfermero2.jpg" alt="Miguel Torres" />
-      </div>
-      <div class="team-card__name">Miguel Torres</div>
-      <div class="team-card__role">Enfermero especialista</div>
-      <span class="team-card__badge" beEditable="landing.general.span13"><span class="dot"></span>VIH y SIDA</span>
-    </div>
-    <div class="team-card">
-      <div class="team-card__avatar">
-        <img beEditableImage="landing.general.img8" src="enfermera3.jpg" alt="Sara Ibanez" />
-      </div>
-      <div class="team-card__name">Sara Ibanez</div>
-      <div class="team-card__role">Enfermera especialista</div>
-      <span class="team-card__badge" beEditable="landing.general.span14"><span class="dot"></span>Salud reproductiva</span>
-    </div>
+    }
+
+    @if (editMode.active()) {
+      <button type="button" class="card-add" (click)="equipo.addCard({ title: 'Nombre y apellidos', body: 'Enfermera especialista', badge: 'Especialidad', image: 'enfermera1.jpg' })">
+        <span class="card-add__plus">+</span>
+        Añadir profesional
+      </button>
+    }
   </div>
+
+  @if (editMode.active()) {
+    <button type="button" class="group-restore" (click)="equipo.restore()">
+      Restaurar equipo original
+    </button>
+  }
 </section>
 
 <!-- BLOG -->
