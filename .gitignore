@@ -33,3 +33,6 @@ Thumbs.db
 # Documentos y material fuente (no forman parte de la app)
 Documento WEB.*
 fotos metodos barrera/
+
+.vercel
+.env*
