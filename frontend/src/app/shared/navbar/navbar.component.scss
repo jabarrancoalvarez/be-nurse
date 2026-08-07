@@ -32,8 +32,11 @@ $logo-bleed: math.div(1 - $logo-mark-ratio, 2 * $logo-mark-ratio);
     border-bottom: 1px solid var(--color-border-light);
   }
 
-  /* Tres zonas: logo y acciones ocupan lo mismo a cada lado, asi el menu queda
-     centrado respecto al contenedor y, por tanto, respecto a la pagina. */
+  /* Tres zonas: el logo y los botones ocupan lo justo y se apoyan en sus
+     margenes; el menu se queda con todo el aire sobrante y centra sus enlaces
+     dentro. Asi los dos huecos miden igual, en vez de acumularse a la izquierda
+     como pasaria centrando el menu respecto a la pagina (el logo ocupa 45px y
+     los botones 297px: centrar el medio descuadra los lados). */
   &__container {
     max-width: 1200px;
     margin: 0 auto;
@@ -45,10 +48,9 @@ $logo-bleed: math.div(1 - $logo-mark-ratio, 2 * $logo-mark-ratio);
   }
 
   &__brand {
-    flex: 1 1 0;
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
   }
 
   /* Solo el ancho del logo es clicable, y asi la animacion de escala del logo
@@ -58,7 +60,10 @@ $logo-bleed: math.div(1 - $logo-mark-ratio, 2 * $logo-mark-ratio);
     display: flex;
     align-items: center;
     height: var(--nav-control-h);
-    margin-left: calc(var(--nav-control-h) * -#{$logo-bleed});
+    /* Descuenta el margen transparente por los dos lados, para que el logo ocupe
+       en el reparto solo lo que se ve: pegado al margen por la izquierda y con
+       el mismo hueco que los botones por la derecha. */
+    margin-inline: calc(var(--nav-control-h) * -#{$logo-bleed});
     text-decoration: none;
     transition: var(--transition-fast);
 
@@ -76,7 +81,7 @@ $logo-bleed: math.div(1 - $logo-mark-ratio, 2 * $logo-mark-ratio);
   }
 
   &__actions {
-    flex: 1 1 0;
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -84,9 +89,12 @@ $logo-bleed: math.div(1 - $logo-mark-ratio, 2 * $logo-mark-ratio);
   }
 
   &__links {
-    flex: 0 0 auto;
+    /* Absorbe el aire sobrante y centra los enlaces dentro: de ahi salen los
+       dos huecos iguales. */
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2.25rem;
     list-style: none;
 
@@ -231,6 +239,12 @@ $logo-bleed: math.div(1 - $logo-mark-ratio, 2 * $logo-mark-ratio);
 
       &.open { display: flex; }
     }
+
+    /* Aqui el menu esta fuera del flujo (absoluto), asi que no queda nadie que
+       empuje las acciones: se apoyan en el margen con un margen automatico. En
+       escritorio no se pone, porque los margenes automaticos se comerian el aire
+       que necesita el menu para centrarse. */
+    &__actions { margin-left: auto; }
 
     &__cta { display: none; }
     &__hamburger { display: flex; }
